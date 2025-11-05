@@ -143,10 +143,11 @@ async function handleGenerate(e) {
       length: format === 'emu' ? 'short' : undefined
     });
 
-    // Update state
+    // Update state with generated content
     state.generatedContent = result.content;
-    state.tokenBalance -= (format === 'longcat' ? 10 : 15);
-    updateTokenDisplay();
+
+    // Reload token balance from server to ensure accuracy
+    await loadTokenBalance();
 
     // Save to history
     addToHistory({

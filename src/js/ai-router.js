@@ -10,11 +10,21 @@ class AIRouter {
 
   /**
    * Get or create user ID
+   * Uses cryptographically secure crypto.randomUUID() when available
    */
   getUserId() {
     let userId = localStorage.getItem('koloni_userId');
     if (!userId) {
-      userId = 'user_' + Date.now() + '_' + Math.random().toString(36).substr(2, 9);
+      // Use crypto.randomUUID for cryptographically secure random ID (modern browsers)
+      if (typeof crypto !== 'undefined' && crypto.randomUUID) {
+        userId = 'user_' + crypto.randomUUID();
+      } else {
+        // Fallback for older browsers - less secure but acceptable for demo purposes
+        // Note: For production, consider requiring modern browsers with crypto.randomUUID
+        const timestamp = Date.now().toString(36);
+        const randomStr = Math.random().toString(36).substring(2, 11);
+        userId = 'user_' + timestamp + '_' + randomStr;
+      }
       localStorage.setItem('koloni_userId', userId);
     }
     return userId;

@@ -1,10 +1,18 @@
 /**
  * Netlify Function: Token Manager
  * Handles user token/credit management for AI generation
+ * 
+ * WARNING: This implementation uses in-memory storage which will reset on every 
+ * function cold start or restart. This is NOT suitable for production.
+ * For production use, implement persistent storage using:
+ * - FaunaDB (recommended for Netlify)
+ * - Supabase
+ * - Firebase
+ * - PostgreSQL
  */
 
 // In-memory storage for demo (replace with database in production)
-// This should be replaced with a proper database like FaunaDB, Supabase, or Firebase
+// WARNING: Data will be lost on function restart/cold start
 const userTokens = new Map();
 
 // Default token allocation for new users
