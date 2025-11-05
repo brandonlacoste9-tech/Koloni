@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Kononi++ Dashboard - Monitor your operations">
+  <title>Kononi++ | Dashboard</title>
+  <link rel="stylesheet" href="/src/styles/main.css">
+</head>
+<body>
+  <!-- Header -->
+  <header class="header">
+    <nav class="nav container">
+      <div class="nav-brand">
+        <h1 class="logo">Kononi<span class="logo-plus">++</span></h1>
+      </div>
+      <button class="nav-toggle" aria-label="Toggle navigation">
+        <span class="hamburger"></span>
+      </button>
+      <ul class="nav-menu">
+        <li><a href="/" class="nav-link">Home</a></li>
+        <li><a href="/dashboard.html" class="nav-link active">Dashboard</a></li>
+        <li><a href="/#features" class="nav-link">Features</a></li>
+        <li><a href="/#contact" class="nav-link">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- Dashboard Section -->
+  <section class="dashboard">
+    <div class="container">
+      <div class="dashboard-header">
+        <h2 class="dashboard-title">Operations Dashboard</h2>
+        <p class="dashboard-subtitle">Real-time metrics and statistics</p>
+      </div>
+
+      <!-- Statistics Grid -->
+      <div class="stats-grid">
+        <div class="stat-card">
+          <div class="stat-icon">📊</div>
+          <div class="stat-content">
+            <h3 class="stat-value" data-stat="artifacts">0</h3>
+            <p class="stat-label">Total Artifacts</p>
+          </div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon">✅</div>
+          <div class="stat-content">
+            <h3 class="stat-value" data-stat="sealed">0</h3>
+            <p class="stat-label">Sealed Items</p>
+          </div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon">👥</div>
+          <div class="stat-content">
+            <h3 class="stat-value" data-stat="users">0</h3>
+            <p class="stat-label">Active Users</p>
+          </div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon">⚡</div>
+          <div class="stat-content">
+            <h3 class="stat-value" data-stat="operations">0</h3>
+            <p class="stat-label">Operations/Day</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Activity Cards -->
+      <div class="dashboard-section">
+        <h3 class="section-subtitle">Recent Activity</h3>
+        <div class="activity-grid">
+          <div class="card activity-card">
+            <div class="activity-header">
+              <span class="activity-badge badge-success">Success</span>
+              <span class="activity-time">2 min ago</span>
+            </div>
+            <h4 class="activity-title">Artifact Sealed</h4>
+            <p class="activity-description">New artifact successfully sealed and added to the registry.</p>
+          </div>
+          <div class="card activity-card">
+            <div class="activity-header">
+              <span class="activity-badge badge-info">Info</span>
+              <span class="activity-time">15 min ago</span>
+            </div>
+            <h4 class="activity-title">User Authentication</h4>
+            <p class="activity-description">New user authenticated and granted access permissions.</p>
+          </div>
+          <div class="card activity-card">
+            <div class="activity-header">
+              <span class="activity-badge badge-warning">Warning</span>
+              <span class="activity-time">1 hour ago</span>
+            </div>
+            <h4 class="activity-title">System Update</h4>
+            <p class="activity-description">Scheduled maintenance window approaching in 24 hours.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Chart Section -->
+      <div class="dashboard-section">
+        <h3 class="section-subtitle">Performance Metrics</h3>
+        <div class="chart-container">
+          <div class="card chart-card">
+            <h4 class="chart-title">Operations Over Time</h4>
+            <div class="chart-placeholder">
+              <div class="chart-bars">
+                <div class="chart-bar" style="height: 60%"></div>
+                <div class="chart-bar" style="height: 80%"></div>
+                <div class="chart-bar" style="height: 45%"></div>
+                <div class="chart-bar" style="height: 90%"></div>
+                <div class="chart-bar" style="height: 70%"></div>
+                <div class="chart-bar" style="height: 85%"></div>
+                <div class="chart-bar" style="height: 95%"></div>
+              </div>
+              <div class="chart-labels">
+                <span>Mon</span>
+                <span>Tue</span>
+                <span>Wed</span>
+                <span>Thu</span>
+                <span>Fri</span>
+                <span>Sat</span>
+                <span>Sun</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <p>&copy; 2025 Kononi++. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script type="module" src="/src/dashboard.js"></script>
+</body>
+</html>
