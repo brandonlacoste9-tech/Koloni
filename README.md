@@ -171,6 +171,28 @@ See `.env.example` for all required vars:
 - __Stripe errors__: Check callback URL in dashboard
 - __“No tokens left”__: Reset in Netlify Functions or DB
 - __Export fails__: Verify proper API key is set and not rate-limited
+- __Development environment issues__: Use the `koloni-debug-fix.ps1` PowerShell script to reset your environment (see below)
+
+### Debug Fix Script (Windows)
+For Windows users experiencing development environment issues, use the `koloni-debug-fix.ps1` script:
+
+```powershell
+.\koloni-debug-fix.ps1
+```
+
+This script will:
+- Kill any process using port 3001 (MCP server)
+- Remove `node_modules` and `package-lock.json`
+- Clean npm cache
+- Reinstall dependencies with `--legacy-peer-deps`
+- Start MCP server (if configured)
+- Start the development server
+
+If you encounter execution policy errors, run:
+```powershell
+Set-ExecutionPolicy -ExecutionPolicy Bypass -Scope Process -Force
+.\koloni-debug-fix.ps1
+```
 
 ---
 
