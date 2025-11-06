@@ -7,7 +7,7 @@ Write-Host "===============================================" -ForegroundColor Cy
 Write-Host ""
 
 # Step 1: Kill any process using port 3001 (MCP server)
-Write-Host "[1/7] Checking for processes on port 3001..." -ForegroundColor Yellow
+Write-Host "[1/6] Checking for processes on port 3001..." -ForegroundColor Yellow
 try {
     $port3001 = Get-NetTCPConnection -LocalPort 3001 -ErrorAction SilentlyContinue
     if ($port3001) {
@@ -25,7 +25,7 @@ try {
 
 # Step 2: Remove node_modules directory
 Write-Host ""
-Write-Host "[2/7] Removing node_modules directory..." -ForegroundColor Yellow
+Write-Host "[2/6] Removing node_modules directory..." -ForegroundColor Yellow
 if (Test-Path "node_modules") {
     Remove-Item -Path "node_modules" -Recurse -Force -ErrorAction SilentlyContinue
     Write-Host "  node_modules removed successfully." -ForegroundColor Green
@@ -35,7 +35,7 @@ if (Test-Path "node_modules") {
 
 # Step 3: Remove package-lock.json
 Write-Host ""
-Write-Host "[3/7] Removing package-lock.json..." -ForegroundColor Yellow
+Write-Host "[3/6] Removing package-lock.json..." -ForegroundColor Yellow
 if (Test-Path "package-lock.json") {
     Remove-Item -Path "package-lock.json" -Force -ErrorAction SilentlyContinue
     Write-Host "  package-lock.json removed successfully." -ForegroundColor Green
@@ -45,7 +45,7 @@ if (Test-Path "package-lock.json") {
 
 # Step 4: Clean npm cache
 Write-Host ""
-Write-Host "[4/7] Cleaning npm cache..." -ForegroundColor Yellow
+Write-Host "[4/6] Cleaning npm cache..." -ForegroundColor Yellow
 npm cache clean --force
 if ($LASTEXITCODE -eq 0) {
     Write-Host "  npm cache cleaned successfully." -ForegroundColor Green
@@ -63,9 +63,9 @@ if ($LASTEXITCODE -eq 0) {
 #     Write-Host "  Warning: npm downgrade encountered an issue." -ForegroundColor Red
 # }
 
-# Step 6: Reinstall dependencies with legacy peer deps
+# Step 5: Reinstall dependencies with legacy peer deps
 Write-Host ""
-Write-Host "[5/7] Reinstalling dependencies with legacy peer deps..." -ForegroundColor Yellow
+Write-Host "[5/6] Reinstalling dependencies with legacy peer deps..." -ForegroundColor Yellow
 npm install --legacy-peer-deps
 if ($LASTEXITCODE -eq 0) {
     Write-Host "  Dependencies installed successfully." -ForegroundColor Green
@@ -76,10 +76,18 @@ if ($LASTEXITCODE -eq 0) {
     exit 1
 }
 
-# Step 7: Check for and start MCP server (if present)
+# Step 6: Start development servers
 Write-Host ""
-Write-Host "[6/7] Checking for MCP server..." -ForegroundColor Yellow
-# Check if there's an MCP server configuration or script
+Write-Host "[6/6] Starting development environment..." -ForegroundColor Yellow
+
+# Read package.json once for both MCP and dev server checks
+$packageJsonPath = "package.json"
+$packageJson = $null
+if (Test-Path $packageJsonPath) {
+    $packageJson = Get-Content $packageJsonPath | ConvertFrom-Json
+}
+
+# Check for and start MCP server (if present)
 $mcpServerExists = $false
 if (Test-Path "mcp-server.js") {
     $mcpServerExists = $true
@@ -87,16 +95,12 @@ if (Test-Path "mcp-server.js") {
     Start-Process -FilePath "node" -ArgumentList "mcp-server.js" -WindowStyle Hidden
     Start-Sleep -Seconds 2
     Write-Host "  MCP server started in background." -ForegroundColor Green
-} elseif (Test-Path "package.json") {
-    # Check if there's an MCP server script in package.json
-    $packageJson = Get-Content "package.json" | ConvertFrom-Json
-    if ($packageJson.scripts.PSObject.Properties.Name -contains "mcp") {
-        $mcpServerExists = $true
-        Write-Host "  Found MCP script in package.json. Starting MCP server..." -ForegroundColor Yellow
-        Start-Process -FilePath "npm" -ArgumentList "run mcp" -WindowStyle Hidden
-        Start-Sleep -Seconds 2
-        Write-Host "  MCP server started in background." -ForegroundColor Green
-    }
+} elseif ($null -ne $packageJson -and $packageJson.scripts.PSObject.Properties.Name -contains "mcp") {
+    $mcpServerExists = $true
+    Write-Host "  Found MCP script in package.json. Starting MCP server..." -ForegroundColor Yellow
+    Start-Process -FilePath "npm" -ArgumentList "run mcp" -WindowStyle Hidden
+    Start-Sleep -Seconds 2
+    Write-Host "  MCP server started in background." -ForegroundColor Green
 }
 
 if (-not $mcpServerExists) {
@@ -105,16 +109,13 @@ if (-not $mcpServerExists) {
 
 # Step 8: Start the development server
 Write-Host ""
-Write-Host "[7/7] Starting development server..." -ForegroundColor Yellow
-Write-Host ""
 Write-Host "===============================================" -ForegroundColor Cyan
 Write-Host "  Setup Complete! Starting dev server...      " -ForegroundColor Cyan
 Write-Host "===============================================" -ForegroundColor Cyan
 Write-Host ""
 
 # Check for different dev server configurations
-if (Test-Path "package.json") {
-    $packageJson = Get-Content "package.json" | ConvertFrom-Json
+if ($null -ne $packageJson) {
     
     # Check for common dev scripts
     if ($packageJson.scripts.PSObject.Properties.Name -contains "dev") {
