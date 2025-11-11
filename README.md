@@ -87,6 +87,18 @@ git submodule update
 ---
 
 ## ✨ Development Guidelines (For AI & Contributors)
+
+### 🐝 Best Practices
+
+For comprehensive development standards, see our [Best Practices Guide](./BEST-PRACTICES.md) - a complete resource covering:
+- JavaScript patterns and ES6+ standards
+- Netlify Functions architecture
+- AI integration guidelines
+- Security best practices
+- CSS architecture with bee/hive theming
+- Testing, accessibility, and performance optimization
+
+**Quick Guidelines:**
 - To add a model: Copy `generate-emu.js`, adapt endpoint and pricing
 - New output type? Update `/src/js/ai-router.js`
 - Keep all functions JSON-only (no HTML response)
