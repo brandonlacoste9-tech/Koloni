@@ -60,6 +60,7 @@ The Creator Studio is an AI-powered content generation platform that enables use
 - OpenAI GPT-4 API
 - Stripe Payments
 - Netlify Serverless Functions
+- Apache Spark (included as a git submodule for big data processing capabilities)
 
 ## Getting Started
 
@@ -76,9 +77,28 @@ The Creator Studio is an AI-powered content generation platform that enables use
 git clone https://github.com/brandonlacoste9-tech/Koloni.git
 cd Koloni
 \`\`\`
+
+2. Initialize and update submodules (including Apache Spark):
+\`\`\`bash
+git submodule init
+git submodule update
+\`\`\`
+
 ---
 
 ## ✨ Development Guidelines (For AI & Contributors)
+
+### 🐝 Best Practices
+
+For comprehensive development standards, see our [Best Practices Guide](./BEST-PRACTICES.md) - a complete resource covering:
+- JavaScript patterns and ES6+ standards
+- Netlify Functions architecture
+- AI integration guidelines
+- Security best practices
+- CSS architecture with bee/hive theming
+- Testing, accessibility, and performance optimization
+
+**Quick Guidelines:**
 - To add a model: Copy `generate-emu.js`, adapt endpoint and pricing
 - New output type? Update `/src/js/ai-router.js`
 - Keep all functions JSON-only (no HTML response)
@@ -170,6 +190,7 @@ Koloni/
 │       ├── export-youtube.js
 │       ├── token-manager.js
 │       └── stripe-webhook.js
+├── spark/                  # Apache Spark submodule (git submodule)
 ├── src/
 │   ├── components/         # Reusable UI components
 │   ├── css/               # Stylesheets
@@ -181,6 +202,7 @@ Koloni/
 ├── build.js               # Build script
 ├── .env.example           # Environment variables template
 ├── .gitignore            # Git ignore rules
+├── .gitmodules            # Git submodules configuration
 ├── DEPLOYMENT_CHECKLIST.md
 └── README.md
 \`\`\`
