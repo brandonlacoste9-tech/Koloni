@@ -50,4 +50,4 @@ if (fs.existsSync(path.join(srcDir, 'images'))) {
   copyDir(path.join(srcDir, 'images'), path.join(publicDir, 'images'));
 }
 
-console.log('\n🎉 Build complete! Ready for Netlify deployment.\n');
+console.log('\n🎉 Build complete! Ready for Vercel deployment.\n');
