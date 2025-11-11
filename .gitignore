@@ -1,7 +1,17 @@
+# Environment variables - NEVER commit secrets
+.env
+.env.local
+.env.*.local
+
 # Dependencies
 node_modules/
 package-lock.json
 
+# Build outputs
+public/
+dist/
+build/
+*.log
 # Build output
 public/
 dist/
@@ -16,11 +26,21 @@ dist/
 .DS_Store
 Thumbs.db
 
+# IDE
 # IDE files
 .vscode/
 .idea/
 *.swp
 *.swo
+*~
+
+# Temporary files
+tmp/
+temp/
+*.tmp
+
+# Archive files (unless needed)
+*.zip
 
 # Logs
 npm-debug.log*

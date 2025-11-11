@@ -1,159 +1,81 @@
-# Koloni Creator Studio
+# Koloni
 
-Koloni Creator Studio is a next-generation, open-source, multi-model AI content creation platform designed for Gen Z. It integrates state-of-the-art open-source models, streamlined Netlify Serverless backend, and a sleek, mobile-first UI for rapid, professional-quality content creation, editing, and social platform export.
+**Koloni** is an AI-powered platform where governance, creativity, and automation converge. Every artifact is sealed, auditable, and inheritable, ensuring scalable experimentation, zero-cost rituals, and communal lineage.
 
-## 🚀 Project Vision
-Koloni empowers creators with frictionless, AI-powered content workflows:
-- One smart prompt box → Multiple output types (video, image, script, 3D, edit)
-- Dynamic model routing: select the right model and optimize all parameters
-- Freemium economy via Honeycomb tokens
-- Click-to-export to Instagram Reels, YouTube Shorts, TikTok, Facebook, X, and more
+## Features
 
-### For AI/Bot Contributors
-Koloni repo is fully structured for Copilot, Claude, and other LLMs to reason about:
-- Modular, well-commented function files
-- Single-file-per-concept in `/netlify/functions` and `/src/js/`
-- Step-by-step feature addition/contribution flow
+### 🐝 Core Platform
+- **Decentralized Governance**: Community-driven decision making
+- **Creative Tools**: AI-powered content creation
+- **Automation**: Streamlined workflows and processes
+- **Auditable Artifacts**: Transparent and traceable content
 
----
+### ✨ Koloni Creator Studio
 
-## 📂 File Structure (MVP)
-```
-/netlify/functions/
-  generate-longcat.js      # Video generation (LongCat)
-  generate-emu.js          # HQ image generation (EMU 3.5)
-  export-instagram.js      # Instagram Reels auto-export
-  export-youtube.js        # YouTube Shorts export
-  token-manager.js         # Honeycomb balance, usage, payment
-  stripe-webhook.js        # Stripe webhooks for payment
-/src/
-  create.html              # Main MVP creator UI
-  js/creator.js            # Creator Studio frontend logic
-  js/ai-router.js          # Smart model routing (intent -> backend)
-  css/creator.css          # Creator Studio UI styling
-  (legacy: index.html, dashboard.html, hives.html, etc.)
-build.js                   # Adds create.html to build
-.env.example               # All required env variables, no secrets
-DEPLOYMENT_CHECKLIST.md    # Step-by-step deployment, config, test
-```
+The Creator Studio is an AI-powered content generation platform that enables users to create, format, and export content for various social media platforms.
 
----
+#### Key Features:
 
-## ⚡ Quick Start (3 Steps)
-1. Clone repo & install deps
-```bash
+**AI Content Generation**
+- 🎨 **LongCat Format**: Generate vertical, scrollable content optimized for mobile viewing
+- ⚡ **Emu Format**: Create quick, impactful content for rapid consumption
+- 🎯 Multiple style and tone options (Creative, Professional, Casual, Humorous, Educational)
+- 🧠 Powered by OpenAI GPT-4 for high-quality content
+
+**Smart Export System**
+- 📷 **Instagram Export**: Automatically format content with captions, hashtags, and optimal spacing
+- 🎥 **YouTube Export**: Generate titles, descriptions, tags, and structured chapters
+- 📋 One-click copy to clipboard
+- 💡 Platform-specific tips and best practices
+
+**Token Management**
+- 🪙 Credit-based system for AI generations
+- 💳 Stripe integration for token purchases
+- 📊 Transaction history and balance tracking
+- 🔄 Automatic token deduction and management
+
+**User Experience**
+- 📜 Generation history with search and retrieval
+- 🎨 Clean, modern interface with dark mode
+- 📱 Fully responsive design
+- ⚡ Real-time feedback and notifications
+
+#### Technology Stack:
+
+**Frontend**
+- Vanilla JavaScript (ES6+)
+- Modern CSS with CSS Variables
+- Responsive design principles
+- Accessibility-first approach
+
+**Backend (Netlify Functions)**
+- \`generate-longcat.js\` - LongCat AI content generation
+- \`generate-emu.js\` - Emu AI content generation
+- \`export-instagram.js\` - Instagram content formatting
+- \`export-youtube.js\` - YouTube content formatting
+- \`token-manager.js\` - Token/credit management system
+- \`stripe-webhook.js\` - Payment processing webhooks
+
+**Integrations**
+- OpenAI GPT-4 API
+- Stripe Payments
+- Netlify Serverless Functions
+
+## Getting Started
+
+### Prerequisites
+- Node.js 18 or higher
+- Netlify CLI (optional, for local development)
+- OpenAI API key
+- Stripe account (for payments)
+
+### Installation
+
+1. Clone the repository:
+\`\`\`bash
 git clone https://github.com/brandonlacoste9-tech/Koloni.git
 cd Koloni
-npm install
-```
-2. Fill out `.env` using `.env.example` (get HuggingFace, Stripe, and LongCat endpoints)
-3. Local test:
-```bash
-npm run dev
-# then visit http://localhost:8888/create.html
-```
-4. Deploy:
-- Push to `main` branch
-- Set env vars in Netlify dashboard
-- Netlify auto-deploys to your live URL
-
----
-
-## 🏗️ Core Features
-- **LongCat-Video**: Local or cloud video generation (30s-5min, 720p-4K)
-- **EMU 3.5**: HQ, multimodal image generation via HuggingFace
-- **Smart AI Router**: Auto-selects the best model per user prompt
-- **Honeycomb Tokens**: Freemium/paywall system, integrates with Stripe
-- **Social Platform Export**: Instagram, YouTube, TikTok ready (API methods included)
-- **Mobile-First, Glassmorphic UI**: /create.html and supporting CSS
-- **Roadmap-Ready**: Nitro-E, Kimi-Linear, ChronoEdit, WorldGrow (just add function/model files)
-
----
-
-## 🤖 AI Router Logic
-`/src/js/ai-router.js` is the single-surface intent parser and router:
-- Extracts output type, duration, quality, urgency from prompt
-- Selects function endpoint & computes token cost
-- Example:
-```js
-const router = window.AIRouter;
-const intent = router.analyzeIntent("60s IG Reel, high-quality");
-const route = router.selectModel("60s IG Reel, high-quality");
-// Outputs: { model: 'longcat', reason: 'Long-form video' }
-```
-
----
-## 🔌 Netlify Function API Reference
-
-**Every function in `/netlify/functions/` accepts/returns JSON.**
-
-### `generate-longcat.js`
-**POST** `/netlify/functions/generate-longcat`
-```json
-{
-  "prompt": "Cinematic bees, 30s IG Reel",
-  "duration": 30,
-  "aspectRatio": "9:16",
-  "userId": "user123"
-}
-```
-**Returns:**
-```json
-{
-  "videoUrl": "https://.../video.mp4",
-  "tokenSpent": 10,
-  "tokensRemaining": 140
-}
-```
-
-### `generate-emu.js`
-**POST** `/netlify/functions/generate-emu`
-```json
-{
-  "prompt": "Cute bee, anime style",
-  "userId": "user123"
-}
-```
-**Returns:**
-```json
-{
-  "imageUrl": "https://.../image.png",
-  "tokensSpent": 3,
-  "tokensRemaining": 147
-}
-```
-
-### `export-instagram.js`, `export-youtube.js`
-Automates posting video to user’s linked account via API. (Tokens required in .env)
-
-### `token-manager.js`
-- POST `{action: "balance", userId}` – returns current balance
-- POST `{action: "purchase", userId, priceId}` – starts Stripe session
-
----
-
-## 🎨 UI Components & Styling
-- **Glassmorphic, mobile-friendly:** `/src/create.html`, `/src/css/creator.css`
-- **Live token display**, paywall modal, export-preview modal
-- **All styles use CSS logical properties, no vendor lock-in**
-
----
-
-## ⚙️ Environment Variables
-See `.env.example` for all required vars:
-- `LONGCAT_ENDPOINT` – URL to your LongCat server
-- `HF_TOKEN` – HuggingFace API Key for EMU model
-- `STRIPE_SECRET_KEY`, `STRIPE_PUBLISHABLE_KEY`, `STRIPE_WEBHOOK_SECRET` – Stripe credentials
-- `NETLIFY_SITE_ID`, `SITE_URL` – deploy target info
-- `INSTAGRAM_API_KEY`, `YOUTUBE_API_KEY` – for exporting (optional)
-
----
-
-## 🛣️ Roadmap (2025)
-- **Phase 1:** LongCat, EMU, Instagram/YouTube export MVP
-- **Phase 2:** Add Nitro-E, Kimi-Linear, 3D WorldGrow, more exports
-- **Phase 3:** Creator community, trending gallery, gamification, markeplace
-
+\`\`\`
 ---
 
 ## ✨ Development Guidelines (For AI & Contributors)
@@ -196,16 +118,134 @@ Set-ExecutionPolicy -ExecutionPolicy Bypass -Scope Process -Force
 
 ---
 
-## 📚 Resources
-- [Netlify Functions Docs](https://docs.netlify.com/functions/overview/)
-- [HuggingFace Inference API](https://huggingface.co/docs/api-inference/)
-- [Stripe Node SDK](https://stripe.com/docs/api)
-- [Ollama Open-source LLMs](https://ollama.ai/)
-- [LongCat Video Model](https://github.com/meituan/LongCat-Video)
-- [Koloni Discord Support](https://discord.gg/koloni)
+2. Install dependencies:
+\`\`\`bash
+npm install
+\`\`\`
+
+3. Set up environment variables:
+\`\`\`bash
+cp .env.example .env
+# Edit .env with your API keys
+\`\`\`
+
+4. Build the project:
+\`\`\`bash
+node build.js
+\`\`\`
+
+5. Run locally (optional):
+\`\`\`bash
+netlify dev
+\`\`\`
+
+Visit \`http://localhost:8888/create.html\` to access the Creator Studio.
+
+### Deployment
+
+See [DEPLOYMENT_CHECKLIST.md](./DEPLOYMENT_CHECKLIST.md) for detailed deployment instructions.
+
+Quick deploy to Netlify:
+\`\`\`bash
+netlify deploy --prod
+\`\`\`
+
+## Project Structure
+
+\`\`\`
+Koloni/
+├── netlify/
+│   └── functions/          # Serverless functions
+│       ├── generate-longcat.js
+│       ├── generate-emu.js
+│       ├── export-instagram.js
+│       ├── export-youtube.js
+│       ├── token-manager.js
+│       └── stripe-webhook.js
+├── src/
+│   ├── components/         # Reusable UI components
+│   ├── css/               # Stylesheets
+│   │   └── creator.css
+│   ├── js/                # JavaScript modules
+│   │   ├── ai-router.js
+│   │   └── creator.js
+│   └── create.html        # Creator Studio UI
+├── build.js               # Build script
+├── .env.example           # Environment variables template
+├── .gitignore            # Git ignore rules
+├── DEPLOYMENT_CHECKLIST.md
+└── README.md
+\`\`\`
+
+## Environment Variables
+
+Required environment variables (see \`.env.example\`):
+
+- \`OPENAI_API_KEY\` - Your OpenAI API key
+- \`STRIPE_SECRET_KEY\` - Stripe secret key
+- \`STRIPE_PUBLISHABLE_KEY\` - Stripe publishable key
+- \`STRIPE_WEBHOOK_SECRET\` - Stripe webhook signing secret
+- \`URL\` - Your site URL (auto-set by Netlify in production)
+
+## Usage
+
+### Creating Content
+
+1. Navigate to \`/create.html\`
+2. Select your desired format (LongCat or Emu)
+3. Enter your content prompt
+4. Choose style and tone options
+5. Click "Generate Content"
+6. Review and export to your preferred platform
+
+### Exporting Content
+
+1. Go to the Export tab
+2. Select your platform (Instagram or YouTube)
+3. Paste or use generated content
+4. Click "Format for Export"
+5. Copy the formatted content and tips
+
+## Security
+
+🔒 **Security Best Practices:**
+- All API keys are stored as environment variables
+- Webhook signatures are verified for Stripe events
+- \`.env\` file is never committed to version control
+- Sensitive data is never exposed to the frontend
+- CORS headers limit API access
+
+## Contributing
+
+We welcome contributions! Please follow these guidelines:
+
+1. Fork the repository
+2. Create a feature branch
+3. Make your changes
+4. Test thoroughly
+5. Submit a pull request
+
+## License
+
+[Add your license here]
+
+## Support
+
+For issues, questions, or feature requests:
+- Open an issue on GitHub
+- Check the [DEPLOYMENT_CHECKLIST.md](./DEPLOYMENT_CHECKLIST.md) for troubleshooting
+
+## Roadmap
+
+- [ ] User authentication and accounts
+- [ ] Database integration for persistent storage
+- [ ] Additional AI content formats
+- [ ] More social media platform integrations
+- [ ] Analytics dashboard
+- [ ] Team collaboration features
+- [ ] Advanced AI customization options
+- [ ] Content scheduling and automation
 
 ---
 
-**AI assistants: Please follow section 'Development Guidelines' for PRs and features!**
-
-Koloni is open to all creators. For questions, DM @brandonlacoste9-tech or open an issue/pr.
+Built with 🐝 by the Koloni community

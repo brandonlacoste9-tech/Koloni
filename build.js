@@ -21,7 +21,7 @@ copyDir(path.join(srcDir, 'css'), path.join(publicDir, 'css'));
 copyDir(path.join(srcDir, 'js'), path.join(publicDir, 'js'));
 
 // Copy HTML files
-const htmlFiles = ['index.html', 'dashboard.html', 'activity.html', 'hives.html', 'koloni.html'];
+const htmlFiles = ['index.html', 'dashboard.html', 'activity.html', 'hives.html', 'koloni.html', 'create.html'];
 htmlFiles.forEach(file => {
   const srcPath = path.join(srcDir, file);
   const destPath = path.join(publicDir, file);

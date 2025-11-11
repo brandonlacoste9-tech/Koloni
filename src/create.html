@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Creator Studio - Koloni</title>
+  <meta name="description" content="Create AI-powered content with Koloni Creator Studio">
+  
+  <!-- Styles -->
+  <link rel="stylesheet" href="/css/creator.css">
+  
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="creator-container">
+    <!-- Header -->
+    <header class="creator-header">
+      <div class="header-content">
+        <h1 class="text-gradient">Koloni Creator Studio</h1>
+        <div class="token-display">
+          <span class="token-icon">🪙</span>
+          <span id="tokenBalance">--</span>
+          <button class="btn btn-glass btn-sm" id="buyTokensBtn">Buy Tokens</button>
+        </div>
+      </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="creator-main">
+      <!-- Sidebar -->
+      <aside class="creator-sidebar">
+        <nav class="creator-nav">
+          <button class="nav-item active" data-tab="generate">
+            <span class="nav-icon">✨</span>
+            Generate
+          </button>
+          <button class="nav-item" data-tab="export">
+            <span class="nav-icon">📤</span>
+            Export
+          </button>
+          <button class="nav-item" data-tab="history">
+            <span class="nav-icon">📜</span>
+            History
+          </button>
+        </nav>
+      </aside>
+
+      <!-- Content Area -->
+      <div class="creator-content">
+        <!-- Generate Tab -->
+        <div id="generateTab" class="tab-content active">
+          <div class="content-section">
+            <h2>AI Content Generator</h2>
+            <p class="subtitle">Create engaging content with AI assistance</p>
+
+            <!-- Format Selection -->
+            <div class="format-selector">
+              <label class="format-option">
+                <input type="radio" name="format" value="longcat" checked>
+                <div class="format-card">
+                  <div class="format-icon">📱</div>
+                  <h3>LongCat</h3>
+                  <p>Vertical scrollable content</p>
+                  <span class="cost-badge">10 tokens</span>
+                </div>
+              </label>
+              <label class="format-option">
+                <input type="radio" name="format" value="emu">
+                <div class="format-card">
+                  <div class="format-icon">⚡</div>
+                  <h3>Emu</h3>
+                  <p>Quick, impactful content</p>
+                  <span class="cost-badge">15 tokens</span>
+                </div>
+              </label>
+            </div>
+
+            <!-- Generation Form -->
+            <form id="generateForm" class="generate-form">
+              <div class="form-group">
+                <label for="prompt">Content Prompt</label>
+                <textarea 
+                  id="prompt" 
+                  name="prompt" 
+                  rows="4" 
+                  placeholder="Describe the content you want to create..."
+                  required
+                ></textarea>
+              </div>
+
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="style">Style</label>
+                  <select id="style" name="style">
+                    <option value="creative">Creative</option>
+                    <option value="professional">Professional</option>
+                    <option value="casual">Casual</option>
+                    <option value="humorous">Humorous</option>
+                    <option value="educational">Educational</option>
+                  </select>
+                </div>
+
+                <div class="form-group">
+                  <label for="tone">Tone</label>
+                  <select id="tone" name="tone">
+                    <option value="engaging">Engaging</option>
+                    <option value="formal">Formal</option>
+                    <option value="friendly">Friendly</option>
+                    <option value="enthusiastic">Enthusiastic</option>
+                    <option value="informative">Informative</option>
+                  </select>
+                </div>
+              </div>
+
+              <button type="submit" class="btn btn-primary btn-lg" id="generateBtn">
+                <span class="btn-text">Generate Content</span>
+                <span class="btn-loader" style="display: none;">Generating...</span>
+              </button>
+            </form>
+
+            <!-- Result Display -->
+            <div id="resultContainer" class="result-container" style="display: none;">
+              <div class="result-header">
+                <h3>Generated Content</h3>
+                <button class="btn btn-glass btn-sm" id="copyBtn">Copy</button>
+              </div>
+              <div id="resultContent" class="result-content"></div>
+              <div class="result-actions">
+                <button class="btn btn-primary" id="exportResultBtn">Export</button>
+                <button class="btn btn-glass" id="regenerateBtn">Regenerate</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Export Tab -->
+        <div id="exportTab" class="tab-content">
+          <div class="content-section">
+            <h2>Export Content</h2>
+            <p class="subtitle">Format your content for social media platforms</p>
+
+            <!-- Platform Selection -->
+            <div class="platform-selector">
+              <label class="platform-option">
+                <input type="radio" name="platform" value="instagram" checked>
+                <div class="platform-card">
+                  <div class="platform-icon">📷</div>
+                  <h3>Instagram</h3>
+                  <p>Stories, Posts & Reels</p>
+                </div>
+              </label>
+              <label class="platform-option">
+                <input type="radio" name="platform" value="youtube">
+                <div class="platform-card">
+                  <div class="platform-icon">🎥</div>
+                  <h3>YouTube</h3>
+                  <p>Titles & Descriptions</p>
+                </div>
+              </label>
+            </div>
+
+            <!-- Export Form -->
+            <form id="exportForm" class="export-form">
+              <div class="form-group">
+                <label for="exportContent">Content to Export</label>
+                <textarea 
+                  id="exportContent" 
+                  name="exportContent" 
+                  rows="6" 
+                  placeholder="Paste your content here..."
+                  required
+                ></textarea>
+              </div>
+
+              <button type="submit" class="btn btn-primary btn-lg" id="exportBtn">
+                <span class="btn-text">Format for Export</span>
+                <span class="btn-loader" style="display: none;">Formatting...</span>
+              </button>
+            </form>
+
+            <!-- Export Result -->
+            <div id="exportResultContainer" class="result-container" style="display: none;">
+              <div class="result-header">
+                <h3>Formatted Content</h3>
+                <button class="btn btn-glass btn-sm" id="copyExportBtn">Copy All</button>
+              </div>
+              <div id="exportResultContent" class="export-result-content"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- History Tab -->
+        <div id="historyTab" class="tab-content">
+          <div class="content-section">
+            <h2>Generation History</h2>
+            <p class="subtitle">View your recent AI generations</p>
+            
+            <div id="historyList" class="history-list">
+              <div class="empty-state">
+                <span class="empty-icon">📋</span>
+                <p>No generations yet. Start creating!</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <!-- Scripts -->
+  <script src="/js/ai-router.js"></script>
+  <script src="/js/creator.js"></script>
+</body>
+</html>
