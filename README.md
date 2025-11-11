@@ -86,6 +86,14 @@ cd Koloni
 - Commit message: `feat: [desc]`, `fix: [desc]`, `chore: [desc]`
 - PRs: keep to a single concern.
 
+### 🤖 Using GitHub AI Tools
+
+GitHub Copilot and AI agents are powerful tools for accelerating development. See our comprehensive [AI Tools Guide](./docs/AI_TOOLS_GUIDE.md) to learn:
+- How to use Copilot Chat (ask mode, edit mode, agent mode)
+- Best practices for each phase of the SDLC (Planning, Creation, Reviews, Testing, Deployment, Operation)
+- Example prompts and workflows
+- Tips for getting the most out of AI assistance
+
 ---
 
 ## 💡 Troubleshooting

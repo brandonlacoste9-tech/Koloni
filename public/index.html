@@ -1,10 +1,81 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
-    <link rel="stylesheet" href="../css/landing-v2.css">
-    <script src="../js/landing-v2.js" defer></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Koloni - Premium Beekeeping Platform">
+    <meta property="og:title" content="Koloni">
+    <meta property="og:description" content="Transform Your Beekeeping with AI-Powered Insights">
+    <title>Koloni - Premium Beekeeping Platform</title>
+    <link rel="stylesheet" href="/css/global.css">
+    <link rel="stylesheet" href="/css/landing-v2.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
 </head>
 <body>
-    <h1>Welcome to the Premium Landing Page</h1>
-    <p>This is the newly designed landing page based on glassmorphic design and 2025 trends.</p>
+    <header>
+        <button id="dark-mode-toggle">Toggle Dark Mode</button>
+        <h1>Transform Your Beekeeping with AI-Powered Insights</h1>
+        <p>Your AI-powered partner in maximizing hive productivity.</p>
+        <button>Start Free Trial</button>
+        <button>Watch Demo</button>
+        <span class="badge">New: AI Hive Monitoring</span>
+        <div class="hero-orbs">
+            <div id="orb-1" class="orb"></div>
+            <div id="orb-2" class="orb"></div>
+            <div id="orb-3" class="orb"></div>
+        </div>
+    </header>
+    <main>
+        <section class="features">
+            <h2>Features</h2>
+            <div class="bento-grid">
+                <div class="card">Real-Time Monitoring</div>
+                <div class="card">AI Disease Detection</div>
+                <div class="card">Weather Integration</div>
+                <div class="card">Harvest Predictions</div>
+                <div class="card">Colony Analytics</div>
+                <div class="card">Community Network</div>
+            </div>
+        </section>
+        <section class="how-it-works">
+            <h2>How It Works</h2>
+            <ol>
+                <li>Install Sensors</li>
+                <li>Monitor Dashboard</li>
+                <li>Optimize Yields</li>
+            </ol>
+        </section>
+        <section class="pricing">
+            <h2>Pricing</h2>
+            <div class="pricing-toggle">
+                <button>Monthly</button>
+                <button>Annual</button>
+            </div>
+            <div class="pricing-tiers">
+                <div class="tier">Hobbyist - $0/mo</div>
+                <div class="tier">Pro - $29/mo</div>
+                <div class="tier">Enterprise - Custom</div>
+            </div>
+        </section>
+        <section class="final-cta">
+            <h2>Join 10,000+ Beekeepers</h2>
+            <input type="email" placeholder="Enter your email" />
+            <button>Sign Up</button>
+        </section>
+    </main>
+    <footer>
+        <div class="footer-links">
+            <div>Product</div>
+            <div>Company</div>
+            <div>Resources</div>
+            <div>Legal</div>
+        </div>
+        <p>&copy; 2025 Koloni. All rights reserved.</p>
+    </footer>
+    <svg class="honeycomb-background">
+        <!-- Honeycomb pattern goes here -->
+    </svg>
+    <script src="/js/landing-v2.js"></script>
 </body>
 </html>
