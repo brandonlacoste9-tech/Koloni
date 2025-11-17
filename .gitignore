@@ -2,6 +2,7 @@
 .env
 .env.local
 .env.*.local
+.env.production
 
 # Dependencies
 node_modules/
@@ -11,22 +12,12 @@ package-lock.json
 public/
 dist/
 build/
-*.log
-# Build output
-public/
-dist/
 .netlify/
-
-# Environment variables
-.env
-.env.local
-.env.production
 
 # OS files
 .DS_Store
 Thumbs.db
 
-# IDE
 # IDE files
 .vscode/
 .idea/
@@ -34,20 +25,15 @@ Thumbs.db
 *.swo
 *~
 
-# Temporary files
-tmp/
-temp/
-*.tmp
-
-# Archive files (unless needed)
-*.zip
-
 # Logs
+*.log
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 
 # Temporary files
+tmp/
+temp/
 *.tmp
 *.temp
 
@@ -55,6 +41,7 @@ yarn-error.log*
 *.zip
 *.tar.gz
 *.rar
+*.ps1
 
 # Legacy project files
 *adgenxai*
