@@ -229,5 +229,5 @@ document.addEventListener("DOMContentLoaded", () => {
 
   animateCounters();
 
-  console.log("🐝 Koloni Landing V2 Loaded - Premium 2025 Design");
+  console.log("🐝 AdGenXAI Landing V2 Loaded - Premium 2025 Design");
 });

@@ -42,7 +42,7 @@ export default function Nav() {
       <div class="container">
         <div class="nav-brand">
           <a href="/" class="nav-logo">
-            <span class="text-gradient">Koloni</span>
+            <span class="text-gradient">AdGenXAI</span>
           </a>
         </div>
         <ul class="nav-menu">

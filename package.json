@@ -1,7 +1,7 @@
 {
   "name": "koloni",
   "version": "0.1.0",
-  "description": "AI-powered content creation platform",
+  "description": "AdGenXAI - AI-Powered Content Creation Platform",
   "main": "build.js",
   "scripts": {
     "dev": "netlify dev",

@@ -1,6 +1,6 @@
-# Koloni
+# AdGenXAI
 
-**Koloni** is an AI-powered platform where governance, creativity, and automation converge. Every artifact is sealed, auditable, and inheritable, ensuring scalable experimentation, zero-cost rituals, and communal lineage.
+**AdGenXAI** is an AI-powered platform where governance, creativity, and automation converge. Every artifact is sealed, auditable, and inheritable, ensuring scalable experimentation, zero-cost rituals, and communal lineage.
 
 ## Features
 
@@ -11,7 +11,7 @@
 - **Automation**: Streamlined workflows and processes
 - **Auditable Artifacts**: Transparent and traceable content
 
-### ✨ Koloni Creator Studio
+### ✨ AdGenXAI Creator Studio
 
 The Creator Studio is an AI-powered content generation platform that enables users to create, format, and export content for various social media platforms.
 
@@ -298,4 +298,4 @@ For issues, questions, or feature requests:
 
 ---
 
-Built with 🐝 by the Koloni community
+Built with 🐝 by the AdGenXAI community
