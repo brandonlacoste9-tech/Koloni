@@ -58,7 +58,7 @@ exports.handler = async (event, context) => {
 
     // Handle different actions
     switch (action) {
-      case "check":
+      case "check": {
         // Check if user has sufficient tokens
         const sufficient = userAccount.balance >= (cost || 0);
         return {
@@ -73,6 +73,7 @@ exports.handler = async (event, context) => {
             required: cost || 0,
           }),
         };
+      }
 
       case "deduct":
         // Deduct tokens from user account
@@ -118,7 +119,7 @@ exports.handler = async (event, context) => {
           }),
         };
 
-      case "add":
+      case "add": {
         // Add tokens to user account (for purchases)
         const amount = cost || 0;
         if (amount <= 0) {
@@ -151,6 +152,7 @@ exports.handler = async (event, context) => {
             added: amount,
           }),
         };
+      }
 
       case "balance":
         // Get current balance

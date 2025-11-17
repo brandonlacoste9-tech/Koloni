@@ -38,7 +38,7 @@ exports.handler = async (event, context) => {
   // Handle the event
   try {
     switch (stripeEvent.type) {
-      case "checkout.session.completed":
+      case "checkout.session.completed": {
         // Payment successful - add tokens to user account
         const session = stripeEvent.data.object;
 
@@ -78,32 +78,37 @@ exports.handler = async (event, context) => {
           `Successfully added ${tokenAmount} tokens to user ${userId}`,
         );
         break;
+      }
 
-      case "payment_intent.succeeded":
+      case "payment_intent.succeeded": {
         const paymentIntent = stripeEvent.data.object;
         console.log("PaymentIntent succeeded:", paymentIntent.id);
         break;
+      }
 
-      case "payment_intent.payment_failed":
+      case "payment_intent.payment_failed": {
         const failedPayment = stripeEvent.data.object;
         console.error("Payment failed:", failedPayment.id);
         // TODO: Send notification to user about failed payment
         break;
+      }
 
       case "customer.subscription.created":
-      case "customer.subscription.updated":
+      case "customer.subscription.updated": {
         // Handle subscription events for recurring token packages
         const subscription = stripeEvent.data.object;
         console.log("Subscription event:", subscription.id);
         // TODO: Handle subscription-based token allocation
         break;
+      }
 
-      case "customer.subscription.deleted":
+      case "customer.subscription.deleted": {
         // Handle subscription cancellation
         const canceledSub = stripeEvent.data.object;
         console.log("Subscription canceled:", canceledSub.id);
         // TODO: Handle subscription cancellation
         break;
+      }
 
       default:
         console.log(`Unhandled event type: ${stripeEvent.type}`);
