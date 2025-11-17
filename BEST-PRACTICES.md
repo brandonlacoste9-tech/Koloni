@@ -28,7 +28,7 @@
 
 ```javascript
 // ✅ Good - constants for the colony
-const HIVE_NAME = 'Koloni';
+const HIVE_NAME = "Koloni";
 const MAX_WORKERS = 100;
 
 // ✅ Good - let for changing values
@@ -36,7 +36,7 @@ let activeWorkers = 0;
 activeWorkers += 1;
 
 // ❌ Avoid - var is old hive technology
-var oldStyleVar = 'outdated';
+var oldStyleVar = "outdated";
 ```
 
 ### Arrow Functions - Swift as a Bee's Flight
@@ -48,17 +48,17 @@ var oldStyleVar = 'outdated';
 const processHoney = (amount) => amount * 1.5;
 
 // ✅ Good - array operations
-const workers = ['bee1', 'bee2', 'bee3'];
-workers.map(worker => worker.toUpperCase());
+const workers = ["bee1", "bee2", "bee3"];
+workers.map((worker) => worker.toUpperCase());
 
 // ✅ Good - event handlers
-document.getElementById('hive-button').addEventListener('click', () => {
-    console.log('Hive activated!');
+document.getElementById("hive-button").addEventListener("click", () => {
+  console.log("Hive activated!");
 });
 
 // ❌ Avoid - unnecessary function keyword for simple operations
-const processHoney = function(amount) {
-    return amount * 1.5;
+const processHoney = function (amount) {
+  return amount * 1.5;
 };
 ```
 
@@ -68,7 +68,7 @@ const processHoney = function(amount) {
 
 ```javascript
 // ✅ Good - readable string interpolation
-const workerName = 'BuzzBee';
+const workerName = "BuzzBee";
 const message = `Welcome to the hive, ${workerName}!`;
 const multiLine = `
     Colony Status:
@@ -77,7 +77,7 @@ const multiLine = `
 `;
 
 // ❌ Avoid - string concatenation
-const message = 'Welcome to the hive, ' + workerName + '!';
+const message = "Welcome to the hive, " + workerName + "!";
 ```
 
 ### Destructuring - Efficient Honey Extraction
@@ -93,7 +93,7 @@ const [firstWorker, secondWorker, ...restWorkers] = workersList;
 
 // ✅ Good - function parameters
 function formatForExport({ platform, content, metadata }) {
-    return `${platform}: ${content}`;
+  return `${platform}: ${content}`;
 }
 
 // ❌ Avoid - manual property access
@@ -109,38 +109,38 @@ const style = generatedContent.style;
 ```javascript
 // ✅ Good - clean async/await
 async function generateContent(prompt) {
-    try {
-        const response = await fetch('/.netlify/functions/generate-longcat', {
-            method: 'POST',
-            body: JSON.stringify({ prompt })
-        });
-        const data = await response.json();
-        return data;
-    } catch (error) {
-        console.error('Hive communication error:', error);
-        throw error;
-    }
+  try {
+    const response = await fetch("/.netlify/functions/generate-longcat", {
+      method: "POST",
+      body: JSON.stringify({ prompt }),
+    });
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    console.error("Hive communication error:", error);
+    throw error;
+  }
 }
 
 // ✅ Good - parallel operations
 async function gatherAllHoney() {
-    const [source1, source2, source3] = await Promise.all([
-        fetchFromHive1(),
-        fetchFromHive2(),
-        fetchFromHive3()
-    ]);
+  const [source1, source2, source3] = await Promise.all([
+    fetchFromHive1(),
+    fetchFromHive2(),
+    fetchFromHive3(),
+  ]);
 }
 
 // ❌ Avoid - promise chains when async/await is clearer
 function generateContent(prompt) {
-    return fetch('/.netlify/functions/generate-longcat', {
-        method: 'POST',
-        body: JSON.stringify({ prompt })
-    })
-    .then(response => response.json())
-    .then(data => data)
-    .catch(error => {
-        console.error('Error:', error);
+  return fetch("/.netlify/functions/generate-longcat", {
+    method: "POST",
+    body: JSON.stringify({ prompt }),
+  })
+    .then((response) => response.json())
+    .then((data) => data)
+    .catch((error) => {
+      console.error("Error:", error);
     });
 }
 ```
@@ -153,29 +153,35 @@ function generateContent(prompt) {
 // ✅ Good - clear module structure
 // ai-router.js
 export class AIRouter {
-    constructor() {
-        this.routes = new Map();
+  constructor() {
+    this.routes = new Map();
+  }
+
+  registerRoute(name, handler) {
+    this.routes.set(name, handler);
+  }
+
+  async route(name, params) {
+    const handler = this.routes.get(name);
+    if (!handler) {
+      throw new Error(`No handler found for: ${name}`);
     }
-    
-    registerRoute(name, handler) {
-        this.routes.set(name, handler);
-    }
-    
-    async route(name, params) {
-        const handler = this.routes.get(name);
-        if (!handler) {
-            throw new Error(`No handler found for: ${name}`);
-        }
-        return await handler(params);
-    }
+    return await handler(params);
+  }
 }
 
 // ✅ Good - single responsibility
 // token-manager.js
 export class TokenManager {
-    async getBalance(userId) { /* ... */ }
-    async deductTokens(userId, amount) { /* ... */ }
-    async addTokens(userId, amount) { /* ... */ }
+  async getBalance(userId) {
+    /* ... */
+  }
+  async deductTokens(userId, amount) {
+    /* ... */
+  }
+  async addTokens(userId, amount) {
+    /* ... */
+  }
 }
 ```
 
@@ -186,35 +192,35 @@ export class TokenManager {
 ```javascript
 // ✅ Good - comprehensive error handling
 async function processRequest(data) {
-    try {
-        validateInput(data);
-        const result = await processData(data);
-        return { success: true, result };
-    } catch (error) {
-        console.error('[Koloni Error]', error);
-        
-        // Return user-friendly error
-        return {
-            success: false,
-            error: error.message || 'An unexpected error occurred in the hive'
-        };
-    }
+  try {
+    validateInput(data);
+    const result = await processData(data);
+    return { success: true, result };
+  } catch (error) {
+    console.error("[Koloni Error]", error);
+
+    // Return user-friendly error
+    return {
+      success: false,
+      error: error.message || "An unexpected error occurred in the hive",
+    };
+  }
 }
 
 // ✅ Good - custom error types
 class HiveError extends Error {
-    constructor(message, code) {
-        super(message);
-        this.name = 'HiveError';
-        this.code = code;
-    }
+  constructor(message, code) {
+    super(message);
+    this.name = "HiveError";
+    this.code = code;
+  }
 }
 
 // ❌ Avoid - swallowing errors silently
 try {
-    riskyOperation();
+  riskyOperation();
 } catch (error) {
-    // Silent failure - bad!
+  // Silent failure - bad!
 }
 ```
 
@@ -231,53 +237,52 @@ try {
 ```javascript
 // /.netlify/functions/example-function.js
 exports.handler = async (event, context) => {
-    // 1. CORS headers - welcome all friendly bees
-    const headers = {
-        'Access-Control-Allow-Origin': '*',
-        'Access-Control-Allow-Headers': 'Content-Type',
-        'Content-Type': 'application/json'
+  // 1. CORS headers - welcome all friendly bees
+  const headers = {
+    "Access-Control-Allow-Origin": "*",
+    "Access-Control-Allow-Headers": "Content-Type",
+    "Content-Type": "application/json",
+  };
+
+  // 2. Handle OPTIONS requests (preflight)
+  if (event.httpMethod === "OPTIONS") {
+    return { statusCode: 200, headers, body: "" };
+  }
+
+  try {
+    // 3. Parse request body
+    const requestData = JSON.parse(event.body || "{}");
+
+    // 4. Validate input
+    if (!requestData.requiredField) {
+      return {
+        statusCode: 400,
+        headers,
+        body: JSON.stringify({ error: "Missing required field" }),
+      };
+    }
+
+    // 5. Process request
+    const result = await processLogic(requestData);
+
+    // 6. Return success response
+    return {
+      statusCode: 200,
+      headers,
+      body: JSON.stringify(result),
     };
-    
-    // 2. Handle OPTIONS requests (preflight)
-    if (event.httpMethod === 'OPTIONS') {
-        return { statusCode: 200, headers, body: '' };
-    }
-    
-    try {
-        // 3. Parse request body
-        const requestData = JSON.parse(event.body || '{}');
-        
-        // 4. Validate input
-        if (!requestData.requiredField) {
-            return {
-                statusCode: 400,
-                headers,
-                body: JSON.stringify({ error: 'Missing required field' })
-            };
-        }
-        
-        // 5. Process request
-        const result = await processLogic(requestData);
-        
-        // 6. Return success response
-        return {
-            statusCode: 200,
-            headers,
-            body: JSON.stringify(result)
-        };
-        
-    } catch (error) {
-        // 7. Handle errors gracefully
-        console.error('[Function Error]', error);
-        return {
-            statusCode: 500,
-            headers,
-            body: JSON.stringify({ 
-                error: 'Internal hive error',
-                message: error.message 
-            })
-        };
-    }
+  } catch (error) {
+    // 7. Handle errors gracefully
+    console.error("[Function Error]", error);
+    return {
+      statusCode: 500,
+      headers,
+      body: JSON.stringify({
+        error: "Internal hive error",
+        message: error.message,
+      }),
+    };
+  }
 };
 ```
 
@@ -287,63 +292,62 @@ exports.handler = async (event, context) => {
 
 ```javascript
 // /.netlify/functions/generate-longcat.js
-const OpenAI = require('openai');
+const OpenAI = require("openai");
 
 const openai = new OpenAI({
-    apiKey: process.env.OPENAI_API_KEY
+  apiKey: process.env.OPENAI_API_KEY,
 });
 
 exports.handler = async (event, context) => {
-    const headers = {
-        'Access-Control-Allow-Origin': '*',
-        'Access-Control-Allow-Headers': 'Content-Type',
-        'Content-Type': 'application/json'
+  const headers = {
+    "Access-Control-Allow-Origin": "*",
+    "Access-Control-Allow-Headers": "Content-Type",
+    "Content-Type": "application/json",
+  };
+
+  if (event.httpMethod === "OPTIONS") {
+    return { statusCode: 200, headers, body: "" };
+  }
+
+  try {
+    const { prompt, style, tone } = JSON.parse(event.body);
+
+    // Build system prompt with colony context
+    const systemPrompt = `You are the Koloni AI assistant, helping beekeepers create content...`;
+
+    // Call AI with proper configuration
+    const completion = await openai.chat.completions.create({
+      model: "gpt-4",
+      messages: [
+        { role: "system", content: systemPrompt },
+        { role: "user", content: prompt },
+      ],
+      temperature: 0.7,
+      max_tokens: 2000,
+    });
+
+    const generatedContent = completion.choices[0].message.content;
+
+    return {
+      statusCode: 200,
+      headers,
+      body: JSON.stringify({
+        success: true,
+        content: generatedContent,
+        tokens_used: completion.usage.total_tokens,
+      }),
     };
-    
-    if (event.httpMethod === 'OPTIONS') {
-        return { statusCode: 200, headers, body: '' };
-    }
-    
-    try {
-        const { prompt, style, tone } = JSON.parse(event.body);
-        
-        // Build system prompt with colony context
-        const systemPrompt = `You are the Koloni AI assistant, helping beekeepers create content...`;
-        
-        // Call AI with proper configuration
-        const completion = await openai.chat.completions.create({
-            model: 'gpt-4',
-            messages: [
-                { role: 'system', content: systemPrompt },
-                { role: 'user', content: prompt }
-            ],
-            temperature: 0.7,
-            max_tokens: 2000
-        });
-        
-        const generatedContent = completion.choices[0].message.content;
-        
-        return {
-            statusCode: 200,
-            headers,
-            body: JSON.stringify({
-                success: true,
-                content: generatedContent,
-                tokens_used: completion.usage.total_tokens
-            })
-        };
-        
-    } catch (error) {
-        console.error('[AI Generation Error]', error);
-        return {
-            statusCode: 500,
-            headers,
-            body: JSON.stringify({ 
-                success: false,
-                error: 'Failed to generate content' 
-            })
-        };
-    }
+  } catch (error) {
+    console.error("[AI Generation Error]", error);
+    return {
+      statusCode: 500,
+      headers,
+      body: JSON.stringify({
+        success: false,
+        error: "Failed to generate content",
+      }),
+    };
+  }
 };
 ```
 
@@ -354,25 +358,25 @@ exports.handler = async (event, context) => {
 ```javascript
 // ✅ Good - atomic token operations
 async function deductTokens(userId, amount) {
-    // 1. Check balance first
-    const currentBalance = await getBalance(userId);
-    
-    if (currentBalance < amount) {
-        throw new HiveError('Insufficient honey reserves', 'INSUFFICIENT_TOKENS');
-    }
-    
-    // 2. Deduct atomically
-    const newBalance = await updateBalance(userId, currentBalance - amount);
-    
-    // 3. Log transaction
-    await logTransaction({
-        userId,
-        type: 'deduction',
-        amount,
-        timestamp: new Date().toISOString()
-    });
-    
-    return newBalance;
+  // 1. Check balance first
+  const currentBalance = await getBalance(userId);
+
+  if (currentBalance < amount) {
+    throw new HiveError("Insufficient honey reserves", "INSUFFICIENT_TOKENS");
+  }
+
+  // 2. Deduct atomically
+  const newBalance = await updateBalance(userId, currentBalance - amount);
+
+  // 3. Log transaction
+  await logTransaction({
+    userId,
+    type: "deduction",
+    amount,
+    timestamp: new Date().toISOString(),
+  });
+
+  return newBalance;
 }
 ```
 
@@ -417,26 +421,26 @@ const prompt = "Write something about this topic";
 ```javascript
 // ✅ Good - rate limiting logic
 const rateLimiter = {
-    requests: new Map(),
-    
-    isAllowed(userId, maxRequests = 10, windowMs = 60000) {
-        const now = Date.now();
-        const userRequests = this.requests.get(userId) || [];
-        
-        // Filter requests within time window
-        const recentRequests = userRequests.filter(
-            timestamp => now - timestamp < windowMs
-        );
-        
-        if (recentRequests.length >= maxRequests) {
-            return false;
-        }
-        
-        // Add new request
-        recentRequests.push(now);
-        this.requests.set(userId, recentRequests);
-        return true;
+  requests: new Map(),
+
+  isAllowed(userId, maxRequests = 10, windowMs = 60000) {
+    const now = Date.now();
+    const userRequests = this.requests.get(userId) || [];
+
+    // Filter requests within time window
+    const recentRequests = userRequests.filter(
+      (timestamp) => now - timestamp < windowMs,
+    );
+
+    if (recentRequests.length >= maxRequests) {
+      return false;
     }
+
+    // Add new request
+    recentRequests.push(now);
+    this.requests.set(userId, recentRequests);
+    return true;
+  },
 };
 ```
 
@@ -447,30 +451,31 @@ const rateLimiter = {
 ```javascript
 // ✅ Good - simple cache implementation
 class ResponseCache {
-    constructor(ttlMs = 300000) { // 5 minutes default
-        this.cache = new Map();
-        this.ttl = ttlMs;
+  constructor(ttlMs = 300000) {
+    // 5 minutes default
+    this.cache = new Map();
+    this.ttl = ttlMs;
+  }
+
+  get(key) {
+    const item = this.cache.get(key);
+    if (!item) return null;
+
+    const isExpired = Date.now() - item.timestamp > this.ttl;
+    if (isExpired) {
+      this.cache.delete(key);
+      return null;
     }
-    
-    get(key) {
-        const item = this.cache.get(key);
-        if (!item) return null;
-        
-        const isExpired = Date.now() - item.timestamp > this.ttl;
-        if (isExpired) {
-            this.cache.delete(key);
-            return null;
-        }
-        
-        return item.data;
-    }
-    
-    set(key, data) {
-        this.cache.set(key, {
-            data,
-            timestamp: Date.now()
-        });
-    }
+
+    return item.data;
+  }
+
+  set(key, data) {
+    this.cache.set(key, {
+      data,
+      timestamp: Date.now(),
+    });
+  }
 }
 ```
 
@@ -490,7 +495,7 @@ const apiKey = process.env.OPENAI_API_KEY;
 const stripeSecret = process.env.STRIPE_SECRET_KEY;
 
 // ❌ NEVER - hardcoded secrets
-const apiKey = 'sk-abc123...'; // DANGEROUS!
+const apiKey = "sk-abc123..."; // DANGEROUS!
 ```
 
 ### Input Validation - Guard Bees
@@ -500,24 +505,30 @@ const apiKey = 'sk-abc123...'; // DANGEROUS!
 ```javascript
 // ✅ Good - comprehensive validation
 function validateContentRequest(data) {
-    const errors = [];
-    
-    if (!data.prompt || typeof data.prompt !== 'string') {
-        errors.push('Prompt is required and must be a string');
-    }
-    
-    if (data.prompt && data.prompt.length > 1000) {
-        errors.push('Prompt must be less than 1000 characters');
-    }
-    
-    const validStyles = ['creative', 'professional', 'casual', 'humorous', 'educational'];
-    if (data.style && !validStyles.includes(data.style)) {
-        errors.push(`Style must be one of: ${validStyles.join(', ')}`);
-    }
-    
-    if (errors.length > 0) {
-        throw new ValidationError(errors);
-    }
+  const errors = [];
+
+  if (!data.prompt || typeof data.prompt !== "string") {
+    errors.push("Prompt is required and must be a string");
+  }
+
+  if (data.prompt && data.prompt.length > 1000) {
+    errors.push("Prompt must be less than 1000 characters");
+  }
+
+  const validStyles = [
+    "creative",
+    "professional",
+    "casual",
+    "humorous",
+    "educational",
+  ];
+  if (data.style && !validStyles.includes(data.style)) {
+    errors.push(`Style must be one of: ${validStyles.join(", ")}`);
+  }
+
+  if (errors.length > 0) {
+    throw new ValidationError(errors);
+  }
 }
 ```
 
@@ -528,15 +539,15 @@ function validateContentRequest(data) {
 ```javascript
 // ✅ Good - HTML escaping
 function escapeHtml(text) {
-    const div = document.createElement('div');
-    div.textContent = text;
-    return div.innerHTML;
+  const div = document.createElement("div");
+  div.textContent = text;
+  return div.innerHTML;
 }
 
 // ✅ Good - sanitize before display
 function displayContent(content) {
-    const sanitized = escapeHtml(content);
-    document.getElementById('output').innerHTML = sanitized;
+  const sanitized = escapeHtml(content);
+  document.getElementById("output").innerHTML = sanitized;
 }
 ```
 
@@ -547,23 +558,23 @@ function displayContent(content) {
 ```javascript
 // ✅ Good - production CORS
 const headers = {
-    'Access-Control-Allow-Origin': process.env.URL || '*',
-    'Access-Control-Allow-Headers': 'Content-Type, Authorization',
-    'Access-Control-Allow-Methods': 'POST, GET, OPTIONS'
+  "Access-Control-Allow-Origin": process.env.URL || "*",
+  "Access-Control-Allow-Headers": "Content-Type, Authorization",
+  "Access-Control-Allow-Methods": "POST, GET, OPTIONS",
 };
 
 // ✅ Good - verify origin in production
 function getCorsHeaders(origin) {
-    const allowedOrigins = [
-        'https://koloni.netlify.app',
-        'https://www.koloni.com'
-    ];
-    
-    if (allowedOrigins.includes(origin)) {
-        return { 'Access-Control-Allow-Origin': origin };
-    }
-    
-    return { 'Access-Control-Allow-Origin': allowedOrigins[0] };
+  const allowedOrigins = [
+    "https://koloni.netlify.app",
+    "https://www.koloni.com",
+  ];
+
+  if (allowedOrigins.includes(origin)) {
+    return { "Access-Control-Allow-Origin": origin };
+  }
+
+  return { "Access-Control-Allow-Origin": allowedOrigins[0] };
 }
 ```
 
@@ -580,27 +591,27 @@ function getCorsHeaders(origin) {
 ```css
 /* ✅ Good - CSS variables for consistency */
 :root {
-    /* Colors - Hive palette */
-    --color-primary: #FFB800;      /* Honey gold */
-    --color-secondary: #2C2C2C;    /* Dark hive */
-    --color-accent: #FF6B35;       /* Pollen orange */
-    --color-background: #1A1A1A;   /* Night hive */
-    --color-text: #F5F5F5;         /* Light wax */
-    
-    /* Spacing - Hexagonal grid */
-    --spacing-xs: 0.25rem;
-    --spacing-sm: 0.5rem;
-    --spacing-md: 1rem;
-    --spacing-lg: 2rem;
-    --spacing-xl: 4rem;
-    
-    /* Typography - Clear communication */
-    --font-primary: 'Inter', sans-serif;
-    --font-heading: 'Poppins', sans-serif;
-    --font-size-sm: 0.875rem;
-    --font-size-md: 1rem;
-    --font-size-lg: 1.25rem;
-    --font-size-xl: 2rem;
+  /* Colors - Hive palette */
+  --color-primary: #ffb800; /* Honey gold */
+  --color-secondary: #2c2c2c; /* Dark hive */
+  --color-accent: #ff6b35; /* Pollen orange */
+  --color-background: #1a1a1a; /* Night hive */
+  --color-text: #f5f5f5; /* Light wax */
+
+  /* Spacing - Hexagonal grid */
+  --spacing-xs: 0.25rem;
+  --spacing-sm: 0.5rem;
+  --spacing-md: 1rem;
+  --spacing-lg: 2rem;
+  --spacing-xl: 4rem;
+
+  /* Typography - Clear communication */
+  --font-primary: "Inter", sans-serif;
+  --font-heading: "Poppins", sans-serif;
+  --font-size-sm: 0.875rem;
+  --font-size-md: 1rem;
+  --font-size-lg: 1.25rem;
+  --font-size-xl: 2rem;
 }
 ```
 
@@ -610,24 +621,38 @@ function getCorsHeaders(origin) {
 
 ```css
 /* ✅ Good - BEM structure */
-.hive-card { }
-.hive-card__header { }
-.hive-card__title { }
-.hive-card__content { }
-.hive-card--featured { }
-.hive-card--compact { }
+.hive-card {
+}
+.hive-card__header {
+}
+.hive-card__title {
+}
+.hive-card__content {
+}
+.hive-card--featured {
+}
+.hive-card--compact {
+}
 
 /* ✅ Good - semantic class names */
-.creator-studio { }
-.creator-studio__prompt-input { }
-.creator-studio__generate-button { }
-.creator-studio__output-display { }
-.creator-studio__output-display--loading { }
+.creator-studio {
+}
+.creator-studio__prompt-input {
+}
+.creator-studio__generate-button {
+}
+.creator-studio__output-display {
+}
+.creator-studio__output-display--loading {
+}
 
 /* ❌ Avoid - unclear names */
-.card { }
-.c1 { }
-.thing { }
+.card {
+}
+.c1 {
+}
+.thing {
+}
 ```
 
 ### Component-Based CSS - Modular Honeycombs
@@ -639,42 +664,42 @@ function getCorsHeaders(origin) {
 
 /* Component: Generation Form */
 .generation-form {
-    display: flex;
-    flex-direction: column;
-    gap: var(--spacing-md);
-    padding: var(--spacing-lg);
-    background: var(--color-background);
-    border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-md);
+  padding: var(--spacing-lg);
+  background: var(--color-background);
+  border-radius: 8px;
 }
 
 .generation-form__input {
-    width: 100%;
-    padding: var(--spacing-md);
-    border: 2px solid var(--color-primary);
-    border-radius: 4px;
-    background: var(--color-secondary);
-    color: var(--color-text);
-    font-family: var(--font-primary);
+  width: 100%;
+  padding: var(--spacing-md);
+  border: 2px solid var(--color-primary);
+  border-radius: 4px;
+  background: var(--color-secondary);
+  color: var(--color-text);
+  font-family: var(--font-primary);
 }
 
 .generation-form__button {
-    padding: var(--spacing-md) var(--spacing-lg);
-    background: var(--color-primary);
-    color: var(--color-secondary);
-    border: none;
-    border-radius: 4px;
-    font-weight: 600;
-    cursor: pointer;
-    transition: transform 0.2s;
+  padding: var(--spacing-md) var(--spacing-lg);
+  background: var(--color-primary);
+  color: var(--color-secondary);
+  border: none;
+  border-radius: 4px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform 0.2s;
 }
 
 .generation-form__button:hover {
-    transform: translateY(-2px);
+  transform: translateY(-2px);
 }
 
 .generation-form__button--loading {
-    opacity: 0.6;
-    cursor: not-allowed;
+  opacity: 0.6;
+  cursor: not-allowed;
 }
 ```
 
@@ -685,24 +710,24 @@ function getCorsHeaders(origin) {
 ```css
 /* ✅ Good - mobile-first */
 .hive-container {
-    padding: var(--spacing-md);
-    width: 100%;
+  padding: var(--spacing-md);
+  width: 100%;
 }
 
 /* Tablet */
 @media (min-width: 768px) {
-    .hive-container {
-        padding: var(--spacing-lg);
-        max-width: 720px;
-        margin: 0 auto;
-    }
+  .hive-container {
+    padding: var(--spacing-lg);
+    max-width: 720px;
+    margin: 0 auto;
+  }
 }
 
 /* Desktop */
 @media (min-width: 1024px) {
-    .hive-container {
-        max-width: 1200px;
-    }
+  .hive-container {
+    max-width: 1200px;
+  }
 }
 ```
 
@@ -713,18 +738,18 @@ function getCorsHeaders(origin) {
 ```css
 /* ✅ Good - glassmorphism for modern UI */
 .glass {
-    background: rgba(255, 255, 255, 0.05);
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    border-radius: 12px;
-    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
 }
 
 .glass:hover {
-    background: rgba(255, 255, 255, 0.1);
-    border-color: rgba(245, 158, 11, 0.5);
-    box-shadow: 0 0 20px rgba(245, 158, 11, 0.3);
+  background: rgba(255, 255, 255, 0.1);
+  border-color: rgba(245, 158, 11, 0.5);
+  box-shadow: 0 0 20px rgba(245, 158, 11, 0.3);
 }
 ```
 
@@ -736,63 +761,63 @@ function getCorsHeaders(origin) {
 /* ✅ Good - BEM-like naming for clarity */
 /* 🏗️ Creator Studio - the main hive structure */
 .creator-container {
-    min-height: 100vh;
-    background: linear-gradient(135deg, #0A0A0B 0%, #1a1a2e 50%, #16213e 100%);
+  min-height: 100vh;
+  background: linear-gradient(135deg, #0a0a0b 0%, #1a1a2e 50%, #16213e 100%);
 }
 
 .creator-header {
-    position: sticky;
-    top: 0;
-    z-index: 50;
-    backdrop-filter: blur(20px);
-    background: rgba(255, 255, 255, 0.05);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-    padding: var(--space-4);
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  backdrop-filter: blur(20px);
+  background: rgba(255, 255, 255, 0.05);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  padding: var(--space-4);
 }
 
 .creator-main {
-    display: grid;
-    grid-template-columns: 250px 1fr;
-    min-height: calc(100vh - 80px);
+  display: grid;
+  grid-template-columns: 250px 1fr;
+  min-height: calc(100vh - 80px);
 }
 
 .creator-sidebar {
-    position: sticky;
-    top: 80px;
-    height: calc(100vh - 80px);
-    background: rgba(255, 255, 255, 0.02);
-    border-right: 1px solid rgba(255, 255, 255, 0.1);
-    padding: var(--space-6) var(--space-4);
+  position: sticky;
+  top: 80px;
+  height: calc(100vh - 80px);
+  background: rgba(255, 255, 255, 0.02);
+  border-right: 1px solid rgba(255, 255, 255, 0.1);
+  padding: var(--space-6) var(--space-4);
 }
 
 .creator-content {
-    padding: var(--space-8);
+  padding: var(--space-8);
 }
 
 /* 🐝 Navigation items - like cells in the hive */
 .nav-item {
-    display: flex;
-    align-items: center;
-    gap: var(--space-3);
-    width: 100%;
-    padding: var(--space-3) var(--space-4);
-    background: transparent;
-    border: none;
-    border-radius: var(--radius-md);
-    color: rgba(255, 255, 255, 0.7);
-    cursor: pointer;
-    transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  width: 100%;
+  padding: var(--space-3) var(--space-4);
+  background: transparent;
+  border: none;
+  border-radius: var(--radius-md);
+  color: rgba(255, 255, 255, 0.7);
+  cursor: pointer;
+  transition: all 0.3s ease;
 }
 
 .nav-item:hover {
-    background: rgba(255, 255, 255, 0.05);
-    color: var(--primary-gold);
+  background: rgba(255, 255, 255, 0.05);
+  color: var(--primary-gold);
 }
 
 .nav-item.active {
-    background: rgba(245, 158, 11, 0.1);
-    color: var(--primary-gold);
-    border-left: 3px solid var(--primary-gold);
+  background: rgba(245, 158, 11, 0.1);
+  color: var(--primary-gold);
+  border-left: 3px solid var(--primary-gold);
 }
 ```
 
@@ -803,45 +828,45 @@ function getCorsHeaders(origin) {
 ```css
 /* ✅ Good - Grid layout for main structure */
 .creator-main {
-    display: grid;
-    grid-template-columns: 250px 1fr;
-    gap: 0;
+  display: grid;
+  grid-template-columns: 250px 1fr;
+  gap: 0;
 }
 
 /* ✅ Good - Flexbox for component internals */
 .creator-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .token-display {
-    display: flex;
-    align-items: center;
-    gap: var(--space-2);
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
 }
 
 /* ✅ Good - Responsive grid for cards */
 .hive-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: var(--space-6);
-    padding: var(--space-6);
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: var(--space-6);
+  padding: var(--space-6);
 }
 
 /* ✅ Good - Flex wrap for tags/badges */
 .tag-container {
-    display: flex;
-    flex-wrap: wrap;
-    gap: var(--space-2);
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
 }
 
 /* ❌ Avoid - overly complex grid patterns */
 .complex-grid {
-    display: grid;
-    grid-template-columns: repeat(12, 1fr);
-    grid-template-rows: repeat(8, 100px);
-    /* Too rigid, hard to maintain */
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  grid-template-rows: repeat(8, 100px);
+  /* Too rigid, hard to maintain */
 }
 ```
 
@@ -857,28 +882,28 @@ function getCorsHeaders(origin) {
 
 ```javascript
 // ✅ Good - unit test example
-describe('TokenManager', () => {
-    test('deducts tokens correctly', async () => {
-        const manager = new TokenManager();
-        const userId = 'test-bee-123';
-        
-        await manager.addTokens(userId, 100);
-        await manager.deductTokens(userId, 30);
-        
-        const balance = await manager.getBalance(userId);
-        expect(balance).toBe(70);
-    });
-    
-    test('throws error on insufficient tokens', async () => {
-        const manager = new TokenManager();
-        const userId = 'test-bee-456';
-        
-        await manager.addTokens(userId, 10);
-        
-        await expect(
-            manager.deductTokens(userId, 20)
-        ).rejects.toThrow('Insufficient honey reserves');
-    });
+describe("TokenManager", () => {
+  test("deducts tokens correctly", async () => {
+    const manager = new TokenManager();
+    const userId = "test-bee-123";
+
+    await manager.addTokens(userId, 100);
+    await manager.deductTokens(userId, 30);
+
+    const balance = await manager.getBalance(userId);
+    expect(balance).toBe(70);
+  });
+
+  test("throws error on insufficient tokens", async () => {
+    const manager = new TokenManager();
+    const userId = "test-bee-456";
+
+    await manager.addTokens(userId, 10);
+
+    await expect(manager.deductTokens(userId, 20)).rejects.toThrow(
+      "Insufficient honey reserves",
+    );
+  });
 });
 ```
 
@@ -888,28 +913,28 @@ describe('TokenManager', () => {
 
 ```javascript
 // ✅ Good - integration test
-describe('Content Generation Flow', () => {
-    test('generates and stores content', async () => {
-        const prompt = 'Write about bees';
-        const userId = 'test-user';
-        
-        // Check initial token balance
-        const initialBalance = await getTokenBalance(userId);
-        
-        // Generate content
-        const result = await generateContent({
-            userId,
-            prompt,
-            format: 'longcat'
-        });
-        
-        expect(result.success).toBe(true);
-        expect(result.content).toBeDefined();
-        
-        // Verify tokens were deducted
-        const newBalance = await getTokenBalance(userId);
-        expect(newBalance).toBeLessThan(initialBalance);
+describe("Content Generation Flow", () => {
+  test("generates and stores content", async () => {
+    const prompt = "Write about bees";
+    const userId = "test-user";
+
+    // Check initial token balance
+    const initialBalance = await getTokenBalance(userId);
+
+    // Generate content
+    const result = await generateContent({
+      userId,
+      prompt,
+      format: "longcat",
     });
+
+    expect(result.success).toBe(true);
+    expect(result.content).toBeDefined();
+
+    // Verify tokens were deducted
+    const newBalance = await getTokenBalance(userId);
+    expect(newBalance).toBeLessThan(initialBalance);
+  });
 });
 ```
 
@@ -941,27 +966,27 @@ describe('Content Generation Flow', () => {
 ```html
 <!-- ✅ Good - semantic structure -->
 <header class="hive-header">
-    <h1>Koloni Creator Studio</h1>
-    <nav aria-label="Main navigation">
-        <ul>
-            <li><a href="/create">Create</a></li>
-            <li><a href="/export">Export</a></li>
-            <li><a href="/history">History</a></li>
-        </ul>
-    </nav>
+  <h1>Koloni Creator Studio</h1>
+  <nav aria-label="Main navigation">
+    <ul>
+      <li><a href="/create">Create</a></li>
+      <li><a href="/export">Export</a></li>
+      <li><a href="/history">History</a></li>
+    </ul>
+  </nav>
 </header>
 
 <main>
-    <section aria-labelledby="generation-heading">
-        <h2 id="generation-heading">Generate Content</h2>
-        <!-- Content here -->
-    </section>
+  <section aria-labelledby="generation-heading">
+    <h2 id="generation-heading">Generate Content</h2>
+    <!-- Content here -->
+  </section>
 </main>
 
 <!-- ❌ Avoid - divs for everything -->
 <div class="header">
-    <div class="title">Koloni</div>
-    <div class="nav">...</div>
+  <div class="title">Koloni</div>
+  <div class="nav">...</div>
 </div>
 ```
 
@@ -971,27 +996,21 @@ describe('Content Generation Flow', () => {
 
 ```html
 <!-- ✅ Good - descriptive ARIA labels -->
-<button 
-    aria-label="Generate LongCat content"
-    class="generate-button">
-    Generate
+<button aria-label="Generate LongCat content" class="generate-button">
+  Generate
 </button>
 
-<div 
-    role="alert" 
-    aria-live="polite" 
-    class="notification">
-    Content generated successfully!
+<div role="alert" aria-live="polite" class="notification">
+  Content generated successfully!
 </div>
 
-<input 
-    type="text"
-    aria-label="Content prompt"
-    aria-describedby="prompt-hint"
-    placeholder="Enter your prompt...">
-<div id="prompt-hint" class="hint">
-    Describe what you want to create
-</div>
+<input
+  type="text"
+  aria-label="Content prompt"
+  aria-describedby="prompt-hint"
+  placeholder="Enter your prompt..."
+/>
+<div id="prompt-hint" class="hint">Describe what you want to create</div>
 ```
 
 ### Keyboard Navigation - Non-Flying Bees
@@ -1000,24 +1019,24 @@ describe('Content Generation Flow', () => {
 
 ```javascript
 // ✅ Good - keyboard navigation support
-element.addEventListener('keydown', (event) => {
-    switch(event.key) {
-        case 'Enter':
-        case ' ': // Space
-            event.preventDefault();
-            triggerAction();
-            break;
-        case 'Escape':
-            closeModal();
-            break;
-    }
+element.addEventListener("keydown", (event) => {
+  switch (event.key) {
+    case "Enter":
+    case " ": // Space
+      event.preventDefault();
+      triggerAction();
+      break;
+    case "Escape":
+      closeModal();
+      break;
+  }
 });
 
 // ✅ Good - focus management
 function openModal(modalElement) {
-    modalElement.classList.add('active');
-    const firstFocusable = modalElement.querySelector('button, input, a');
-    firstFocusable?.focus();
+  modalElement.classList.add("active");
+  const firstFocusable = modalElement.querySelector("button, input, a");
+  firstFocusable?.focus();
 }
 ```
 
@@ -1028,15 +1047,15 @@ function openModal(modalElement) {
 ```css
 /* ✅ Good - high contrast */
 :root {
-    --text-on-dark: #FFFFFF;      /* 21:1 contrast */
-    --text-on-light: #000000;     /* 21:1 contrast */
-    --link-color: #FFB800;        /* 4.5:1+ on dark bg */
+  --text-on-dark: #ffffff; /* 21:1 contrast */
+  --text-on-light: #000000; /* 21:1 contrast */
+  --link-color: #ffb800; /* 4.5:1+ on dark bg */
 }
 
 /* ❌ Avoid - low contrast */
 .low-contrast {
-    color: #888888;
-    background: #999999;  /* Poor contrast */
+  color: #888888;
+  background: #999999; /* Poor contrast */
 }
 ```
 
@@ -1052,9 +1071,9 @@ function openModal(modalElement) {
 
 ```javascript
 // ✅ Good - lazy load images
-<img 
-    src="placeholder.jpg" 
-    data-src="actual-image.jpg" 
+<img
+    src="placeholder.jpg"
+    data-src="actual-image.jpg"
     loading="lazy"
     alt="Hive visualization">
 
@@ -1072,16 +1091,16 @@ async function loadHeavyModule() {
 ```javascript
 // ✅ Good - debounce for search
 function debounce(func, wait) {
-    let timeout;
-    return function executedFunction(...args) {
-        clearTimeout(timeout);
-        timeout = setTimeout(() => func(...args), wait);
-    };
+  let timeout;
+  return function executedFunction(...args) {
+    clearTimeout(timeout);
+    timeout = setTimeout(() => func(...args), wait);
+  };
 }
 
-const searchInput = document.getElementById('search');
+const searchInput = document.getElementById("search");
 const debouncedSearch = debounce(performSearch, 300);
-searchInput.addEventListener('input', debouncedSearch);
+searchInput.addEventListener("input", debouncedSearch);
 ```
 
 ### Caching - Store the Honey
@@ -1091,21 +1110,21 @@ searchInput.addEventListener('input', debouncedSearch);
 ```javascript
 // ✅ Good - memoization
 const memoize = (fn) => {
-    const cache = new Map();
-    return (...args) => {
-        const key = JSON.stringify(args);
-        if (cache.has(key)) {
-            return cache.get(key);
-        }
-        const result = fn(...args);
-        cache.set(key, result);
-        return result;
-    };
+  const cache = new Map();
+  return (...args) => {
+    const key = JSON.stringify(args);
+    if (cache.has(key)) {
+      return cache.get(key);
+    }
+    const result = fn(...args);
+    cache.set(key, result);
+    return result;
+  };
 };
 
 const expensiveCalculation = memoize((n) => {
-    // Heavy computation here
-    return result;
+  // Heavy computation here
+  return result;
 });
 ```
 
@@ -1115,13 +1134,13 @@ const expensiveCalculation = memoize((n) => {
 
 ```javascript
 // ✅ Good - tree shaking with ES modules
-import { specificFunction } from 'library';
+import { specificFunction } from "library";
 
 // ❌ Avoid - importing entire library
-import * as library from 'library';
+import * as library from "library";
 
 // ✅ Good - code splitting
-const HeavyComponent = () => import('./HeavyComponent.js');
+const HeavyComponent = () => import("./HeavyComponent.js");
 ```
 
 ---
@@ -1152,22 +1171,22 @@ URL=https://koloni.netlify.app
 
 ```javascript
 // build.js
-const fs = require('fs-extra');
-const path = require('path');
+const fs = require("fs-extra");
+const path = require("path");
 
 async function build() {
-    console.log('🐝 Building the hive...');
-    
-    // Clean old build
-    await fs.remove('dist');
-    
-    // Copy source files
-    await fs.copy('src', 'dist/src');
-    
-    // Copy public assets
-    await fs.copy('public', 'dist/public');
-    
-    console.log('✅ Hive built successfully!');
+  console.log("🐝 Building the hive...");
+
+  // Clean old build
+  await fs.remove("dist");
+
+  // Copy source files
+  await fs.copy("src", "dist/src");
+
+  // Copy public assets
+  await fs.copy("public", "dist/public");
+
+  console.log("✅ Hive built successfully!");
 }
 
 build().catch(console.error);
@@ -1180,17 +1199,17 @@ build().catch(console.error);
 ```javascript
 // ✅ Good - error logging
 function logError(error, context) {
-    console.error('[Koloni Error]', {
-        message: error.message,
-        stack: error.stack,
-        context,
-        timestamp: new Date().toISOString()
-    });
-    
-    // Send to monitoring service in production
-    if (process.env.NODE_ENV === 'production') {
-        // Send to external monitoring
-    }
+  console.error("[Koloni Error]", {
+    message: error.message,
+    stack: error.stack,
+    context,
+    timestamp: new Date().toISOString(),
+  });
+
+  // Send to monitoring service in production
+  if (process.env.NODE_ENV === "production") {
+    // Send to external monitoring
+  }
 }
 ```
 
@@ -1280,4 +1299,4 @@ When contributing to Koloni:
 
 **Remember**: Like a bee colony, our codebase thrives on collaboration, clear communication, and each developer doing their part to maintain the hive. 🐝🍯
 
-*Built with 🐝 by the Koloni community*
+_Built with 🐝 by the Koloni community_

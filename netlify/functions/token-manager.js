@@ -1,8 +1,8 @@
 /**
  * Netlify Function: Token Manager
  * Handles user token/credit management for AI generation
- * 
- * WARNING: This implementation uses in-memory storage which will reset on every 
+ *
+ * WARNING: This implementation uses in-memory storage which will reset on every
  * function cold start or restart. This is NOT suitable for production.
  * For production use, implement persistent storage using:
  * - FaunaDB (recommended for Netlify)
@@ -16,16 +16,18 @@
 const userTokens = new Map();
 
 // *** RUNTIME WARNING: In-memory storage will lose all user token data on function cold starts! ***
-console.warn('[Token Manager] WARNING: Using in-memory storage for user tokens. All data will be lost on function cold start or restart. THIS IS NOT SUITABLE FOR PRODUCTION. Please implement persistent storage (e.g., FaunaDB, Supabase, Firebase, PostgreSQL).');
+console.warn(
+  "[Token Manager] WARNING: Using in-memory storage for user tokens. All data will be lost on function cold start or restart. THIS IS NOT SUITABLE FOR PRODUCTION. Please implement persistent storage (e.g., FaunaDB, Supabase, Firebase, PostgreSQL).",
+);
 // Default token allocation for new users
 const DEFAULT_TOKENS = 100;
 
 exports.handler = async (event, context) => {
   // Only allow POST requests
-  if (event.httpMethod !== 'POST') {
+  if (event.httpMethod !== "POST") {
     return {
       statusCode: 405,
-      body: JSON.stringify({ error: 'Method not allowed' })
+      body: JSON.stringify({ error: "Method not allowed" }),
     };
   }
 
@@ -36,7 +38,9 @@ exports.handler = async (event, context) => {
     if (!action || !userId) {
       return {
         statusCode: 400,
-        body: JSON.stringify({ error: 'Missing required parameters: action, userId' })
+        body: JSON.stringify({
+          error: "Missing required parameters: action, userId",
+        }),
       };
     }
 
@@ -46,7 +50,7 @@ exports.handler = async (event, context) => {
         balance: DEFAULT_TOKENS,
         createdAt: new Date().toISOString(),
         lastUpdated: new Date().toISOString(),
-        transactions: []
+        transactions: [],
       });
     }
 
@@ -54,49 +58,50 @@ exports.handler = async (event, context) => {
 
     // Handle different actions
     switch (action) {
-      case 'check':
+      case "check": {
         // Check if user has sufficient tokens
         const sufficient = userAccount.balance >= (cost || 0);
         return {
           statusCode: 200,
           headers: {
-            'Content-Type': 'application/json',
-            'Access-Control-Allow-Origin': '*'
+            "Content-Type": "application/json",
+            "Access-Control-Allow-Origin": "*",
           },
           body: JSON.stringify({
             sufficient,
             balance: userAccount.balance,
-            required: cost || 0
-          })
+            required: cost || 0,
+          }),
         };
+      }
 
-      case 'deduct':
+      case "deduct":
         // Deduct tokens from user account
         if (!cost || cost < 0) {
           return {
             statusCode: 400,
-            body: JSON.stringify({ error: 'Invalid cost amount' })
+            body: JSON.stringify({ error: "Invalid cost amount" }),
           };
         }
 
         if (userAccount.balance < cost) {
           return {
             statusCode: 402,
-            body: JSON.stringify({ 
-              error: 'Insufficient tokens',
+            body: JSON.stringify({
+              error: "Insufficient tokens",
               balance: userAccount.balance,
-              required: cost
-            })
+              required: cost,
+            }),
           };
         }
 
         userAccount.balance -= cost;
         userAccount.lastUpdated = new Date().toISOString();
         userAccount.transactions.push({
-          type: 'deduct',
+          type: "deduct",
           amount: cost,
           timestamp: new Date().toISOString(),
-          balanceAfter: userAccount.balance
+          balanceAfter: userAccount.balance,
         });
 
         userTokens.set(userId, userAccount);
@@ -104,33 +109,33 @@ exports.handler = async (event, context) => {
         return {
           statusCode: 200,
           headers: {
-            'Content-Type': 'application/json',
-            'Access-Control-Allow-Origin': '*'
+            "Content-Type": "application/json",
+            "Access-Control-Allow-Origin": "*",
           },
           body: JSON.stringify({
             success: true,
             balance: userAccount.balance,
-            deducted: cost
-          })
+            deducted: cost,
+          }),
         };
 
-      case 'add':
+      case "add": {
         // Add tokens to user account (for purchases)
         const amount = cost || 0;
         if (amount <= 0) {
           return {
             statusCode: 400,
-            body: JSON.stringify({ error: 'Invalid amount' })
+            body: JSON.stringify({ error: "Invalid amount" }),
           };
         }
 
         userAccount.balance += amount;
         userAccount.lastUpdated = new Date().toISOString();
         userAccount.transactions.push({
-          type: 'add',
+          type: "add",
           amount: amount,
           timestamp: new Date().toISOString(),
-          balanceAfter: userAccount.balance
+          balanceAfter: userAccount.balance,
         });
 
         userTokens.set(userId, userAccount);
@@ -138,42 +143,47 @@ exports.handler = async (event, context) => {
         return {
           statusCode: 200,
           headers: {
-            'Content-Type': 'application/json',
-            'Access-Control-Allow-Origin': '*'
+            "Content-Type": "application/json",
+            "Access-Control-Allow-Origin": "*",
           },
           body: JSON.stringify({
             success: true,
             balance: userAccount.balance,
-            added: amount
-          })
+            added: amount,
+          }),
         };
+      }
 
-      case 'balance':
+      case "balance":
         // Get current balance
         return {
           statusCode: 200,
           headers: {
-            'Content-Type': 'application/json',
-            'Access-Control-Allow-Origin': '*'
+            "Content-Type": "application/json",
+            "Access-Control-Allow-Origin": "*",
           },
           body: JSON.stringify({
             balance: userAccount.balance,
-            transactions: userAccount.transactions.slice(-10) // Last 10 transactions
-          })
+            transactions: userAccount.transactions.slice(-10), // Last 10 transactions
+          }),
         };
 
       default:
         return {
           statusCode: 400,
-          body: JSON.stringify({ error: 'Invalid action. Use: check, deduct, add, or balance' })
+          body: JSON.stringify({
+            error: "Invalid action. Use: check, deduct, add, or balance",
+          }),
         };
     }
-
   } catch (error) {
-    console.error('Error in token-manager:', error);
+    console.error("Error in token-manager:", error);
     return {
       statusCode: 500,
-      body: JSON.stringify({ error: 'Failed to manage tokens', details: error.message })
+      body: JSON.stringify({
+        error: "Failed to manage tokens",
+        details: error.message,
+      }),
     };
   }
 };

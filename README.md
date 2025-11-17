@@ -5,6 +5,7 @@
 ## Features
 
 ### 🐝 Core Platform
+
 - **Decentralized Governance**: Community-driven decision making
 - **Creative Tools**: AI-powered content creation
 - **Automation**: Streamlined workflows and processes
@@ -17,24 +18,28 @@ The Creator Studio is an AI-powered content generation platform that enables use
 #### Key Features:
 
 **AI Content Generation**
+
 - 🎨 **LongCat Format**: Generate vertical, scrollable content optimized for mobile viewing
 - ⚡ **Emu Format**: Create quick, impactful content for rapid consumption
 - 🎯 Multiple style and tone options (Creative, Professional, Casual, Humorous, Educational)
 - 🧠 Powered by OpenAI GPT-4 for high-quality content
 
 **Smart Export System**
+
 - 📷 **Instagram Export**: Automatically format content with captions, hashtags, and optimal spacing
 - 🎥 **YouTube Export**: Generate titles, descriptions, tags, and structured chapters
 - 📋 One-click copy to clipboard
 - 💡 Platform-specific tips and best practices
 
 **Token Management**
+
 - 🪙 Credit-based system for AI generations
 - 💳 Stripe integration for token purchases
 - 📊 Transaction history and balance tracking
 - 🔄 Automatic token deduction and management
 
 **User Experience**
+
 - 📜 Generation history with search and retrieval
 - 🎨 Clean, modern interface with dark mode
 - 📱 Fully responsive design
@@ -43,12 +48,14 @@ The Creator Studio is an AI-powered content generation platform that enables use
 #### Technology Stack:
 
 **Frontend**
+
 - Vanilla JavaScript (ES6+)
 - Modern CSS with CSS Variables
 - Responsive design principles
 - Accessibility-first approach
 
 **Backend (Netlify Functions)**
+
 - \`generate-longcat.js\` - LongCat AI content generation
 - \`generate-emu.js\` - Emu AI content generation
 - \`export-instagram.js\` - Instagram content formatting
@@ -57,6 +64,7 @@ The Creator Studio is an AI-powered content generation platform that enables use
 - \`stripe-webhook.js\` - Payment processing webhooks
 
 **Integrations**
+
 - OpenAI GPT-4 API
 - Stripe Payments
 - Netlify Serverless Functions
@@ -65,6 +73,7 @@ The Creator Studio is an AI-powered content generation platform that enables use
 ## Getting Started
 
 ### Prerequisites
+
 - Node.js 18 or higher
 - Netlify CLI (optional, for local development)
 - OpenAI API key
@@ -73,16 +82,16 @@ The Creator Studio is an AI-powered content generation platform that enables use
 ### Installation
 
 1. Clone the repository:
-\`\`\`bash
-git clone https://github.com/brandonlacoste9-tech/Koloni.git
-cd Koloni
-\`\`\`
+   \`\`\`bash
+   git clone https://github.com/brandonlacoste9-tech/Koloni.git
+   cd Koloni
+   \`\`\`
 
 2. Initialize and update submodules (including Apache Spark):
-\`\`\`bash
-git submodule init
-git submodule update
-\`\`\`
+   \`\`\`bash
+   git submodule init
+   git submodule update
+   \`\`\`
 
 ---
 
@@ -91,6 +100,7 @@ git submodule update
 ### 🐝 Best Practices
 
 For comprehensive development standards, see our [Best Practices Guide](./BEST-PRACTICES.md) - a complete resource covering:
+
 - JavaScript patterns and ES6+ standards
 - Netlify Functions architecture
 - AI integration guidelines
@@ -99,6 +109,7 @@ For comprehensive development standards, see our [Best Practices Guide](./BEST-P
 - Testing, accessibility, and performance optimization
 
 **Quick Guidelines:**
+
 - To add a model: Copy `generate-emu.js`, adapt endpoint and pricing
 - New output type? Update `/src/js/ai-router.js`
 - Keep all functions JSON-only (no HTML response)
@@ -109,6 +120,7 @@ For comprehensive development standards, see our [Best Practices Guide](./BEST-P
 ### 🤖 Using GitHub AI Tools
 
 GitHub Copilot and AI agents are powerful tools for accelerating development. See our comprehensive [AI Tools Guide](./docs/AI_TOOLS_GUIDE.md) to learn:
+
 - How to use Copilot Chat (ask mode, edit mode, agent mode)
 - Best practices for each phase of the SDLC (Planning, Creation, Reviews, Testing, Deployment, Operation)
 - Example prompts and workflows
@@ -117,13 +129,15 @@ GitHub Copilot and AI agents are powerful tools for accelerating development. Se
 ---
 
 ## 💡 Troubleshooting
-- __Video gen errors__: Check LongCat server logs, endpoint in `.env`
-- __Stripe errors__: Check callback URL in dashboard
-- __“No tokens left”__: Reset in Netlify Functions or DB
-- __Export fails__: Verify proper API key is set and not rate-limited
-- __Development environment issues__: Use the `koloni-debug-fix.ps1` PowerShell script to reset your environment (see below)
+
+- **Video gen errors**: Check LongCat server logs, endpoint in `.env`
+- **Stripe errors**: Check callback URL in dashboard
+- **“No tokens left”**: Reset in Netlify Functions or DB
+- **Export fails**: Verify proper API key is set and not rate-limited
+- **Development environment issues**: Use the `koloni-debug-fix.ps1` PowerShell script to reset your environment (see below)
 
 ### Debug Fix Script (Windows)
+
 For Windows users experiencing development environment issues, use the `koloni-debug-fix.ps1` script:
 
 ```powershell
@@ -131,6 +145,7 @@ For Windows users experiencing development environment issues, use the `koloni-d
 ```
 
 This script will:
+
 - Kill any process using port 3001 (MCP server)
 - Remove `node_modules` and `package-lock.json`
 - Clean npm cache
@@ -139,6 +154,7 @@ This script will:
 - Start the development server
 
 If you encounter execution policy errors, run:
+
 ```powershell
 Set-ExecutionPolicy -ExecutionPolicy Bypass -Scope Process -Force
 .\koloni-debug-fix.ps1
@@ -147,25 +163,27 @@ Set-ExecutionPolicy -ExecutionPolicy Bypass -Scope Process -Force
 ---
 
 2. Install dependencies:
-\`\`\`bash
-npm install
-\`\`\`
+   \`\`\`bash
+   npm install
+   \`\`\`
 
 3. Set up environment variables:
-\`\`\`bash
-cp .env.example .env
+   \`\`\`bash
+   cp .env.example .env
+
 # Edit .env with your API keys
+
 \`\`\`
 
 4. Build the project:
-\`\`\`bash
-node build.js
-\`\`\`
+   \`\`\`bash
+   node build.js
+   \`\`\`
 
 5. Run locally (optional):
-\`\`\`bash
-netlify dev
-\`\`\`
+   \`\`\`bash
+   netlify dev
+   \`\`\`
 
 Visit \`http://localhost:8888/create.html\` to access the Creator Studio.
 
@@ -183,26 +201,26 @@ netlify deploy --prod
 \`\`\`
 Koloni/
 ├── netlify/
-│   └── functions/          # Serverless functions
-│       ├── generate-longcat.js
-│       ├── generate-emu.js
-│       ├── export-instagram.js
-│       ├── export-youtube.js
-│       ├── token-manager.js
-│       └── stripe-webhook.js
-├── spark/                  # Apache Spark submodule (git submodule)
+│ └── functions/ # Serverless functions
+│ ├── generate-longcat.js
+│ ├── generate-emu.js
+│ ├── export-instagram.js
+│ ├── export-youtube.js
+│ ├── token-manager.js
+│ └── stripe-webhook.js
+├── spark/ # Apache Spark submodule (git submodule)
 ├── src/
-│   ├── components/         # Reusable UI components
-│   ├── css/               # Stylesheets
-│   │   └── creator.css
-│   ├── js/                # JavaScript modules
-│   │   ├── ai-router.js
-│   │   └── creator.js
-│   └── create.html        # Creator Studio UI
-├── build.js               # Build script
-├── .env.example           # Environment variables template
-├── .gitignore            # Git ignore rules
-├── .gitmodules            # Git submodules configuration
+│ ├── components/ # Reusable UI components
+│ ├── css/ # Stylesheets
+│ │ └── creator.css
+│ ├── js/ # JavaScript modules
+│ │ ├── ai-router.js
+│ │ └── creator.js
+│ └── create.html # Creator Studio UI
+├── build.js # Build script
+├── .env.example # Environment variables template
+├── .gitignore # Git ignore rules
+├── .gitmodules # Git submodules configuration
 ├── DEPLOYMENT_CHECKLIST.md
 └── README.md
 \`\`\`
@@ -239,6 +257,7 @@ Required environment variables (see \`.env.example\`):
 ## Security
 
 🔒 **Security Best Practices:**
+
 - All API keys are stored as environment variables
 - Webhook signatures are verified for Stripe events
 - \`.env\` file is never committed to version control
@@ -262,6 +281,7 @@ We welcome contributions! Please follow these guidelines:
 ## Support
 
 For issues, questions, or feature requests:
+
 - Open an issue on GitHub
 - Check the [DEPLOYMENT_CHECKLIST.md](./DEPLOYMENT_CHECKLIST.md) for troubleshooting
 

@@ -1,51 +1,104 @@
-
-const bcrypt = require('bcryptjs');
-const jwt = require('jsonwebtoken');
-const { db } = require('./config/firebase');
+const bcrypt = require("bcryptjs");
+const jwt = require("jsonwebtoken");
+const { supabase } = require("./config/supabase");
 
 exports.handler = async (event, context) => {
-  if (event.httpMethod !== 'POST') {
-    return { statusCode: 405, body: 'Method Not Allowed' };
+  const headers = {
+    "Access-Control-Allow-Origin": "*",
+    "Access-Control-Allow-Headers": "Content-Type",
+    "Content-Type": "application/json",
+  };
+
+  if (event.httpMethod === "OPTIONS") {
+    return { statusCode: 200, headers, body: "" };
+  }
+
+  if (event.httpMethod !== "POST") {
+    return {
+      statusCode: 405,
+      headers,
+      body: JSON.stringify({ message: "Method Not Allowed" }),
+    };
   }
 
   try {
-    const { email, password } = JSON.parse(event..body);
+    const { email, password } = JSON.parse(event.body);
 
-    // Find the user by email
-    const usersRef = db.collection('users');
-    const snapshot = await usersRef.where('email', '==', email).get();
-    if (snapshot.empty) {
+    if (!email || !password) {
       return {
         statusCode: 400,
-        body: JSON.stringify({ message: 'Invalid credentials' }),
+        headers,
+        body: JSON.stringify({ message: "Email and password are required" }),
       };
     }
 
-    const user = snapshot.docs[0].data();
+    // Find user
+    const { data: user, error } = await supabase
+      .from("users")
+      .select("*")
+      .eq("email", email.toLowerCase())
+      .single();
 
-    // Check the password
+    if (error || !user) {
+      return {
+        statusCode: 401,
+        headers,
+        body: JSON.stringify({ message: "Invalid credentials" }),
+      };
+    }
+
+    // Check password
     const isMatch = await bcrypt.compare(password, user.password);
     if (!isMatch) {
       return {
-        statusCode: 400,
-        body: JSON.stringify({ message: 'Invalid credentials' }),
+        statusCode: 401,
+        headers,
+        body: JSON.stringify({ message: "Invalid credentials" }),
       };
     }
 
-    // Generate a JWT
-    const token = jwt.sign({ id: snapshot.docs[0].id }, process.env.JWT_SECRET, {
-      expiresIn: '1h',
-    });
+    // Generate tokens
+    const accessToken = jwt.sign(
+      { id: user.id, email: user.email, type: "access" },
+      process.env.JWT_SECRET,
+      { expiresIn: "15m" },
+    );
+
+    const refreshToken = jwt.sign(
+      { id: user.id, type: "refresh" },
+      process.env.JWT_REFRESH_SECRET || process.env.JWT_SECRET,
+      { expiresIn: "7d" },
+    );
+
+    // Store refresh token
+    await supabase.from("refresh_tokens").insert([
+      {
+        user_id: user.id,
+        token: refreshToken,
+        expires_at: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000),
+      },
+    ]);
 
     return {
       statusCode: 200,
-      body: JSON.stringify({ token }),
+      headers,
+      body: JSON.stringify({
+        accessToken,
+        refreshToken,
+        user: {
+          id: user.id,
+          name: user.name,
+          email: user.email,
+          tokens: user.tokens,
+        },
+      }),
     };
   } catch (error) {
-    console.error('Error logging in:', error);
+    console.error("Login error:", error);
     return {
       statusCode: 500,
-      body: JSON.stringify({ message: 'Internal server error' }),
+      headers,
+      body: JSON.stringify({ message: "Internal server error" }),
     };
   }
 };
