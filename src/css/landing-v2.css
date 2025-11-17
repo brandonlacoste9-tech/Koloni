@@ -575,6 +575,222 @@ footer p {
   }
 }
 
+/* Pricing Page Header */
+.pricing-header {
+  padding: 80px 20px 40px;
+}
+
+.pricing-header .nav-back {
+  text-align: left;
+  max-width: 1400px;
+  margin: 0 auto 20px;
+}
+
+.pricing-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 30px;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.pricing-card {
+  position: relative;
+  padding: 40px 30px;
+  text-align: center;
+}
+
+.pricing-card.featured {
+  border-color: var(--primary-gold);
+  box-shadow: 0 20px 60px rgba(245, 158, 11, 0.3);
+  transform: scale(1.05);
+}
+
+.pricing-card-header {
+  margin-bottom: 30px;
+}
+
+.badge-popular {
+  background: rgba(245, 158, 11, 0.2);
+  border-color: var(--primary-gold);
+  color: var(--primary-gold);
+}
+
+.badge-best {
+  background: rgba(16, 185, 129, 0.2);
+  border-color: var(--emerald-accent);
+  color: var(--emerald-accent);
+}
+
+.pricing-card h2 {
+  font-size: var(--font-2xl);
+  margin: 20px 0 10px;
+}
+
+.pricing-card .description {
+  color: var(--text-tertiary);
+  font-size: var(--font-sm);
+  margin-top: 10px;
+}
+
+.checkout-btn {
+  width: 100%;
+  margin-top: 20px;
+}
+
+/* FAQ Section */
+.faq {
+  margin: 80px 0;
+}
+
+.faq h2 {
+  text-align: center;
+  font-size: clamp(2rem, 4vw, 3rem);
+  margin-bottom: 60px;
+  background: linear-gradient(135deg, #fff, var(--primary-gold));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.faq-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 30px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.faq-item {
+  padding: 30px;
+  text-align: left;
+}
+
+.faq-item h3 {
+  font-size: var(--font-xl);
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: var(--space-md);
+}
+
+.faq-item p {
+  color: var(--text-secondary);
+  line-height: 1.6;
+}
+
+/* Modal Styles */
+.modal {
+  position: fixed;
+  inset: 0;
+  z-index: var(--z-modal);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-xl);
+}
+
+.modal.active {
+  display: flex;
+}
+
+.modal-backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
+.modal-content {
+  position: relative;
+  max-width: 600px;
+  width: 100%;
+  max-height: 90vh;
+  overflow-y: auto;
+  z-index: 1;
+  animation: modalSlideIn 0.3s var(--ease-out);
+}
+
+.close-btn {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  width: 40px;
+  height: 40px;
+  border: none;
+  background: rgba(255, 255, 255, 0.1);
+  color: var(--text-primary);
+  font-size: 24px;
+  line-height: 1;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: all var(--duration-base) var(--ease-out);
+  z-index: 2;
+}
+
+.close-btn:hover {
+  background: rgba(255, 255, 255, 0.2);
+  transform: rotate(90deg);
+}
+
+.checkout-summary {
+  margin: 30px 0;
+  padding: 20px;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: var(--radius-md);
+}
+
+.checkout-summary h3 {
+  font-size: var(--font-xl);
+  margin-bottom: 10px;
+}
+
+.checkout-price {
+  font-size: var(--font-3xl);
+  font-weight: 900;
+  background: linear-gradient(135deg, var(--primary-gold), var(--amber));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin: 15px 0;
+}
+
+.checkout-features {
+  list-style: none;
+  padding: 0;
+  margin: 20px 0 0;
+  text-align: left;
+}
+
+.checkout-features li {
+  padding: 8px 0;
+  color: var(--text-secondary);
+}
+
+.loading-spinner {
+  text-align: center;
+  padding: 40px;
+}
+
+.spinner {
+  width: 50px;
+  height: 50px;
+  margin: 0 auto 20px;
+  border: 4px solid rgba(255, 255, 255, 0.1);
+  border-top-color: var(--primary-gold);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+.error-message {
+  padding: 20px;
+  background: rgba(239, 68, 68, 0.1);
+  border: 1px solid var(--error);
+  border-radius: var(--radius-md);
+  color: var(--error);
+  margin-top: 20px;
+}
+
 /* Animations */
 @keyframes float {
   0%,
@@ -604,5 +820,22 @@ footer p {
   to {
     transform: translateY(0);
     opacity: 1;
+  }
+}
+
+@keyframes modalSlideIn {
+  from {
+    transform: translateY(-50px) scale(0.9);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0) scale(1);
+    opacity: 1;
+  }
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
   }
 }

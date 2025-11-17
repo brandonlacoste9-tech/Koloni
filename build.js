@@ -31,6 +31,7 @@ const htmlFiles = [
   "login.html",
   "signup.html",
   "creator.html",
+  "pricing.html",
 ];
 htmlFiles.forEach((file) => {
   const srcPath = path.join(srcDir, file);
