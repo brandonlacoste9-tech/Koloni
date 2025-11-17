@@ -49,6 +49,37 @@ header[role="banner"] .btn {
   }
 }
 
+/* Gradient Text */
+.gradient-text {
+  background: linear-gradient(135deg, var(--primary-gold), var(--amber), var(--cyan-accent));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  font-weight: 900;
+}
+
+/* CTA Buttons Container */
+.cta-buttons {
+  display: flex;
+  gap: var(--space-md);
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  margin: var(--space-xl) 0;
+}
+
+@media (max-width: 640px) {
+  .cta-buttons {
+    flex-direction: column;
+    width: 100%;
+  }
+  
+  .cta-buttons .btn {
+    width: 100%;
+    max-width: 300px;
+  }
+}
+
 /* Badge */
 .badge {
   display: inline-block;
@@ -171,6 +202,59 @@ main {
   background-clip: text;
 }
 
+/* Steps Container */
+.steps {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 40px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.step {
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 20px;
+  padding: 40px 20px;
+  position: relative;
+  text-align: center;
+  transition: all 0.3s var(--ease-out);
+}
+
+.step:hover {
+  transform: translateY(-5px);
+  border-color: var(--primary-gold);
+  box-shadow: 0 20px 60px rgba(245, 158, 11, 0.2);
+}
+
+.step-number {
+  width: 60px;
+  height: 60px;
+  background: linear-gradient(135deg, var(--primary-gold), var(--amber));
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 800;
+  font-size: 1.75rem;
+  margin: 0 auto 20px;
+  color: #000;
+}
+
+.step h3 {
+  font-size: var(--font-xl);
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: var(--space-md);
+}
+
+.step p {
+  font-size: var(--font-base);
+  color: var(--text-secondary);
+  line-height: 1.6;
+}
+
 .how-it-works ol {
   list-style: none;
   padding: 0;
@@ -205,6 +289,59 @@ main {
   justify-content: center;
   font-weight: 800;
   font-size: 1.5rem;
+}
+
+/* Social Proof Section */
+.social-proof {
+  margin: 80px 0;
+  text-align: center;
+}
+
+.social-proof h2 {
+  font-size: clamp(2rem, 4vw, 3rem);
+  margin-bottom: 60px;
+  background: linear-gradient(135deg, #fff, var(--emerald-accent));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 40px;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.stat {
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 20px;
+  padding: 40px 20px;
+  transition: all 0.3s var(--ease-out);
+}
+
+.stat:hover {
+  transform: translateY(-5px);
+  border-color: var(--emerald-accent);
+  box-shadow: 0 20px 60px rgba(16, 185, 129, 0.2);
+}
+
+.stat h3 {
+  font-size: clamp(2.5rem, 5vw, 3.5rem);
+  font-weight: 900;
+  background: linear-gradient(135deg, var(--primary-gold), var(--amber));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin-bottom: var(--space-sm);
+}
+
+.stat p {
+  font-size: var(--font-lg);
+  color: var(--text-secondary);
 }
 
 /* Pricing Section */
@@ -254,12 +391,77 @@ main {
   border-radius: 20px;
   padding: 50px 30px;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+}
+
+.tier.featured {
+  border-color: var(--primary-gold);
+  box-shadow: 0 20px 60px rgba(245, 158, 11, 0.2);
+  transform: scale(1.05);
+}
+
+.tier .badge {
+  position: absolute;
+  top: -15px;
+  left: 50%;
+  transform: translateX(-50%);
+  margin: 0;
 }
 
 .tier:hover {
   transform: scale(1.05);
   border-color: var(--primary-gold);
   box-shadow: 0 30px 80px rgba(245, 158, 11, 0.3);
+}
+
+.tier h3 {
+  font-size: var(--font-2xl);
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: var(--space-md);
+}
+
+.tier .price {
+  font-size: clamp(2.5rem, 4vw, 3rem);
+  font-weight: 900;
+  background: linear-gradient(135deg, var(--primary-gold), var(--amber));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin-bottom: var(--space-sm);
+}
+
+.tier .period {
+  font-size: var(--font-lg);
+  color: var(--text-secondary);
+  font-weight: 400;
+}
+
+.tier .save {
+  display: inline-block;
+  color: var(--emerald-accent);
+  font-size: var(--font-sm);
+  font-weight: 600;
+  margin-bottom: var(--space-lg);
+}
+
+.features-list {
+  list-style: none;
+  padding: 0;
+  margin: var(--space-xl) 0;
+  text-align: left;
+}
+
+.features-list li {
+  padding: var(--space-sm) 0;
+  color: var(--text-secondary);
+  font-size: var(--font-base);
+  line-height: 1.6;
+}
+
+.tier .btn {
+  margin-top: var(--space-lg);
+  width: 100%;
 }
 
 /* Final CTA */
@@ -275,11 +477,21 @@ main {
 
 .final-cta h2 {
   font-size: clamp(2rem, 4vw, 3rem);
-  margin-bottom: 30px;
+  margin-bottom: 20px;
   background: linear-gradient(135deg, var(--primary-gold), var(--cyan-accent));
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
+}
+
+.final-cta p {
+  font-size: var(--font-lg);
+  color: var(--text-secondary);
+  margin-bottom: 40px;
+}
+
+.final-cta .cta-buttons {
+  justify-content: center;
 }
 
 .final-cta input {
