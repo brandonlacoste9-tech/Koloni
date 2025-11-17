@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Payment successful - AdGenXAI" />
+    <title>Payment Successful - AdGenXAI</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="/css/main.css" />
+    <link rel="stylesheet" href="/css/global.css" />
+    <link rel="stylesheet" href="/css/landing-v2.css" />
+  </head>
+  <body class="page-transition">
+    <a href="#main-content" class="skip-to-content">Skip to main content</a>
+    
+    <!-- Toast Container -->
+    <div id="toast-container" class="toast-container" role="region" aria-live="polite" aria-label="Notifications"></div>
+    
+    <div class="container">
+      <main id="main-content" role="main" class="success-container">
+        <div class="success-box glass-panel fade-in">
+          <div class="success-icon">
+            <svg width="80" height="80" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="12" cy="12" r="10" stroke="var(--emerald-accent)" />
+              <path d="M9 12l2 2 4-4" stroke="var(--emerald-accent)" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+          </div>
+          
+          <h1>Payment Successful!</h1>
+          <p class="success-message">Thank you for your purchase. Your credits have been added to your account.</p>
+          
+          <div class="success-details glass-card" id="order-details">
+            <h2>Order Details</h2>
+            <div class="detail-row">
+              <span>Status:</span>
+              <span class="status-badge">Processing</span>
+            </div>
+            <div class="detail-row">
+              <span>Session ID:</span>
+              <span id="session-id">Loading...</span>
+            </div>
+          </div>
+          
+          <div class="success-actions">
+            <a href="/dashboard.html" class="btn btn-primary">Go to Dashboard</a>
+            <a href="/creator.html" class="btn btn-secondary">Start Creating</a>
+          </div>
+          
+          <div class="success-footer">
+            <p>Need help? <a href="mailto:support@adgenxai.pro" class="link-primary">Contact Support</a></p>
+          </div>
+        </div>
+      </main>
+    </div>
+    
+    <script src="/js/ui-utils.js"></script>
+    <script>
+      // Get session ID from URL
+      const urlParams = new URLSearchParams(window.location.search);
+      const sessionId = urlParams.get('session_id');
+      
+      if (sessionId) {
+        document.getElementById('session-id').textContent = sessionId;
+        
+        // Show success toast
+        setTimeout(() => {
+          window.showToast?.('Credits successfully added to your account!', 'success');
+        }, 500);
+      } else {
+        document.getElementById('session-id').textContent = 'N/A';
+      }
+    </script>
+  </body>
+</html>

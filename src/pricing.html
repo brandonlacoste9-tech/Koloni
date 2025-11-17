@@ -1,0 +1,233 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="AdGenXAI Pricing - Flexible plans for content creators" />
+    <title>Pricing - AdGenXAI</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="/css/main.css" />
+    <link rel="stylesheet" href="/css/global.css" />
+    <link rel="stylesheet" href="/css/landing-v2.css" />
+    <script src="https://js.stripe.com/v3/"></script>
+  </head>
+  <body class="page-transition">
+    <a href="#main-content" class="skip-to-content">Skip to main content</a>
+    
+    <!-- Toast Container -->
+    <div id="toast-container" class="toast-container" role="region" aria-live="polite" aria-label="Notifications"></div>
+    
+    <!-- Dark Mode Toggle -->
+    <button id="dark-mode-toggle" class="dark-mode-toggle" aria-label="Toggle dark mode" aria-pressed="false">
+      <span class="sr-only">Toggle Dark Mode</span>
+      <span aria-hidden="true">🌓</span>
+    </button>
+    
+    <header role="banner" class="pricing-header">
+      <nav class="nav-back">
+        <a href="/" class="btn btn-ghost">← Back to Home</a>
+      </nav>
+      <h1>Choose Your Plan</h1>
+      <p>Flexible pricing for creators of all sizes. Pay as you grow.</p>
+    </header>
+    
+    <main id="main-content" role="main">
+      <section class="pricing section" aria-labelledby="pricing-heading">
+        <div class="pricing-grid">
+          <!-- Starter Plan -->
+          <div class="pricing-card glass-card" data-plan="starter">
+            <div class="pricing-card-header">
+              <div class="badge badge-popular">Most Popular</div>
+              <h2>Starter</h2>
+              <div class="price">
+                <span class="amount">$10</span>
+                <span class="period">/month</span>
+              </div>
+              <p class="description">Perfect for individual creators getting started</p>
+            </div>
+            <ul class="features-list">
+              <li>✓ 100 AI Credits</li>
+              <li>✓ LongCat & Emu formats</li>
+              <li>✓ All style options</li>
+              <li>✓ Export to all platforms</li>
+              <li>✓ Email support</li>
+              <li>✓ Generation history</li>
+            </ul>
+            <button class="btn btn-primary checkout-btn" 
+                    data-plan="starter" 
+                    data-price="1000" 
+                    data-credits="100"
+                    aria-label="Get started with Starter plan">
+              Get Started
+            </button>
+          </div>
+          
+          <!-- Creator Plan -->
+          <div class="pricing-card glass-card featured" data-plan="creator">
+            <div class="pricing-card-header">
+              <div class="badge badge-best">Best Value</div>
+              <h2>Creator</h2>
+              <div class="price">
+                <span class="amount">$45</span>
+                <span class="period">/month</span>
+              </div>
+              <span class="save">Save 10%</span>
+              <p class="description">For professional content creators</p>
+            </div>
+            <ul class="features-list">
+              <li>✓ 500 AI Credits</li>
+              <li>✓ All Starter features</li>
+              <li>✓ Priority generation</li>
+              <li>✓ Advanced analytics</li>
+              <li>✓ Priority support</li>
+              <li>✓ Custom templates</li>
+              <li>✓ Bulk exports</li>
+            </ul>
+            <button class="btn btn-primary checkout-btn" 
+                    data-plan="creator" 
+                    data-price="4500" 
+                    data-credits="500"
+                    aria-label="Start creating with Creator plan">
+              Start Creating
+            </button>
+          </div>
+          
+          <!-- Pro Plan -->
+          <div class="pricing-card glass-card" data-plan="pro">
+            <div class="pricing-card-header">
+              <h2>Pro</h2>
+              <div class="price">
+                <span class="amount">$120</span>
+                <span class="period">/month</span>
+              </div>
+              <span class="save">Save 20%</span>
+              <p class="description">For power users and agencies</p>
+            </div>
+            <ul class="features-list">
+              <li>✓ 1,500 AI Credits</li>
+              <li>✓ All Creator features</li>
+              <li>✓ Custom brand voice</li>
+              <li>✓ API access</li>
+              <li>✓ White-label options</li>
+              <li>✓ Dedicated support</li>
+              <li>✓ Team collaboration</li>
+              <li>✓ Priority processing</li>
+            </ul>
+            <button class="btn btn-primary checkout-btn" 
+                    data-plan="pro" 
+                    data-price="12000" 
+                    data-credits="1500"
+                    aria-label="Go Pro with Pro plan">
+              Go Pro
+            </button>
+          </div>
+          
+          <!-- Enterprise -->
+          <div class="pricing-card glass-card" data-plan="enterprise">
+            <div class="pricing-card-header">
+              <h2>Enterprise</h2>
+              <div class="price">
+                <span class="amount">Custom</span>
+              </div>
+              <p class="description">Tailored solutions for large organizations</p>
+            </div>
+            <ul class="features-list">
+              <li>✓ Unlimited credits</li>
+              <li>✓ All Pro features</li>
+              <li>✓ Custom integrations</li>
+              <li>✓ SLA guarantee</li>
+              <li>✓ Account manager</li>
+              <li>✓ Custom training</li>
+              <li>✓ On-premise deployment</li>
+              <li>✓ Advanced security</li>
+            </ul>
+            <button class="btn btn-secondary" 
+                    onclick="location.href='mailto:sales@adgenxai.pro'"
+                    aria-label="Contact sales for Enterprise plan">
+              Contact Sales
+            </button>
+          </div>
+        </div>
+      </section>
+      
+      <!-- FAQ Section -->
+      <section class="faq section" aria-labelledby="faq-heading">
+        <h2 id="faq-heading">Frequently Asked Questions</h2>
+        <div class="faq-grid">
+          <div class="faq-item glass-card">
+            <h3>What are AI Credits?</h3>
+            <p>AI Credits are used to generate content. Each LongCat or Emu generation uses 1 credit. Credits never expire and roll over month to month.</p>
+          </div>
+          <div class="faq-item glass-card">
+            <h3>Can I change plans anytime?</h3>
+            <p>Yes! You can upgrade or downgrade your plan at any time. Changes take effect at the start of your next billing cycle.</p>
+          </div>
+          <div class="faq-item glass-card">
+            <h3>What payment methods do you accept?</h3>
+            <p>We accept all major credit cards, debit cards, and digital wallets through Stripe's secure payment processing.</p>
+          </div>
+          <div class="faq-item glass-card">
+            <h3>Is there a free trial?</h3>
+            <p>Yes! All new accounts start with 10 free credits to try out the platform. No credit card required to sign up.</p>
+          </div>
+        </div>
+      </section>
+    </main>
+    
+    <!-- Checkout Modal -->
+    <div id="checkout-modal" class="modal" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+      <div class="modal-backdrop" role="presentation"></div>
+      <div class="modal-content glass-panel">
+        <button class="close-btn" aria-label="Close checkout">&times;</button>
+        <h2 id="modal-title">Complete Your Purchase</h2>
+        <div id="checkout-details"></div>
+        <div id="checkout-container"></div>
+        <div id="checkout-loading" class="loading-spinner" style="display: none;">
+          <div class="spinner"></div>
+          <p>Preparing checkout...</p>
+        </div>
+        <div id="checkout-error" class="error-message" style="display: none;"></div>
+      </div>
+    </div>
+    
+    <footer role="contentinfo">
+      <nav class="footer-links" aria-label="Footer navigation">
+        <div>
+          <h4>Product</h4>
+          <ul role="list">
+            <li><a href="/#features">Features</a></li>
+            <li><a href="/pricing.html">Pricing</a></li>
+            <li><a href="/creator.html">Demo</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>Company</h4>
+          <ul role="list">
+            <li><a href="/about.html">About</a></li>
+            <li><a href="mailto:support@adgenxai.pro">Contact</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>Resources</h4>
+          <ul role="list">
+            <li><a href="/docs">Documentation</a></li>
+            <li><a href="https://github.com/brandonlacoste9-tech/Koloni">GitHub</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>Legal</h4>
+          <ul role="list">
+            <li><a href="/privacy.html">Privacy</a></li>
+            <li><a href="/terms.html">Terms</a></li>
+          </ul>
+        </div>
+      </nav>
+      <p>&copy; 2025 AdGenXAI. All rights reserved.</p>
+    </footer>
+    
+    <script src="/js/ui-utils.js"></script>
+    <script src="/js/pricing.js"></script>
+  </body>
+</html>
