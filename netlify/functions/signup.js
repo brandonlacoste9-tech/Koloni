@@ -1,48 +1,102 @@
-
-const bcrypt = require('bcryptjs');
-const { db } = require('./config/firebase');
+const bcrypt = require("bcryptjs");
+const { supabase } = require("./config/supabase");
 
 exports.handler = async (event, context) => {
-  if (event.httpMethod !== 'POST') {
-    return { statusCode: 405, body: 'Method Not Allowed' };
+  const headers = {
+    "Access-Control-Allow-Origin": "*",
+    "Access-Control-Allow-Headers": "Content-Type",
+    "Content-Type": "application/json",
+  };
+
+  if (event.httpMethod === "OPTIONS") {
+    return { statusCode: 200, headers, body: "" };
+  }
+
+  if (event.httpMethod !== "POST") {
+    return {
+      statusCode: 405,
+      headers,
+      body: JSON.stringify({ message: "Method Not Allowed" }),
+    };
   }
 
   try {
     const { name, email, password } = JSON.parse(event.body);
 
-    // Check if user already exists
-    const usersRef = db.collection('users');
-    const snapshot = await usersRef.where('email', '==', email).get();
-    if (!snapshot.empty) {
+    // Validate input
+    if (!name || !email || !password) {
       return {
         statusCode: 400,
-        body: JSON.stringify({ message: 'User with this email already exists' }),
+        headers,
+        body: JSON.stringify({
+          message: "Name, email, and password are required",
+        }),
       };
     }
 
-    // Hash the password
-    const salt = await bcrypt.genSalt(10);
-    const hashedPassword = await bcrypt.hash(password, salt);
+    if (password.length < 8) {
+      return {
+        statusCode: 400,
+        headers,
+        body: JSON.stringify({
+          message: "Password must be at least 8 characters",
+        }),
+      };
+    }
 
-    // Create a new user
-    const newUser = {
-      name,
-      email,
-      password: hashedPassword,
-      createdAt: new Date(),
-    };
+    // Check if user exists
+    const { data: existingUser } = await supabase
+      .from("users")
+      .select("id")
+      .eq("email", email.toLowerCase())
+      .single();
 
-    await usersRef.add(newUser);
+    if (existingUser) {
+      return {
+        statusCode: 409,
+        headers,
+        body: JSON.stringify({
+          message: "User with this email already exists",
+        }),
+      };
+    }
+
+    // Hash password
+    const hashedPassword = await bcrypt.hash(password, 10);
+
+    // Create user
+    const { data: newUser, error } = await supabase
+      .from("users")
+      .insert([
+        {
+          name,
+          email: email.toLowerCase(),
+          password: hashedPassword,
+          tokens: 10,
+        },
+      ])
+      .select()
+      .single();
+
+    if (error) {
+      throw error;
+    }
 
     return {
       statusCode: 201,
-      body: JSON.stringify({ message: 'User created successfully' }),
+      headers,
+      body: JSON.stringify({
+        message: "User created successfully",
+        userId: newUser.id,
+        tokens: 10,
+      }),
     };
   } catch (error) {
-    console.error('Error creating user:', error);
+    console.error("Signup error:", error);
     return {
       statusCode: 500,
-      body: JSON.stringify({ message: 'Internal server error' }),
+      headers,
+      body: JSON.stringify({ message: "Internal server error" }),
     };
   }
 };

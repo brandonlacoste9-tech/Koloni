@@ -179,6 +179,7 @@ Netlify will automatically build and deploy on push.
 ### 5.1 Update Stripe Webhook URL
 
 If you used a placeholder URL during setup:
+
 1. Go to Stripe Dashboard → Webhooks
 2. Edit your webhook endpoint
 3. Update URL to: `https://your-actual-site.netlify.app/.netlify/functions/stripe-webhook`
@@ -186,6 +187,7 @@ If you used a placeholder URL during setup:
 ### 5.2 Test Payments (Optional)
 
 Use Stripe test cards to verify payment flow:
+
 - Test card: `4242 4242 4242 4242`
 - Any future expiry date
 - Any 3-digit CVC
@@ -199,6 +201,7 @@ Use Stripe test cards to verify payment flow:
 ### 5.4 Set Up Production Keys
 
 When ready for production:
+
 1. Replace all test Stripe keys with live keys
 2. Use production OpenAI API key
 3. Update environment variables in Netlify
@@ -238,25 +241,31 @@ The current token-manager uses in-memory storage. For production:
 ### Function Errors
 
 **Error**: "Module not found: node-fetch"
+
 - **Solution**: Run `npm install node-fetch` and redeploy
 
 **Error**: "OpenAI API key invalid"
+
 - **Solution**: Verify `OPENAI_API_KEY` in Netlify environment variables
 
 **Error**: "Stripe webhook signature failed"
+
 - **Solution**: Verify `STRIPE_WEBHOOK_SECRET` matches Stripe dashboard
 
 ### UI Issues
 
 **Token balance shows "--"**
+
 - **Solution**: Check browser console for errors, verify token-manager function works
 
 **Content not generating**
+
 - **Solution**: Check function logs, verify OpenAI API key and credits
 
 ### Build Errors
 
 **Error**: "public directory not found"
+
 - **Solution**: Ensure `build.js` runs successfully, check build logs
 
 ## 8. Success Criteria
@@ -287,6 +296,7 @@ After successful deployment:
 ## Support
 
 If you encounter issues:
+
 1. Check Netlify function logs
 2. Review browser console for errors
 3. Verify all environment variables are set

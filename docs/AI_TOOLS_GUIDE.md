@@ -28,8 +28,9 @@ On GitHub, use Copilot-powered issue creation to streamline the tracking of your
 Once you've chosen an issue to address, Copilot Chat can help you brainstorm ideas for your project and learn about the various tools, libraries, and resources you might need.
 
 **Example prompts:**
+
 ```
-I'd like to build a web app that helps users track their daily habits and provides 
+I'd like to build a web app that helps users track their daily habits and provides
 personalized recommendations. Can you suggest features and technologies I could use?
 ```
 
@@ -46,6 +47,7 @@ Copilot provides auto-complete style coding suggestions as you code in your favo
 ### Next Edit Suggestions (Public Preview)
 
 With next edit suggestions, Copilot predicts related edits based on the changes you're actively making. For example:
+
 - If you rename a variable, it suggests corresponding updates throughout your code
 - If you update a function's parameters, it suggests related changes
 - This helps maintain consistency and reduces the chance of errors
@@ -55,11 +57,12 @@ With next edit suggestions, Copilot predicts related edits based on the changes 
 Use Copilot Chat in ask mode as your pair programmer to get help with coding tasks, understand tricky concepts, and improve your code. You can ask it questions, get explanations, or request suggestions in real time.
 
 **Example prompts:**
+
 ```
-Can you explain what this JavaScript function does? I'm not sure why it uses 
+Can you explain what this JavaScript function does? I'm not sure why it uses
 a forEach loop instead of a for loop.
 
-What's the difference between let, const, and var in JavaScript? When should 
+What's the difference between let, const, and var in JavaScript? When should
 I use each one?
 ```
 
@@ -68,6 +71,7 @@ I use each one?
 Use Copilot Chat in edit mode when you want more granular control over the edits that Copilot proposes. In edit mode, you choose which files Copilot can make changes to, provide context to Copilot with each iteration, and decide whether or not to accept the suggested edits.
 
 **Example prompts:**
+
 ```
 Refactor the calculateTotal function to improve readability and efficiency.
 
@@ -81,11 +85,12 @@ Format this code to follow Python's PEP 8 style guide.
 In agent mode, Copilot Chat can assist with automating repetitive tasks and managing your workflow directly within your project. Use it to create pull requests after you make code changes. You can also use it to run tests and linters in the background while you're working on your project.
 
 **Example prompts:**
+
 ```
-Create a pull request for the recent changes in the user-auth module and 
+Create a pull request for the recent changes in the user-auth module and
 include a summary of the updates.
 
-Run all tests and linters for the payment-processing module and provide 
+Run all tests and linters for the payment-processing module and provide
 a summary of any issues or errors found.
 ```
 
@@ -114,6 +119,7 @@ When you're ready to get feedback from others on the GitHub website, first assig
 The testing phase validates that your application works as intended. This phase involves writing and running tests to catch bugs, ensure functionality, and maintain code quality before deployment.
 
 Copilot Chat can assist by:
+
 - Generating unit and integration tests
 - Debugging test failures
 - Suggesting additional test cases to ensure comprehensive coverage
@@ -121,16 +127,18 @@ Copilot Chat can assist by:
 ### Example Prompts
 
 **Unit Testing:**
+
 ```
-Write unit tests for this function to calculate the factorial of a number. 
+Write unit tests for this function to calculate the factorial of a number.
 Include edge cases like 0 and negative numbers.
 
 How do I run these tests using Python's unittest framework?
 ```
 
 **Integration Testing:**
+
 ```
-Write integration tests for the deposit function in the BankAccount class. 
+Write integration tests for the deposit function in the BankAccount class.
 Use mocks to simulate the NotificationSystem.
 
 What additional tests should I include to ensure full coverage for this module?
@@ -143,6 +151,7 @@ What additional tests should I include to ensure full coverage for this module?
 The deployment phase involves preparing your code for production and ensuring a smooth release.
 
 Copilot Chat can help you:
+
 - Configure deployment scripts
 - Set up CI/CD pipelines
 - Troubleshoot deployment issues
@@ -150,18 +159,21 @@ Copilot Chat can help you:
 ### Example Prompts
 
 **Deployment Scripts:**
+
 ```
-Write a deployment script for a Node.js application using GitHub Actions 
+Write a deployment script for a Node.js application using GitHub Actions
 to deploy to an AWS EC2 instance.
 ```
 
 **CI/CD Setup:**
+
 ```
-Set up a GitHub Actions workflow to build, test, and deploy a Python 
+Set up a GitHub Actions workflow to build, test, and deploy a Python
 application to Heroku.
 ```
 
 **Troubleshooting:**
+
 ```
 Analyze this deployment log and suggest why the deployment failed.
 ```
@@ -175,6 +187,7 @@ During the operation phase, the focus is on maintaining and monitoring your appl
 ### Copilot Coding Agent (Public Preview)
 
 You can use the Copilot coding agent as an autonomous agent that can help maintain and improve your application in production. Assign a GitHub issue to Copilot, and it will:
+
 - Autonomously explore the repository
 - Identify potential fixes
 - Create a pull request with the proposed changes
@@ -185,10 +198,11 @@ You can use the Copilot coding agent as an autonomous agent that can help mainta
 For issues you're tackling yourself, use Copilot Chat for help analyzing logs, debugging issues, and suggesting optimizations.
 
 **Example prompts:**
+
 ```
 Analyze this error log and suggest possible causes for the issue.
 
-Write a script to monitor the memory usage of this application and alert 
+Write a script to monitor the memory usage of this application and alert
 when it exceeds a threshold.
 
 How can I optimize the database queries in this code to improve performance?
@@ -217,14 +231,14 @@ How can I optimize the database queries in this code to improve performance?
 
 ## Quick Reference
 
-| Phase | Primary Tools | Use Cases |
-|-------|--------------|-----------|
-| **Planning** | Copilot Chat, Issue Creation | Brainstorming, requirements, issue tracking |
-| **Creation** | Code completion, Next edit, Copilot Chat | Writing code, refactoring, debugging |
-| **Reviews** | Copilot code review, PR reviews | Code quality, bug detection |
-| **Testing** | Copilot Chat | Test generation, test debugging, coverage |
-| **Deployment** | Copilot Chat | CI/CD setup, deployment scripts, troubleshooting |
-| **Operation** | Copilot coding agent, Copilot Chat | Maintenance, monitoring, optimization |
+| Phase          | Primary Tools                            | Use Cases                                        |
+| -------------- | ---------------------------------------- | ------------------------------------------------ |
+| **Planning**   | Copilot Chat, Issue Creation             | Brainstorming, requirements, issue tracking      |
+| **Creation**   | Code completion, Next edit, Copilot Chat | Writing code, refactoring, debugging             |
+| **Reviews**    | Copilot code review, PR reviews          | Code quality, bug detection                      |
+| **Testing**    | Copilot Chat                             | Test generation, test debugging, coverage        |
+| **Deployment** | Copilot Chat                             | CI/CD setup, deployment scripts, troubleshooting |
+| **Operation**  | Copilot coding agent, Copilot Chat       | Maintenance, monitoring, optimization            |
 
 ---
 
@@ -236,4 +250,4 @@ How can I optimize the database queries in this code to improve performance?
 
 ---
 
-*Last Updated: November 2025*
+_Last Updated: November 2025_

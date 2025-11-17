@@ -1,37 +1,37 @@
-import { gsap } from 'gsap';
+import { gsap } from "gsap";
 
 export default function Nav() {
   const initNavAnimations = () => {
     // Subtle float on logo
-    gsap.to('.nav-logo', {
+    gsap.to(".nav-logo", {
       y: -2,
       duration: 2,
       repeat: -1,
       yoyo: true,
-      ease: 'sine.inOut'
+      ease: "sine.inOut",
     });
 
     // Hover glow on links
-    document.querySelectorAll('.nav-link').forEach(link => {
-      link.addEventListener('mouseenter', () => {
-        gsap.to(link, { color: '#ffd54f', duration: 0.3, ease: 'power2.out' });
+    document.querySelectorAll(".nav-link").forEach((link) => {
+      link.addEventListener("mouseenter", () => {
+        gsap.to(link, { color: "#ffd54f", duration: 0.3, ease: "power2.out" });
       });
-      link.addEventListener('mouseleave', () => {
-        gsap.to(link, { color: '#e5e5e5', duration: 0.3, ease: 'power2.out' });
+      link.addEventListener("mouseleave", () => {
+        gsap.to(link, { color: "#e5e5e5", duration: 0.3, ease: "power2.out" });
       });
     });
 
     // Mobile menu slide
-    const mobileBtn = document.querySelector('.nav-toggle');
-    const mobileMenu = document.querySelector('.nav-mobile-menu');
+    const mobileBtn = document.querySelector(".nav-toggle");
+    const mobileMenu = document.querySelector(".nav-mobile-menu");
     if (mobileBtn && mobileMenu) {
-      mobileBtn.addEventListener('click', () => {
-        const isOpen = mobileMenu.classList.toggle('active');
+      mobileBtn.addEventListener("click", () => {
+        const isOpen = mobileMenu.classList.toggle("active");
         gsap.to(mobileMenu, {
-          height: isOpen ? 'auto' : 0,
+          height: isOpen ? "auto" : 0,
           opacity: isOpen ? 1 : 0,
           duration: 0.4,
-          ease: 'power2.out'
+          ease: "power2.out",
         });
       });
     }

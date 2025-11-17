@@ -5,10 +5,10 @@
 
 exports.handler = async (event, context) => {
   // Only allow POST requests
-  if (event.httpMethod !== 'POST') {
+  if (event.httpMethod !== "POST") {
     return {
       statusCode: 405,
-      body: JSON.stringify({ error: 'Method not allowed' })
+      body: JSON.stringify({ error: "Method not allowed" }),
     };
   }
 
@@ -19,46 +19,49 @@ exports.handler = async (event, context) => {
     if (!content || !userId) {
       return {
         statusCode: 400,
-        body: JSON.stringify({ error: 'Missing required parameters: content, userId' })
+        body: JSON.stringify({
+          error: "Missing required parameters: content, userId",
+        }),
       };
     }
 
     // Format content for YouTube
     let formattedContent = {
-      title: '',
-      description: '',
+      title: "",
+      description: "",
       tags: [],
-      format: format || 'video'
+      format: format || "video",
     };
 
     // Parse content
-    if (typeof content === 'string') {
-      const lines = content.split('\n').filter(line => line.trim());
-      
+    if (typeof content === "string") {
+      const lines = content.split("\n").filter((line) => line.trim());
+
       // First line as title
-      formattedContent.title = lines[0] || 'Untitled Video';
-      
+      formattedContent.title = lines[0] || "Untitled Video";
+
       // Remaining lines as description
-      formattedContent.description = lines.slice(1).join('\n');
-      
+      formattedContent.description = lines.slice(1).join("\n");
+
       // Extract tags from hashtags
       const hashtags = content.match(/#\w+/g) || [];
-      formattedContent.tags = hashtags.map(tag => tag.substring(1));
+      formattedContent.tags = hashtags.map((tag) => tag.substring(1));
     } else if (content.title) {
       formattedContent.title = content.title;
-      formattedContent.description = content.description || '';
+      formattedContent.description = content.description || "";
       formattedContent.tags = content.tags || [];
     }
 
     // Apply YouTube-specific formatting
     // Max title length: 100 characters
     if (formattedContent.title.length > 100) {
-      formattedContent.title = formattedContent.title.substring(0, 97) + '...';
+      formattedContent.title = formattedContent.title.substring(0, 97) + "...";
     }
 
     // Max description length: 5,000 characters
     if (formattedContent.description.length > 5000) {
-      formattedContent.description = formattedContent.description.substring(0, 4997) + '...';
+      formattedContent.description =
+        formattedContent.description.substring(0, 4997) + "...";
     }
 
     // Max tags: 500 characters total, ~30 tags
@@ -83,11 +86,11 @@ exports.handler = async (event, context) => {
 ──────────────────────────
 
 #️⃣ TAGS
-${formattedContent.tags.join(', ')}`;
+${formattedContent.tags.join(", ")}`;
 
     // Generate export data
     const exportData = {
-      platform: 'youtube',
+      platform: "youtube",
       title: formattedContent.title,
       description: structuredDescription,
       tags: formattedContent.tags,
@@ -96,34 +99,36 @@ ${formattedContent.tags.join(', ')}`;
         descriptionLength: structuredDescription.length,
         tagCount: formattedContent.tags.length,
         format: formattedContent.format,
-        exportedAt: new Date().toISOString()
+        exportedAt: new Date().toISOString(),
       },
       tips: [
-        'Create an eye-catching thumbnail',
-        'Upload during peak hours for your audience',
-        'Add end screens and cards',
-        'Respond to comments to boost engagement',
-        'Include relevant keywords in title and description'
-      ]
+        "Create an eye-catching thumbnail",
+        "Upload during peak hours for your audience",
+        "Add end screens and cards",
+        "Respond to comments to boost engagement",
+        "Include relevant keywords in title and description",
+      ],
     };
 
     return {
       statusCode: 200,
       headers: {
-        'Content-Type': 'application/json',
-        'Access-Control-Allow-Origin': '*'
+        "Content-Type": "application/json",
+        "Access-Control-Allow-Origin": "*",
       },
       body: JSON.stringify({
         success: true,
-        ...exportData
-      })
+        ...exportData,
+      }),
     };
-
   } catch (error) {
-    console.error('Error in export-youtube:', error);
+    console.error("Error in export-youtube:", error);
     return {
       statusCode: 500,
-      body: JSON.stringify({ error: 'Failed to export to YouTube', details: error.message })
+      body: JSON.stringify({
+        error: "Failed to export to YouTube",
+        details: error.message,
+      }),
     };
   }
 };

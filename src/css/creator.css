@@ -1,10 +1,10 @@
 .creator-container {
-    padding: 20px;
+  padding: 20px;
 }
 
 textarea {
-    width: 100%;
-    padding: 8px;
-    border: 1px solid #ccc;
-    border-radius: 3px;
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
 }

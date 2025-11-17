@@ -5,10 +5,10 @@
 
 exports.handler = async (event, context) => {
   // Only allow POST requests
-  if (event.httpMethod !== 'POST') {
+  if (event.httpMethod !== "POST") {
     return {
       statusCode: 405,
-      body: JSON.stringify({ error: 'Method not allowed' })
+      body: JSON.stringify({ error: "Method not allowed" }),
     };
   }
 
@@ -19,28 +19,30 @@ exports.handler = async (event, context) => {
     if (!content || !userId) {
       return {
         statusCode: 400,
-        body: JSON.stringify({ error: 'Missing required parameters: content, userId' })
+        body: JSON.stringify({
+          error: "Missing required parameters: content, userId",
+        }),
       };
     }
 
     // Format content for Instagram based on type
     let formattedContent = {
-      caption: '',
+      caption: "",
       hashtags: [],
-      mediaType: format || 'post'
+      mediaType: format || "post",
     };
 
     // Parse and format content
-    if (typeof content === 'string') {
+    if (typeof content === "string") {
       // Split content into caption and hashtags
-      const lines = content.split('\n');
-      const hashtagLine = lines.find(line => line.includes('#'));
-      
+      const lines = content.split("\n");
+      const hashtagLine = lines.find((line) => line.includes("#"));
+
       if (hashtagLine) {
         formattedContent.hashtags = hashtagLine.match(/#\w+/g) || [];
         formattedContent.caption = lines
-          .filter(line => !line.includes('#'))
-          .join('\n')
+          .filter((line) => !line.includes("#"))
+          .join("\n")
           .trim();
       } else {
         formattedContent.caption = content;
@@ -53,7 +55,8 @@ exports.handler = async (event, context) => {
     // Apply Instagram-specific formatting
     // Max caption length: 2,200 characters
     if (formattedContent.caption.length > 2200) {
-      formattedContent.caption = formattedContent.caption.substring(0, 2197) + '...';
+      formattedContent.caption =
+        formattedContent.caption.substring(0, 2197) + "...";
     }
 
     // Max hashtags: 30
@@ -62,43 +65,48 @@ exports.handler = async (event, context) => {
     }
 
     // Add spacing for readability
-    const finalCaption = formattedContent.caption + '\n.\n.\n.\n' + formattedContent.hashtags.join(' ');
+    const finalCaption =
+      formattedContent.caption +
+      "\n.\n.\n.\n" +
+      formattedContent.hashtags.join(" ");
 
     // Generate export data
     const exportData = {
-      platform: 'instagram',
+      platform: "instagram",
       content: finalCaption,
       metadata: {
         captionLength: formattedContent.caption.length,
         hashtagCount: formattedContent.hashtags.length,
         mediaType: formattedContent.mediaType,
-        exportedAt: new Date().toISOString()
+        exportedAt: new Date().toISOString(),
       },
       tips: [
-        'Copy the content below and paste into Instagram',
-        'Add your image or video in Instagram',
-        'Post at optimal times for your audience',
-        'Engage with comments within the first hour'
-      ]
+        "Copy the content below and paste into Instagram",
+        "Add your image or video in Instagram",
+        "Post at optimal times for your audience",
+        "Engage with comments within the first hour",
+      ],
     };
 
     return {
       statusCode: 200,
       headers: {
-        'Content-Type': 'application/json',
-        'Access-Control-Allow-Origin': '*'
+        "Content-Type": "application/json",
+        "Access-Control-Allow-Origin": "*",
       },
       body: JSON.stringify({
         success: true,
-        ...exportData
-      })
+        ...exportData,
+      }),
     };
-
   } catch (error) {
-    console.error('Error in export-instagram:', error);
+    console.error("Error in export-instagram:", error);
     return {
       statusCode: 500,
-      body: JSON.stringify({ error: 'Failed to export to Instagram', details: error.message })
+      body: JSON.stringify({
+        error: "Failed to export to Instagram",
+        details: error.message,
+      }),
     };
   }
 };
