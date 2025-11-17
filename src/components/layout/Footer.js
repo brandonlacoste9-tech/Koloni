@@ -4,7 +4,7 @@ export default function Footer() {
       <div class="container">
         <div class="footer-content">
           <div class="footer-brand">
-            <h3 class="text-gradient">Koloni</h3>
+            <h3 class="text-gradient">AdGenXAI</h3>
             <p>Building connected communities in harmony.</p>
           </div>
           <div class="footer-links">
@@ -34,7 +34,7 @@ export default function Footer() {
         </div>
         <div class="footer-bottom">
           <div class="footer-honeycomb-border"></div>
-          <p>&copy; 2025 Koloni. All rights reserved.</p>
+          <p>&copy; 2025 AdGenXAI. All rights reserved.</p>
           <div class="footer-social">
             <a href="/twitter" aria-label="Twitter">🐝</a>
             <a href="/discord" aria-label="Discord">📱</a>
