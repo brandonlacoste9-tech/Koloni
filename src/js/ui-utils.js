@@ -10,8 +10,8 @@
   const darkModeToggle = document.getElementById('dark-mode-toggle');
   if (!darkModeToggle) return;
 
-  // Check for saved theme preference or default to light mode
-  const currentTheme = localStorage.getItem('theme') || 'light';
+  // Check for saved theme preference or default to dark mode
+  const currentTheme = localStorage.getItem('theme') || 'dark';
   document.documentElement.setAttribute('data-theme', currentTheme);
   darkModeToggle.setAttribute('aria-pressed', currentTheme === 'dark');
 
