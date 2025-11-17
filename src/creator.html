@@ -4,41 +4,100 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>AdGenXAI - Ad Creator</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="css/main.css" />
     <link rel="stylesheet" href="css/global.css" />
     <link rel="stylesheet" href="css/creator.css" />
   </head>
-  <body>
+  <body class="page-transition">
+    <a href="#main-content" class="skip-to-content">Skip to main content</a>
+    
+    <!-- Toast Container -->
+    <div id="toast-container" class="toast-container" role="region" aria-live="polite" aria-label="Notifications"></div>
+    
+    <!-- Dark Mode Toggle -->
+    <button id="dark-mode-toggle" class="dark-mode-toggle" aria-label="Toggle dark mode" aria-pressed="false">
+      <span class="sr-only">Toggle Dark Mode</span>
+      <span aria-hidden="true">🌓</span>
+    </button>
+    
     <div class="container">
-      <div class="creator-container">
-        <h1>Ad Creator</h1>
-        <p>Create your next ad campaign</p>
-        <form id="ad-creator-form">
-          <div class="form-group">
-            <label for="campaign-name">Campaign Name</label>
-            <input
-              type="text"
-              id="campaign-name"
-              name="campaign-name"
-              required
-            />
+      <main id="main-content" role="main">
+        <div class="creator-container glass-panel fade-in">
+          <header>
+            <h1>Ad Creator</h1>
+            <p>Create your next ad campaign with AI-powered video generation</p>
+          </header>
+          
+          <form id="ad-creator-form" aria-label="Ad campaign creation form">
+            <div class="form-group">
+              <label for="campaign-name">Campaign Name</label>
+              <input
+                type="text"
+                id="campaign-name"
+                name="campaign-name"
+                class="glass-input"
+                placeholder="Enter campaign name"
+                required
+                aria-required="true"
+                autocomplete="off"
+              />
+            </div>
+            <div class="form-group">
+              <label for="video-script">Video Script</label>
+              <textarea
+                id="video-script"
+                name="video-script"
+                class="glass-input"
+                rows="8"
+                placeholder="Describe your video content..."
+                required
+                aria-required="true"
+                aria-describedby="script-help"
+              ></textarea>
+              <small id="script-help" class="text-muted">
+                Provide a detailed description of the video content you want to create
+              </small>
+            </div>
+            <div class="form-actions flex gap-md">
+              <button type="submit" class="btn btn-primary" aria-label="Generate video from script">
+                Generate Video
+              </button>
+              <button type="reset" class="btn btn-secondary" aria-label="Reset form">
+                Reset
+              </button>
+              <a href="dashboard.html" class="btn btn-ghost" aria-label="Back to dashboard">
+                Back to Dashboard
+              </a>
+            </div>
+          </form>
+          
+          <!-- Loading State -->
+          <div id="loading-state" class="loading-state" style="display: none;" role="status" aria-live="polite">
+            <div class="skeleton skeleton-card"></div>
+            <p class="text-center mt-md">Generating your video...</p>
           </div>
-          <div class="form-group">
-            <label for="video-script">Video Script</label>
-            <textarea
-              id="video-script"
-              name="video-script"
-              rows="5"
-              required
-            ></textarea>
+          
+          <!-- Generated Video Container -->
+          <div id="video-container" class="video-result glass-card mt-xl" style="display: none">
+            <h2>Generated Video</h2>
+            <video 
+              id="video-player" 
+              controls 
+              width="100%"
+              aria-label="Generated video player"
+            ></video>
+            <div class="video-actions mt-md flex gap-md">
+              <button class="btn btn-success" aria-label="Download video">Download</button>
+              <button class="btn btn-secondary" aria-label="Share video">Share</button>
+            </div>
           </div>
-          <button type="submit" class="btn btn-primary">Generate Video</button>
-        </form>
-        <div id="video-container" style="display: none">
-          <h2>Generated Video</h2>
-          <video id="video-player" controls width="100%"></video>
         </div>
-      </div>
+      </main>
     </div>
+    <script src="js/ui-utils.js"></script>
     <script src="js/creator.js"></script>
   </body>
 </html>

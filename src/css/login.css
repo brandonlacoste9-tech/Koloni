@@ -1,41 +1,71 @@
+/* Login specific styles - extends main.css */
+
 .login-container {
-  width: 300px;
-  margin: 0 auto;
-  padding: 20px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-}
-
-.form-group {
-  margin-bottom: 15px;
-}
-
-label {
-  display: block;
-  margin-bottom: 5px;
-}
-
-input[type="email"],
-input[type="password"] {
   width: 100%;
-  padding: 8px;
-  border: 1px solid #ccc;
-  border-radius: 3px;
+  max-width: 450px;
+  margin: 0 auto;
+  padding: var(--space-3xl);
+  animation: fadeInScale var(--duration-slow) var(--ease-out);
 }
 
-.btn {
-  padding: 10px 15px;
-  border: none;
-  border-radius: 3px;
-  cursor: pointer;
+.login-container header h1 {
+  font-size: var(--font-4xl);
 }
 
-.btn-primary {
-  background-color: #007bff;
-  color: #fff;
+.login-container header p {
+  font-size: var(--font-base);
+  color: var(--text-secondary);
+  margin-bottom: 0;
+}
+
+/* Form Styling */
+#login-form {
+  margin-top: var(--space-2xl);
 }
 
 .signup-link {
-  margin-top: 15px;
-  text-align: center;
+  color: var(--text-secondary);
+  font-size: var(--font-sm);
+}
+
+.signup-link a {
+  color: var(--cyan-accent);
+  font-weight: 600;
+  text-decoration: none;
+  transition: color var(--duration-fast) var(--ease-out);
+}
+
+.signup-link a:hover {
+  color: var(--primary-gold);
+  text-decoration: underline;
+}
+
+/* Social Login Buttons */
+.social-login {
+  margin-top: var(--space-lg);
+}
+
+.social-login .btn {
+  justify-content: center;
+}
+
+/* Checkbox Styling */
+.checkbox-label {
+  margin-bottom: 0;
+}
+
+/* Responsive */
+@media (max-width: 640px) {
+  .login-container {
+    padding: var(--space-xl);
+    max-width: 100%;
+  }
+  
+  .login-container header h1 {
+    font-size: var(--font-3xl);
+  }
+  
+  .social-login {
+    flex-direction: column;
+  }
 }
