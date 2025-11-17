@@ -72,7 +72,7 @@
   --space-3xl: 4rem;
 }
 
-[data-theme='dark'] {
+[data-theme='light'] {
   --color-bg-primary: #f8fafc;
   --color-bg-secondary: #e2e8f0;
   --color-bg-tertiary: #cbd5f5;
