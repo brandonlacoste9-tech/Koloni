@@ -26,11 +26,14 @@
     <div class="container">
       <main id="main-content" role="main">
         <div class="dashboard-container glass-panel fade-in">
-          <header>
-            <h1>Welcome to your Dashboard</h1>
-            <p>
-              This is where you'll manage your ad campaigns and video generation.
-            </p>
+          <header class="dashboard-header">
+            <div>
+              <h1>Welcome back, <span id="user-name">Creator</span></h1>
+              <p>Manage your content generation and track your usage</p>
+            </div>
+            <button id="logout-button" class="btn btn-ghost" aria-label="Log out of your account">
+              Logout
+            </button>
           </header>
           
           <!-- Loading Skeleton (hidden by default) -->
@@ -42,29 +45,108 @@
           </div>
           
           <!-- Dashboard Content -->
-          <section class="dashboard-stats" aria-label="Dashboard statistics">
-            <div class="glass-card">
-              <h3>Active Campaigns</h3>
-              <p class="stat-value" aria-label="5 active campaigns">5</p>
+          <!-- Credit Balance Section -->
+          <section class="credit-balance-section glass-card" aria-label="Credit balance">
+            <div class="balance-header">
+              <div>
+                <h2>AI Credits</h2>
+                <p class="balance-subtitle">Available for content generation</p>
+              </div>
+              <div class="balance-display">
+                <span class="balance-amount" id="credit-balance">--</span>
+                <span class="balance-label">credits</span>
+              </div>
             </div>
-            <div class="glass-card">
-              <h3>Videos Generated</h3>
-              <p class="stat-value" aria-label="24 videos generated">24</p>
-            </div>
-            <div class="glass-card">
-              <h3>Total Views</h3>
-              <p class="stat-value" aria-label="1,234 total views">1,234</p>
+            <div class="balance-actions">
+              <a href="/pricing.html" class="btn btn-primary">Buy More Credits</a>
+              <a href="/creator.html" class="btn btn-secondary">Start Creating</a>
             </div>
           </section>
           
-          <div class="dashboard-actions mt-xl">
-            <a href="creator.html" class="btn btn-primary" aria-label="Create new ad campaign">
-              Create New Campaign
-            </a>
-            <button id="logout-button" class="btn btn-danger" aria-label="Log out of your account">
-              Logout
-            </button>
-          </div>
+          <!-- Quick Stats -->
+          <section class="dashboard-stats" aria-label="Dashboard statistics">
+            <div class="stat-card glass-card">
+              <div class="stat-icon">📊</div>
+              <h3>Total Generated</h3>
+              <p class="stat-value" id="total-generations">--</p>
+            </div>
+            <div class="stat-card glass-card">
+              <div class="stat-icon">⚡</div>
+              <h3>This Month</h3>
+              <p class="stat-value" id="month-generations">--</p>
+            </div>
+            <div class="stat-card glass-card">
+              <div class="stat-icon">🎯</div>
+              <h3>Success Rate</h3>
+              <p class="stat-value" id="success-rate">--</p>
+            </div>
+            <div class="stat-card glass-card">
+              <div class="stat-icon">💎</div>
+              <h3>Credits Used</h3>
+              <p class="stat-value" id="credits-used">--</p>
+            </div>
+          </section>
+          
+          <!-- Generation History -->
+          <section class="generation-history" aria-label="Generation history">
+            <div class="section-header">
+              <h2>Recent Generations</h2>
+              <button class="btn btn-ghost btn-sm" id="refresh-history">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M21.5 2v6h-6M2.5 22v-6h6M2 11.5a10 10 0 0 1 18.8-4.3M22 12.5a10 10 0 0 1-18.8 4.2"/>
+                </svg>
+                Refresh
+              </button>
+            </div>
+            <div id="history-list" class="history-list">
+              <!-- Populated by JavaScript -->
+            </div>
+          </section>
+          
+          <!-- Usage Analytics Chart -->
+          <section class="usage-analytics glass-card" aria-label="Usage analytics">
+            <h2>Usage Overview</h2>
+            <div class="chart-container">
+              <canvas id="usage-chart" width="400" height="200"></canvas>
+            </div>
+            <div class="chart-legend">
+              <div class="legend-item">
+                <span class="legend-color" style="background: var(--primary-gold);"></span>
+                <span>LongCat</span>
+              </div>
+              <div class="legend-item">
+                <span class="legend-color" style="background: var(--cyan-accent);"></span>
+                <span>Emu</span>
+              </div>
+            </div>
+          </section>
+          
+          <!-- Quick Actions -->
+          <section class="quick-actions" aria-label="Quick actions">
+            <h2>Quick Actions</h2>
+            <div class="actions-grid">
+              <a href="/creator.html?format=longcat" class="action-card glass-card">
+                <div class="action-icon">🎨</div>
+                <h3>Create LongCat</h3>
+                <p>Generate vertical content</p>
+              </a>
+              <a href="/creator.html?format=emu" class="action-card glass-card">
+                <div class="action-icon">⚡</div>
+                <h3>Create Emu</h3>
+                <p>Quick impactful posts</p>
+              </a>
+              <a href="/pricing.html" class="action-card glass-card">
+                <div class="action-icon">💳</div>
+                <h3>Manage Billing</h3>
+                <p>View plans & invoices</p>
+              </a>
+              <a href="#account-settings" class="action-card glass-card">
+                <div class="action-icon">⚙️</div>
+                <h3>Account Settings</h3>
+                <p>Manage your profile</p>
+              </a>
+            </div>
+          </section>
         </div>
       </main>
     </div>
