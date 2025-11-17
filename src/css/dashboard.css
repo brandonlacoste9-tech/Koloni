@@ -1,8 +1,86 @@
+/* Dashboard specific styles - extends main.css */
+
 .dashboard-container {
-  padding: 20px;
+  padding: var(--space-2xl);
+  min-height: 60vh;
 }
 
-.btn-danger {
-  background-color: #dc3545;
-  color: #fff;
+.dashboard-container header {
+  text-align: center;
+  margin-bottom: var(--space-3xl);
+  animation: fadeIn var(--duration-slow) var(--ease-out);
+}
+
+.dashboard-container h1 {
+  margin-bottom: var(--space-md);
+}
+
+.dashboard-container > header > p {
+  font-size: var(--font-lg);
+  color: var(--text-secondary);
+}
+
+/* Stats Cards Enhancement */
+.dashboard-stats {
+  animation: fadeIn var(--duration-slow) var(--ease-out) 0.2s backwards;
+}
+
+.dashboard-stats .glass-card {
+  text-align: center;
+  min-height: 160px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.dashboard-stats .glass-card::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, var(--primary-gold), var(--cyan-accent));
+  transform: scaleX(0);
+  transition: transform var(--duration-slow) var(--ease-out);
+}
+
+.dashboard-stats .glass-card:hover::after {
+  transform: scaleX(1);
+}
+
+.dashboard-stats h3 {
+  font-size: var(--font-base);
+  font-weight: 600;
+  color: var(--text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: var(--space-sm);
+  background: none;
+  -webkit-text-fill-color: currentColor;
+}
+
+.skeleton-container {
+  margin-top: var(--space-2xl);
+}
+
+/* Dashboard Actions */
+.dashboard-actions {
+  animation: fadeIn var(--duration-slow) var(--ease-out) 0.4s backwards;
+}
+
+@media (max-width: 640px) {
+  .dashboard-container {
+    padding: var(--space-lg);
+  }
+  
+  .dashboard-actions {
+    flex-direction: column;
+  }
+  
+  .dashboard-actions .btn {
+    width: 100%;
+  }
 }
