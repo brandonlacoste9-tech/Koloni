@@ -1,31 +1,105 @@
 :root {
-  --primary-gold: #f59e0b;
-  --amber: #d97706;
-  --purple-accent: #8b5cf6;
-  --cyan-accent: #06b6d4;
-  --dark-background: #0a0a0b;
-  --light-background: #ffffff;
-  --glass-background: rgba(255, 255, 255, 0.05);
+  /* Background layers */
+  --color-bg-primary: #0a0a0a;
+  --color-bg-secondary: #0f0f0f;
+  --color-bg-tertiary: #1a1a1a;
+  --color-bg-elevated: #252525;
+
+  /* Accent colors */
+  --color-primary: #0ea5e9;
+  --color-primary-light: #38bdf8;
+  --color-primary-dark: #0284c7;
+  --color-secondary: #8b5cf6;
+  --color-secondary-light: #a78bfa;
+
+  /* Text colors */
+  --color-text-primary: #ffffff;
+  --color-text-secondary: rgba(255, 255, 255, 0.72);
+  --color-text-tertiary: rgba(255, 255, 255, 0.5);
+  --color-text-disabled: rgba(255, 255, 255, 0.32);
+
+  /* Gradients & glows */
+  --gradient-primary: linear-gradient(135deg, #8b5cf6 0%, #0ea5e9 100%);
+  --gradient-glow: radial-gradient(circle at center, rgba(14, 165, 233, 0.18) 0%, transparent 70%);
+  --gradient-mesh: radial-gradient(at 0% 0%, #8b5cf610 0%, transparent 55%),
+    radial-gradient(at 100% 0%, #0ea5e910 0%, transparent 55%),
+    radial-gradient(at 100% 100%, #8b5cf610 0%, transparent 55%),
+    radial-gradient(at 0% 100%, #0ea5e910 0%, transparent 55%);
+
+  --glass-bg: rgba(26, 26, 26, 0.6);
+  --glass-border: rgba(255, 255, 255, 0.12);
+  --glass-blur: 24px;
+  --glass-shadow: 0 8px 32px rgba(0, 0, 0, 0.45);
+
+  --glow-primary: 0 0 20px rgba(14, 165, 233, 0.5), 0 0 40px rgba(14, 165, 233, 0.3),
+    0 0 60px rgba(14, 165, 233, 0.12);
+  --glow-secondary: 0 0 20px rgba(139, 92, 246, 0.5), 0 0 40px rgba(139, 92, 246, 0.25);
+
+  /* Typography */
+  --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --text-xs: 0.75rem;
+  --text-sm: 0.875rem;
+  --text-base: 1rem;
+  --text-lg: 1.125rem;
+  --text-xl: 1.25rem;
+  --text-2xl: 1.5rem;
+  --text-3xl: 1.875rem;
+  --text-4xl: 2.5rem;
+  --text-5xl: 3.5rem;
+  --text-6xl: 4.5rem;
+
+  --font-normal: 400;
+  --font-medium: 500;
+  --font-semibold: 600;
+  --font-bold: 700;
+
+  --leading-tight: 1.2;
+  --leading-snug: 1.35;
+  --leading-normal: 1.5;
+  --leading-relaxed: 1.65;
+
+  --tracking-tighter: -0.04em;
+  --tracking-tight: -0.02em;
+  --tracking-wide: 0.04em;
+
+  /* Layout scale */
+  --space-xs: 0.25rem;
+  --space-sm: 0.5rem;
+  --space-md: 1rem;
+  --space-lg: 1.5rem;
+  --space-xl: 2rem;
+  --space-2xl: 3rem;
+  --space-3xl: 4rem;
 }
 
-[data-theme="dark"] {
-  --primary-gold: #f59e0b;
-  --amber: #d97706;
-  --purple-accent: #8b5cf6;
-  --cyan-accent: #06b6d4;
-  --dark-background: #ffffff;
-  --light-background: #0a0a0b;
-  --glass-background: rgba(10, 10, 11, 0.95);
+[data-theme='dark'] {
+  --color-bg-primary: #f8fafc;
+  --color-bg-secondary: #e2e8f0;
+  --color-bg-tertiary: #cbd5f5;
+  --color-bg-elevated: #ffffff;
+  --color-text-primary: #0f172a;
+  --color-text-secondary: rgba(15, 23, 42, 0.72);
+  --color-text-tertiary: rgba(15, 23, 42, 0.5);
+  --color-text-disabled: rgba(15, 23, 42, 0.32);
+  --glass-bg: rgba(255, 255, 255, 0.8);
+  --glass-border: rgba(15, 23, 42, 0.08);
+  --glass-shadow: 0 8px 32px rgba(15, 23, 42, 0.15);
+}
+
+* {
+  box-sizing: border-box;
 }
 
 body {
-  font-family: "Inter", sans-serif;
-  font-size: 16px;
-  line-height: 1.6;
-  background-color: var(--light-background);
-  color: var(--dark-background);
+  font-family: var(--font-sans);
+  font-size: var(--text-base);
+  line-height: var(--leading-normal);
+  color: var(--color-text-primary);
+  background-color: var(--color-bg-primary);
   margin: 0;
   padding: 0;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 h1,
@@ -34,131 +108,45 @@ h3,
 h4,
 h5,
 h6 {
-  font-weight: bold;
+  font-weight: var(--font-bold);
+  line-height: var(--leading-tight);
+  letter-spacing: var(--tracking-tight);
+  color: var(--color-text-primary);
+  margin: 0 0 var(--space-md);
 }
 
-/* Spacing utilities */
-.m-1 {
-  margin: 4px;
-}
-.m-2 {
-  margin: 8px;
-}
-.p-1 {
-  padding: 4px;
-}
-.p-2 {
-  padding: 8px;
+p {
+  margin: 0 0 var(--space-md);
+  color: var(--color-text-secondary);
 }
 
-/* Animation keyframes */
-@keyframes float {
-  0% {
-    transform: translateY(0);
-  }
-  50% {
-    transform: translateY(-10px);
-  }
-  100% {
-    transform: translateY(0);
-  }
+a {
+  color: var(--color-primary);
+  text-decoration: none;
+  transition: color 0.3s ease;
 }
 
-@keyframes pulse {
-  0% {
-    transform: scale(1);
-  }
-  50% {
-    transform: scale(1.05);
-  }
-  100% {
-    transform: scale(1);
-  }
+a:hover {
+  color: var(--color-secondary);
 }
 
-@keyframes glow {
-  0% {
-    text-shadow: 0 0 5px var(--primary-gold);
-  }
-  50% {
-    text-shadow:
-      0 0 20px var(--primary-gold),
-      0 0 30px var(--amber);
-  }
-  100% {
-    text-shadow: 0 0 5px var(--primary-gold);
-  }
+:focus-visible {
+  outline: 2px solid var(--color-secondary);
+  outline-offset: 4px;
 }
 
-@keyframes slideIn {
-  from {
-    transform: translateY(-100%);
-    opacity: 0;
-  }
-  to {
-    transform: translateY(0);
-    opacity: 1;
-  }
-}
-
-/* Responsive breakpoints */
-@media (min-width: 320px) {
-  /* Mobile styles */
-}
-@media (min-width: 768px) {
-  /* Tablet styles */
-}
-@media (min-width: 1024px) {
-  /* Desktop styles */
-}
-
-/* Accessibility utilities */
-:focus {
-  outline: 2px solid var(--purple-accent);
-}
-
-.screen-reader {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  margin: -1px;
-  padding: 0;
-  border: 0;
-  overflow: hidden;
+.page-transition {
+  min-height: 100vh;
+  background: radial-gradient(circle at top, rgba(14, 165, 233, 0.1), transparent 55%),
+    var(--color-bg-primary);
 }
 
 @media (prefers-reduced-motion: reduce) {
-  * {
-    transition-duration: 0s !important;
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
   }
-}
-
-/* Global resets and base styles */
-* {
-  box-sizing: border-box;
-}
-
-body,
-h1,
-h2,
-h3,
-h4,
-h5,
-h6,
-p {
-  margin: 0;
-}
-
-/* Utility classes for common patterns */
-.btn {
-  background-color: var(--primary-gold);
-  color: var(--light-background);
-  padding: 10px 20px;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-}
-
-.btn:hover {
-  background-color: var(--amber);
 }

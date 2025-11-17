@@ -7,29 +7,30 @@
    1. DESIGN TOKENS & CSS VARIABLES
    ========================================== */
 :root {
-  /* Glassmorphism 2.0 Colors */
-  --glass-bg-light: rgba(255, 255, 255, 0.08);
-  --glass-bg-medium: rgba(255, 255, 255, 0.12);
-  --glass-bg-heavy: rgba(255, 255, 255, 0.16);
-  --glass-border: rgba(255, 255, 255, 0.18);
-  --glass-shadow: rgba(0, 0, 0, 0.1);
-  
-  /* Brand Colors */
-  --primary-gold: #f59e0b;
-  --amber: #d97706;
-  --purple-accent: #8b5cf6;
-  --cyan-accent: #06b6d4;
+  /* Glassmorphism layers */
+  --glass-bg-light: rgba(26, 26, 26, 0.65);
+  --glass-bg-medium: rgba(26, 26, 26, 0.75);
+  --glass-bg-heavy: rgba(26, 26, 26, 0.85);
+  --glass-border: rgba(255, 255, 255, 0.12);
+  --glass-shadow: 0 8px 32px rgba(0, 0, 0, 0.45);
+
+  /* Palette bridge */
+  --primary-gold: var(--color-primary);
+  --amber: var(--color-primary-light);
+  --purple-accent: var(--color-secondary);
+  --cyan-accent: var(--color-primary-light);
   --emerald-accent: #10b981;
-  
+
   /* Background Gradients */
-  --bg-gradient: linear-gradient(135deg, #0a0a0b 0%, #1a1a2e 50%, #16213e 100%);
-  --bg-gradient-alt: linear-gradient(180deg, #1a1a2e 0%, #0a0a0b 100%);
-  
+  --bg-gradient: radial-gradient(circle at top, rgba(14, 165, 233, 0.08), transparent 60%),
+    linear-gradient(135deg, var(--color-bg-primary), var(--color-bg-secondary));
+  --bg-gradient-alt: linear-gradient(180deg, var(--color-bg-tertiary), var(--color-bg-primary));
+
   /* Text Colors */
-  --text-primary: #ffffff;
-  --text-secondary: rgba(255, 255, 255, 0.8);
-  --text-tertiary: rgba(255, 255, 255, 0.6);
-  --text-muted: rgba(255, 255, 255, 0.4);
+  --text-primary: var(--color-text-primary);
+  --text-secondary: var(--color-text-secondary);
+  --text-tertiary: var(--color-text-tertiary);
+  --text-muted: var(--color-text-disabled);
   
   /* Semantic Colors */
   --success: #10b981;
@@ -54,11 +55,11 @@
   --radius-full: 9999px;
   
   /* Shadows */
-  --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.1);
-  --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.15);
-  --shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.2);
-  --shadow-xl: 0 16px 64px rgba(0, 0, 0, 0.25);
-  --shadow-glow: 0 0 20px rgba(245, 158, 11, 0.3);
+  --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.25);
+  --shadow-md: 0 4px 18px rgba(0, 0, 0, 0.3);
+  --shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.4);
+  --shadow-xl: 0 16px 64px rgba(0, 0, 0, 0.45);
+  --shadow-glow: var(--glow-primary);
   
   /* Typography Scale */
   --font-xs: 0.75rem;
@@ -96,16 +97,16 @@
 
 /* Dark Mode Variables */
 [data-theme="dark"] {
-  --glass-bg-light: rgba(10, 10, 11, 0.6);
-  --glass-bg-medium: rgba(10, 10, 11, 0.75);
-  --glass-bg-heavy: rgba(10, 10, 11, 0.9);
-  --glass-border: rgba(255, 255, 255, 0.1);
-  --bg-gradient: linear-gradient(135deg, #ffffff 0%, #f3f4f6 50%, #e5e7eb 100%);
-  --bg-gradient-alt: linear-gradient(180deg, #f3f4f6 0%, #ffffff 100%);
-  --text-primary: #0a0a0b;
-  --text-secondary: rgba(10, 10, 11, 0.8);
-  --text-tertiary: rgba(10, 10, 11, 0.6);
-  --text-muted: rgba(10, 10, 11, 0.4);
+  --glass-bg-light: rgba(255, 255, 255, 0.85);
+  --glass-bg-medium: rgba(255, 255, 255, 0.9);
+  --glass-bg-heavy: rgba(255, 255, 255, 0.95);
+  --glass-border: rgba(15, 23, 42, 0.12);
+  --bg-gradient: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 50%, #cbd5f5 100%);
+  --bg-gradient-alt: linear-gradient(180deg, #e2e8f0 0%, #ffffff 100%);
+  --text-primary: #0f172a;
+  --text-secondary: rgba(15, 23, 42, 0.72);
+  --text-tertiary: rgba(15, 23, 42, 0.5);
+  --text-muted: rgba(15, 23, 42, 0.32);
 }
 
 /* ==========================================
@@ -164,7 +165,7 @@ h1, h2, h3, h4, h5, h6 {
 
 h1 {
   font-size: clamp(var(--font-4xl), 5vw, var(--font-7xl));
-  background: linear-gradient(135deg, var(--primary-gold), var(--amber), var(--cyan-accent));
+  background: var(--gradient-primary);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -173,7 +174,7 @@ h1 {
 
 h2 {
   font-size: clamp(var(--font-3xl), 4vw, var(--font-5xl));
-  background: linear-gradient(135deg, var(--text-primary), var(--cyan-accent));
+  background: linear-gradient(135deg, #ffffff, rgba(255, 255, 255, 0.5));
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -227,13 +228,13 @@ a:focus-visible {
    4. GLASSMORPHISM COMPONENTS
    ========================================== */
 .glass-card {
-  background: var(--glass-bg-light);
-  backdrop-filter: blur(16px) saturate(180%);
-  -webkit-backdrop-filter: blur(16px) saturate(180%);
+  background: var(--glass-bg);
+  backdrop-filter: blur(var(--glass-blur)) saturate(180%);
+  -webkit-backdrop-filter: blur(var(--glass-blur)) saturate(180%);
   border: 1px solid var(--glass-border);
-  border-radius: var(--radius-lg);
+  border-radius: 1.5rem;
   padding: var(--space-xl);
-  box-shadow: var(--shadow-lg);
+  box-shadow: var(--glass-shadow);
   transition: all var(--duration-slow) var(--ease-out);
   position: relative;
   overflow: hidden;
@@ -243,11 +244,8 @@ a:focus-visible {
 .glass-card::before {
   content: '';
   position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: linear-gradient(135deg, transparent, rgba(245, 158, 11, 0.08));
+  inset: 0;
+  background: linear-gradient(135deg, transparent, rgba(14, 165, 233, 0.12));
   opacity: 0;
   transition: opacity var(--duration-slow) var(--ease-out);
   pointer-events: none;
@@ -255,22 +253,47 @@ a:focus-visible {
 
 .glass-card:hover {
   transform: translateY(-4px);
-  border-color: rgba(245, 158, 11, 0.5);
-  box-shadow: var(--shadow-xl), var(--shadow-glow);
+  border-color: rgba(14, 165, 233, 0.4);
+  box-shadow: var(--glass-shadow), var(--glow-primary);
 }
 
 .glass-card:hover::before {
   opacity: 1;
 }
 
+.glass-card-glow {
+  background: var(--glass-bg);
+  backdrop-filter: blur(var(--glass-blur)) saturate(180%);
+  -webkit-backdrop-filter: blur(var(--glass-blur)) saturate(180%);
+  border-radius: 1.5rem;
+  padding: var(--space-xl);
+  position: relative;
+  border: 1px solid transparent;
+  background-clip: padding-box;
+  box-shadow: var(--glass-shadow), var(--glow-primary);
+}
+
+.glass-card-glow::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 1.5rem;
+  padding: 1px;
+  background: linear-gradient(135deg, rgba(14, 165, 233, 0.5), rgba(139, 92, 246, 0.5));
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+}
+
 .glass-panel {
-  background: var(--glass-bg-medium);
-  backdrop-filter: blur(20px) saturate(180%);
-  -webkit-backdrop-filter: blur(20px) saturate(180%);
-  border: 1px solid var(--glass-border);
-  border-radius: var(--radius-xl);
+  background: rgba(37, 37, 37, 0.85);
+  backdrop-filter: blur(calc(var(--glass-blur) + 6px)) saturate(200%);
+  -webkit-backdrop-filter: blur(calc(var(--glass-blur) + 6px)) saturate(200%);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 2rem;
   padding: var(--space-2xl);
-  box-shadow: var(--shadow-xl);
+  box-shadow: var(--glass-shadow);
 }
 
 .glass-input {
@@ -300,22 +323,23 @@ a:focus-visible {
 /* ==========================================
    5. BUTTON SYSTEM
    ========================================== */
+
 .btn {
   position: relative;
   display: inline-flex;
   align-items: center;
   justify-content: center;
   gap: var(--space-sm);
-  padding: var(--space-md) var(--space-xl);
+  padding: 0.95rem 2rem;
   border: none;
-  border-radius: var(--radius-full);
+  border-radius: 0.85rem;
   font-size: var(--font-base);
   font-weight: 600;
   line-height: 1;
   cursor: pointer;
   transition: all var(--duration-base) var(--ease-out);
   overflow: hidden;
-  min-height: 44px; /* Touch-friendly */
+  min-height: 48px;
   min-width: 44px;
   text-decoration: none;
   contain: layout style paint;
@@ -325,7 +349,7 @@ a:focus-visible {
   content: '';
   position: absolute;
   inset: 0;
-  background: rgba(255, 255, 255, 0.2);
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.25), transparent);
   opacity: 0;
   transition: opacity var(--duration-fast) var(--ease-out);
 }
@@ -335,35 +359,53 @@ a:focus-visible {
 }
 
 .btn:active {
-  transform: scale(0.98);
+  transform: scale(0.97);
 }
 
 .btn:focus-visible {
-  outline: 2px solid var(--purple-accent);
-  outline-offset: 2px;
+  outline: 2px solid rgba(14, 165, 233, 0.6);
+  outline-offset: 4px;
 }
 
 .btn-primary {
-  background: linear-gradient(135deg, var(--primary-gold), var(--amber));
-  color: white;
-  box-shadow: var(--shadow-md);
+  background: var(--gradient-primary);
+  color: #fff;
+  box-shadow: 0 4px 16px rgba(14, 165, 233, 0.45);
 }
 
 .btn-primary:hover {
   transform: translateY(-2px);
-  box-shadow: var(--shadow-lg), var(--shadow-glow);
+  box-shadow: 0 8px 24px rgba(14, 165, 233, 0.55);
 }
 
-.btn-secondary {
-  background: var(--glass-bg-light);
-  backdrop-filter: blur(10px);
-  border: 1px solid var(--glass-border);
+.btn-secondary,
+.btn-glass {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  color: var(--text-primary);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+.btn-secondary:hover,
+.btn-glass:hover {
+  border-color: rgba(255, 255, 255, 0.2);
+  transform: translateY(-2px);
+}
+
+.btn-outline {
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.2);
   color: var(--text-primary);
 }
 
-.btn-secondary:hover {
-  background: var(--glass-bg-medium);
-  transform: translateY(-2px);
+.btn-outline:hover {
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.btn-lg {
+  padding: 1.1rem 2.5rem;
+  font-size: var(--font-lg);
 }
 
 .btn-danger {
@@ -449,9 +491,9 @@ input:focus,
 textarea:focus,
 select:focus {
   outline: none;
-  border-color: var(--cyan-accent);
-  box-shadow: 0 0 0 3px rgba(6, 182, 212, 0.2);
-  background: var(--glass-bg-medium);
+  border-color: rgba(14, 165, 233, 0.6);
+  box-shadow: 0 0 0 3px rgba(14, 165, 233, 0.25);
+  background: rgba(255, 255, 255, 0.05);
 }
 
 textarea {
