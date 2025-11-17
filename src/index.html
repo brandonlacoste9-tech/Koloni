@@ -25,28 +25,80 @@
     <!-- Toast Container -->
     <div id="toast-container" class="toast-container" role="region" aria-live="polite" aria-label="Notifications"></div>
     
-    <header role="banner">
-      <button id="dark-mode-toggle" class="dark-mode-toggle" aria-label="Toggle dark mode" aria-pressed="false">
-        <span class="sr-only">Toggle Dark Mode</span>
-        <span aria-hidden="true">🌓</span>
-      </button>
-      <h1>Transform Your Content Creation with <span class="gradient-text">AdGenXAI</span></h1>
-      <p>AI-powered LongCat and Emu content generation platform for modern creators</p>
-      <div class="cta-buttons">
-        <a href="/signup.html" class="btn btn-primary" aria-label="Start creating for free">Start Creating Free</a>
-        <a href="/creator.html" class="btn btn-secondary" aria-label="Try our demo">Try Demo</a>
-        <a href="#pricing" class="btn btn-outline" aria-label="View pricing plans">View Pricing</a>
+    <header role="banner" class="hero">
+      <div class="hero-bg" aria-hidden="true">
+        <div class="gradient-mesh"></div>
+        <div class="gradient-glow"></div>
       </div>
-      <span class="badge" role="status">New: GPT-4 Powered Generation</span>
-      <div class="hero-orbs">
-        <div id="orb-1" class="orb"></div>
-        <div id="orb-2" class="orb"></div>
-        <div id="orb-3" class="orb"></div>
+      <div class="hero-content">
+        <div class="hero-actions">
+          <button id="dark-mode-toggle" class="dark-mode-toggle" aria-label="Toggle dark mode" aria-pressed="false">
+            <span class="sr-only">Toggle Dark Mode</span>
+            <span aria-hidden="true">🌓</span>
+          </button>
+        </div>
+        <div class="hero-badge">Now shipping EqtyLab-grade workflows</div>
+        <h1 class="hero-title">
+          Transform Your Content Creation with
+          <span class="gradient-text">premium AI precision</span>
+        </h1>
+        <p class="hero-subtitle">
+          Generate cinematic LongCat and Emu stories with real glassmorphic polish.
+          Export everywhere in seconds with platform-perfect fidelity.
+        </p>
+        <div class="hero-cta">
+          <a href="/signup.html" class="btn btn-primary btn-lg" aria-label="Start creating for free">
+            Start Creating Free
+          </a>
+          <a href="/creator.html" class="btn btn-glass btn-lg" aria-label="Watch the AdGenXAI demo">
+            Watch Demo
+          </a>
+        </div>
+        <div class="hero-trust">
+          <span>Trusted by 10,000+ creators</span>
+          <ul class="trust-logos" aria-label="Partner logos">
+            <li>CreatorForge</li>
+            <li>SignalWave</li>
+            <li>StoryOS</li>
+            <li>NeonPeak</li>
+          </ul>
+        </div>
+      </div>
+      <div class="hero-visual glass-card-glow" aria-hidden="true">
+        <div class="hero-visual-grid">
+          <div class="hero-visual-chip">
+            <span>LongCat format</span>
+            <div class="hero-visual-metric">2,547</div>
+            <div class="positive">+12.5% this week</div>
+          </div>
+          <div class="hero-visual-chip">
+            <span>Emu exports</span>
+            <div class="hero-visual-metric">1,234</div>
+            <div class="positive">+8.3% growth</div>
+          </div>
+          <div class="hero-visual-chip">
+            <span>Credits in hive</span>
+            <div class="hero-visual-metric">456</div>
+            <div class="positive">Instant reloads</div>
+          </div>
+          <div class="hero-visual-chip">
+            <span>Latency</span>
+            <div class="hero-visual-metric">1.6s</div>
+            <div class="positive">Realtime output</div>
+          </div>
+          <div class="hero-visual-highlight">
+            <div>
+              <span>Export ready</span>
+              <strong>Instagram · YouTube · TikTok</strong>
+            </div>
+            <div aria-hidden="true">✨</div>
+          </div>
+        </div>
       </div>
     </header>
     <main id="main-content" role="main">
-      <section class="features section" aria-labelledby="features-heading">
-        <h2 id="features-heading">Powerful Features for Content Creators</h2>
+      <section class="features section" aria-labelledby="features-heading" id="features">
+        <h2 id="features-heading">Powerful features for meticulous creators</h2>
         <div class="bento-grid" role="list">
           <div class="card glass-card feature-card" role="listitem" tabindex="0">
             <h3>🎨 LongCat Format</h3>
@@ -95,74 +147,77 @@
         </div>
       </section>
       <section class="social-proof section" aria-labelledby="social-proof-heading">
-        <h2 id="social-proof-heading">Trusted by Content Creators Worldwide</h2>
-        <div class="stats">
-          <div class="stat glass-card">
-            <h3>1,000+</h3>
-            <p>Active Creators</p>
-          </div>
-          <div class="stat glass-card">
-            <h3>50,000+</h3>
-            <p>Posts Generated</p>
-          </div>
-          <div class="stat glass-card">
-            <h3>10M+</h3>
-            <p>Audience Reached</p>
-          </div>
+        <h2 id="social-proof-heading">Operational intelligence at a glance</h2>
+        <div class="dashboard-grid">
+          <article class="glass-card stat-card">
+            <div class="stat-icon" aria-hidden="true">⚡</div>
+            <h3 class="stat-value">2,547</h3>
+            <p class="stat-label">LongCat sequences generated</p>
+            <span class="stat-change positive">+12.5%</span>
+          </article>
+          <article class="glass-card stat-card">
+            <div class="stat-icon" aria-hidden="true">🎬</div>
+            <h3 class="stat-value">1,234</h3>
+            <p class="stat-label">Emu exports this week</p>
+            <span class="stat-change positive">+8.3%</span>
+          </article>
+          <article class="glass-card stat-card">
+            <div class="stat-icon" aria-hidden="true">📡</div>
+            <h3 class="stat-value">10M+</h3>
+            <p class="stat-label">Audience reached</p>
+            <span class="stat-change neutral">Always live</span>
+          </article>
         </div>
       </section>
       
-      <section class="pricing section" aria-labelledby="pricing-heading">
-        <h2 id="pricing-heading">Flexible Pricing for Creators</h2>
-        <div class="pricing-tiers" role="list">
-          <div class="tier glass-card" role="listitem" tabindex="0">
-            <h3>Starter</h3>
-            <p class="price">$10<span class="period">/month</span></p>
-            <ul class="features-list">
-              <li>✓ 100 AI Credits</li>
-              <li>✓ LongCat & Emu formats</li>
-              <li>✓ All style options</li>
-              <li>✓ Export to all platforms</li>
-              <li>✓ Email support</li>
+      <section class="pricing section" aria-labelledby="pricing-heading" id="pricing">
+        <h2 id="pricing-heading">Flexible pricing for every hive</h2>
+        <div class="pricing-grid">
+          <article class="glass-card pricing-card">
+            <span class="pricing-badge">Starter</span>
+            <h3 class="pricing-price">$9<span>/month</span></h3>
+            <p class="pricing-description">Perfect for individuals shipping daily content.</p>
+            <ul class="pricing-features">
+              <li><span class="icon">✓</span> 100 generations / month</li>
+              <li><span class="icon">✓</span> LongCat + Emu formats</li>
+              <li><span class="icon">✓</span> Platform exports</li>
+              <li><span class="icon">✓</span> Email support</li>
             </ul>
-            <a href="/pricing.html" class="btn btn-primary">Get Started</a>
-          </div>
-          <div class="tier glass-card featured" role="listitem" tabindex="0">
-            <div class="badge">Best Value</div>
-            <h3>Creator</h3>
-            <p class="price">$45<span class="period">/month</span></p>
-            <p class="save">Save 10%</p>
-            <ul class="features-list">
-              <li>✓ 500 AI Credits</li>
-              <li>✓ All Starter features</li>
-              <li>✓ Priority generation</li>
-              <li>✓ Advanced analytics</li>
-              <li>✓ Priority support</li>
+            <a href="/pricing.html" class="btn btn-glass btn-full">Get Started</a>
+          </article>
+          <article class="glass-card-glow pricing-card pricing-popular">
+            <span class="pricing-badge popular">Most Popular</span>
+            <h3 class="pricing-price">$29<span>/month</span></h3>
+            <p class="pricing-description">For serious creators who need premium control.</p>
+            <ul class="pricing-features">
+              <li><span class="icon">✓</span> 500 generations / month</li>
+              <li><span class="icon">✓</span> Unlimited exports</li>
+              <li><span class="icon">✓</span> Advanced analytics</li>
+              <li><span class="icon">✓</span> Priority support</li>
+              <li><span class="icon">✓</span> Collaboration seats</li>
             </ul>
-            <a href="/pricing.html" class="btn btn-primary">Start Creating</a>
-          </div>
-          <div class="tier glass-card" role="listitem" tabindex="0">
-            <h3>Pro</h3>
-            <p class="price">$120<span class="period">/month</span></p>
-            <p class="save">Save 20%</p>
-            <ul class="features-list">
-              <li>✓ 1,500 AI Credits</li>
-              <li>✓ All Creator features</li>
-              <li>✓ Custom brand voice</li>
-              <li>✓ API access</li>
-              <li>✓ White-label options</li>
-              <li>✓ Dedicated support</li>
+            <a href="/pricing.html" class="btn btn-primary btn-full">Start Creating</a>
+          </article>
+          <article class="glass-card pricing-card">
+            <span class="pricing-badge">Enterprise</span>
+            <h3 class="pricing-price">$99<span>/month</span></h3>
+            <p class="pricing-description">Scale across teams with governance baked in.</p>
+            <ul class="pricing-features">
+              <li><span class="icon">✓</span> Unlimited generations</li>
+              <li><span class="icon">✓</span> Custom integrations</li>
+              <li><span class="icon">✓</span> Dedicated strategist</li>
+              <li><span class="icon">✓</span> 24/7 white-glove support</li>
             </ul>
-            <a href="/pricing.html" class="btn btn-primary">Go Pro</a>
-          </div>
+            <a href="/pricing.html" class="btn btn-glass btn-full">Talk to Sales</a>
+          </article>
         </div>
       </section>
       <section class="final-cta section glass-panel" aria-labelledby="cta-heading">
-        <h2 id="cta-heading">Ready to Transform Your Content Creation?</h2>
-        <p>Join 1,000+ creators already using AdGenXAI to create engaging content</p>
+        <h2 id="cta-heading">Ready to build with EqtyLab precision?</h2>
+        <p>Join thousands of creators who trust AdGenXAI for glassmorphic, platform-ready stories.</p>
         <div class="cta-buttons">
-          <a href="/signup.html" class="btn btn-primary" aria-label="Sign up for free">Get Started Free</a>
-          <a href="/creator.html" class="btn btn-secondary" aria-label="Try demo">Try Demo</a>
+          <a href="/signup.html" class="btn btn-primary btn-lg" aria-label="Sign up for free">Get Started Free</a>
+          <a href="#pricing" class="btn btn-glass btn-lg" aria-label="View pricing plans">View Pricing</a>
         </div>
       </section>
     </main>
