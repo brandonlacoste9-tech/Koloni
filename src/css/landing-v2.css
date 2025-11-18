@@ -20,6 +20,13 @@
   text-transform: uppercase;
   letter-spacing: 0.08em;
   color: var(--color-text-primary);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.primary-nav .nav-logo .logo-icon {
+  font-size: 1.5rem;
 }
 
 .primary-nav .nav-links {
@@ -104,6 +111,26 @@ header[role='banner'] {
   filter: blur(120px);
 }
 
+/* Liquid 3D Background */
+.liquid-background {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 50%;
+  height: 100%;
+  z-index: 1;
+  overflow: hidden;
+}
+
+.liquid-background img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.95;
+  mix-blend-mode: screen;
+  filter: brightness(1.1) saturate(1.2);
+}
+
 .hero-content,
 .hero-visual {
   position: relative;
@@ -122,18 +149,17 @@ header[role='banner'] {
 }
 
 .hero-badge {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-  font-size: var(--text-sm);
-  text-transform: uppercase;
-  letter-spacing: var(--tracking-wide);
-  color: var(--color-text-tertiary);
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  border-radius: 999px;
-  padding: 0.35rem 1rem;
-  background: rgba(255, 255, 255, 0.02);
+  display: inline-block;
+  padding: 0.5rem 1rem;
+  background: rgba(14, 165, 233, 0.1);
+  border: 1px solid rgba(14, 165, 233, 0.3);
+  border-radius: 20px;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--color-primary);
   margin-bottom: 1.5rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
 }
 
 .hero-title {
@@ -254,6 +280,7 @@ header[role='banner'] {
   font-size: var(--text-2xl);
 }
 
+/* Mobile optimizations */
 @media (max-width: 768px) {
   header[role='banner'] {
     grid-template-columns: 1fr;
@@ -276,6 +303,47 @@ header[role='banner'] {
 
   .hero-cta {
     justify-content: center;
+  }
+  
+  /* Liquid background mobile adjustments */
+  .liquid-background {
+    width: 100%;
+    height: 60vh;
+    position: relative;
+    margin-top: 2rem;
+  }
+  
+  .hero {
+    flex-direction: column;
+  }
+  
+  .hero-content {
+    padding: 2rem 1.5rem;
+    position: relative;
+    z-index: 2;
+    max-width: 600px;
+  }
+  
+  .hero-title {
+    font-size: 2.5rem;
+    line-height: 1.1;
+  }
+  
+  .hero-subtitle {
+    font-size: 1rem;
+    line-height: 1.6;
+  }
+  
+  .hero-badge {
+    font-size: 0.75rem;
+  }
+  
+  h2 {
+    font-size: 2rem;
+  }
+  
+  h3 {
+    font-size: 1.5rem;
   }
 }
 

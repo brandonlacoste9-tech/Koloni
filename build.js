@@ -15,10 +15,11 @@ function copyDir(src, dest) {
   }
 }
 
-// Copy components, CSS, JS
+// Copy components, CSS, JS, assets
 copyDir(path.join(srcDir, "components"), path.join(publicDir, "components"));
 copyDir(path.join(srcDir, "css"), path.join(publicDir, "css"));
 copyDir(path.join(srcDir, "js"), path.join(publicDir, "js"));
+copyDir(path.join(srcDir, "assets"), path.join(publicDir, "assets"));
 
 // Copy HTML files
 const htmlFiles = [
