@@ -16,6 +16,20 @@
     
     <!-- Toast Container -->
     <div id="toast-container" class="toast-container" role="region" aria-live="polite" aria-label="Notifications"></div>
+
+    <nav class="primary-nav" aria-label="Primary">
+      <a class="nav-logo" href="/">AdGenXAI</a>
+      <div class="nav-links">
+        <a href="/">Home</a>
+        <a href="/dashboard.html" aria-current="page">Dashboard</a>
+        <a href="/create.html">Create</a>
+        <a href="/pricing.html">Pricing</a>
+      </div>
+      <div class="nav-cta">
+        <a href="/login.html" class="btn btn-glass">Login</a>
+        <a href="/signup.html" class="btn btn-primary">Sign Up</a>
+      </div>
+    </nav>
     
     <!-- Dark Mode Toggle -->
     <button id="dark-mode-toggle" class="dark-mode-toggle" aria-label="Toggle dark mode" aria-pressed="false">
@@ -27,43 +41,96 @@
       <main id="main-content" role="main">
         <div class="dashboard-container glass-panel fade-in">
           <header>
-            <h1>Welcome to your Dashboard</h1>
-            <p>
-              This is where you'll manage your ad campaigns and video generation.
-            </p>
+            <div>
+              <h1>AdGenXAI Control Center</h1>
+              <p>
+                You're signed in as <span id="user-name">Creator</span>. Monitor tokens, review generations,
+                and launch new exports without leaving this page.
+              </p>
+            </div>
           </header>
-          
-          <!-- Loading Skeleton (hidden by default) -->
+
           <div id="loading-skeleton" class="skeleton-container" style="display: none;" aria-hidden="true">
             <div class="skeleton skeleton-title"></div>
             <div class="skeleton skeleton-text"></div>
             <div class="skeleton skeleton-text"></div>
             <div class="skeleton skeleton-card"></div>
           </div>
-          
-          <!-- Dashboard Content -->
-          <section class="dashboard-stats" aria-label="Dashboard statistics">
-            <div class="glass-card">
-              <h3>Active Campaigns</h3>
-              <p class="stat-value" aria-label="5 active campaigns">5</p>
+
+          <div id="dashboard-content">
+            <section class="dashboard-stats" aria-label="Account health">
+              <article class="glass-card stat-card">
+                <h3>Tokens Available</h3>
+                <p class="stat-value" id="token-balance">--</p>
+                <small>Auto-refreshes after each generation.</small>
+              </article>
+              <article class="glass-card stat-card">
+                <h3>Total Generations</h3>
+                <p class="stat-value" id="total-generations">--</p>
+                <small>Lifetime LongCat + Emu runs.</small>
+              </article>
+              <article class="glass-card stat-card">
+                <h3>Exports This Week</h3>
+                <p class="stat-value" id="exports-count">--</p>
+                <small>Instagram + YouTube shipments.</small>
+              </article>
+            </section>
+
+            <section class="dashboard-panels">
+              <article class="glass-card panel">
+                <div class="panel-header">
+                  <div>
+                    <h2>Recent Generations</h2>
+                    <p>Latest LongCat &amp; Emu results.</p>
+                  </div>
+                  <button class="btn btn-glass btn-sm" id="refresh-generations">Refresh</button>
+                </div>
+                <div id="history-empty" class="empty-state">
+                  <span class="empty-icon">📋</span>
+                  <p>No generations yet. Launch one from Creator Studio.</p>
+                </div>
+                <ul id="generation-history" class="history-list" aria-live="polite"></ul>
+              </article>
+
+              <article class="glass-card panel">
+                <div class="panel-header">
+                  <div>
+                    <h2>Session Activity</h2>
+                    <p>Quick stats for this login.</p>
+                  </div>
+                </div>
+                <dl class="activity-list">
+                  <div>
+                    <dt>Last generation</dt>
+                    <dd id="last-generation">--</dd>
+                  </div>
+                  <div>
+                    <dt>Last export</dt>
+                    <dd id="last-export">--</dd>
+                  </div>
+                  <div>
+                    <dt>Tokens used today</dt>
+                    <dd id="tokens-today">--</dd>
+                  </div>
+                </dl>
+                <div class="panel-actions">
+                  <a href="/create.html" class="btn btn-primary">Open Creator Studio</a>
+                  <a href="/pricing.html" class="btn btn-glass" id="buy-more-tokens">Buy Tokens</a>
+                </div>
+              </article>
+            </section>
+
+            <div class="dashboard-actions mt-xl">
+              <a href="/create.html" class="btn btn-primary" aria-label="Open Creator Studio">
+                Create New Content
+              </a>
+              <a href="/pricing.html" class="btn btn-secondary" aria-label="View pricing and purchase tokens">
+                View Plans
+              </a>
+              <button id="logout-btn" class="btn btn-danger" aria-label="Log out of your account">
+                Logout
+              </button>
             </div>
-            <div class="glass-card">
-              <h3>Videos Generated</h3>
-              <p class="stat-value" aria-label="24 videos generated">24</p>
-            </div>
-            <div class="glass-card">
-              <h3>Total Views</h3>
-              <p class="stat-value" aria-label="1,234 total views">1,234</p>
-            </div>
-          </section>
-          
-          <div class="dashboard-actions mt-xl">
-            <a href="creator.html" class="btn btn-primary" aria-label="Create new ad campaign">
-              Create New Campaign
-            </a>
-            <button id="logout-button" class="btn btn-danger" aria-label="Log out of your account">
-              Logout
-            </button>
           </div>
         </div>
       </main>

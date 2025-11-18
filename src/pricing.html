@@ -18,6 +18,20 @@
     
     <!-- Toast Container -->
     <div id="toast-container" class="toast-container" role="region" aria-live="polite" aria-label="Notifications"></div>
+
+    <nav class="primary-nav" aria-label="Primary">
+      <a class="nav-logo" href="/">AdGenXAI</a>
+      <div class="nav-links">
+        <a href="/">Home</a>
+        <a href="/dashboard.html">Dashboard</a>
+        <a href="/create.html">Create</a>
+        <a href="/pricing.html" aria-current="page">Pricing</a>
+      </div>
+      <div class="nav-cta">
+        <a href="/login.html" class="btn btn-glass">Login</a>
+        <a href="/signup.html" class="btn btn-primary">Sign Up</a>
+      </div>
+    </nav>
     
     <!-- Dark Mode Toggle -->
     <button id="dark-mode-toggle" class="dark-mode-toggle" aria-label="Toggle dark mode" aria-pressed="false">
@@ -36,119 +50,80 @@
     <main id="main-content" role="main">
       <section class="pricing section" aria-labelledby="pricing-heading">
         <div class="pricing-grid">
-          <!-- Starter Plan -->
-          <div class="pricing-card glass-card" data-plan="starter">
+          <article class="pricing-card glass-card" data-plan="starter">
             <div class="pricing-card-header">
-              <div class="badge badge-popular">Most Popular</div>
               <h2>Starter</h2>
               <div class="price">
-                <span class="amount">$10</span>
+                <span class="amount">$9</span>
                 <span class="period">/month</span>
               </div>
-              <p class="description">Perfect for individual creators getting started</p>
+              <p class="description">Launch your rituals with essential capacity.</p>
             </div>
             <ul class="features-list">
-              <li>✓ 100 AI Credits</li>
-              <li>✓ LongCat & Emu formats</li>
-              <li>✓ All style options</li>
-              <li>✓ Export to all platforms</li>
+              <li>✓ 100 generations / month</li>
+              <li>✓ LongCat &amp; Emu formats</li>
+              <li>✓ Instagram &amp; YouTube export</li>
               <li>✓ Email support</li>
-              <li>✓ Generation history</li>
             </ul>
-            <button class="btn btn-primary checkout-btn" 
-                    data-plan="starter" 
-                    data-price="1000" 
+            <button class="btn btn-glass pricing-btn"
+                    data-plan="starter"
+                    data-price="900"
                     data-credits="100"
-                    aria-label="Get started with Starter plan">
+                    aria-label="Get started with the Starter plan">
               Get Started
             </button>
-          </div>
-          
-          <!-- Creator Plan -->
-          <div class="pricing-card glass-card featured" data-plan="creator">
+          </article>
+
+          <article class="pricing-card glass-card featured" data-plan="pro">
             <div class="pricing-card-header">
-              <div class="badge badge-best">Best Value</div>
-              <h2>Creator</h2>
-              <div class="price">
-                <span class="amount">$45</span>
-                <span class="period">/month</span>
-              </div>
-              <span class="save">Save 10%</span>
-              <p class="description">For professional content creators</p>
-            </div>
-            <ul class="features-list">
-              <li>✓ 500 AI Credits</li>
-              <li>✓ All Starter features</li>
-              <li>✓ Priority generation</li>
-              <li>✓ Advanced analytics</li>
-              <li>✓ Priority support</li>
-              <li>✓ Custom templates</li>
-              <li>✓ Bulk exports</li>
-            </ul>
-            <button class="btn btn-primary checkout-btn" 
-                    data-plan="creator" 
-                    data-price="4500" 
-                    data-credits="500"
-                    aria-label="Start creating with Creator plan">
-              Start Creating
-            </button>
-          </div>
-          
-          <!-- Pro Plan -->
-          <div class="pricing-card glass-card" data-plan="pro">
-            <div class="pricing-card-header">
+              <div class="badge badge-best">Most Popular</div>
               <h2>Pro</h2>
               <div class="price">
-                <span class="amount">$120</span>
+                <span class="amount">$29</span>
                 <span class="period">/month</span>
               </div>
-              <span class="save">Save 20%</span>
-              <p class="description">For power users and agencies</p>
+              <p class="description">Scale every storyline with priority treatment.</p>
             </div>
             <ul class="features-list">
-              <li>✓ 1,500 AI Credits</li>
-              <li>✓ All Creator features</li>
-              <li>✓ Custom brand voice</li>
-              <li>✓ API access</li>
-              <li>✓ White-label options</li>
-              <li>✓ Dedicated support</li>
-              <li>✓ Team collaboration</li>
-              <li>✓ Priority processing</li>
+              <li>✓ 500 generations / month</li>
+              <li>✓ All formats unlocked</li>
+              <li>✓ All export platforms</li>
+              <li>✓ Priority support</li>
+              <li>✓ Advanced analytics</li>
             </ul>
-            <button class="btn btn-primary checkout-btn" 
-                    data-plan="pro" 
-                    data-price="12000" 
-                    data-credits="1500"
-                    aria-label="Go Pro with Pro plan">
-              Go Pro
+            <button class="btn btn-primary pricing-btn"
+                    data-plan="pro"
+                    data-price="2900"
+                    data-credits="500"
+                    aria-label="Start creating with the Pro plan">
+              Start Creating
             </button>
-          </div>
-          
-          <!-- Enterprise -->
-          <div class="pricing-card glass-card" data-plan="enterprise">
+          </article>
+
+          <article class="pricing-card glass-card" data-plan="enterprise">
             <div class="pricing-card-header">
               <h2>Enterprise</h2>
               <div class="price">
-                <span class="amount">Custom</span>
+                <span class="amount">$99</span>
+                <span class="period">/month</span>
               </div>
-              <p class="description">Tailored solutions for large organizations</p>
+              <p class="description">Dedicated capacity for teams and partnerships.</p>
             </div>
             <ul class="features-list">
-              <li>✓ Unlimited credits</li>
-              <li>✓ All Pro features</li>
+              <li>✓ Unlimited generations</li>
               <li>✓ Custom integrations</li>
-              <li>✓ SLA guarantee</li>
-              <li>✓ Account manager</li>
-              <li>✓ Custom training</li>
-              <li>✓ On-premise deployment</li>
-              <li>✓ Advanced security</li>
+              <li>✓ API access</li>
+              <li>✓ Dedicated support</li>
+              <li>✓ Team features</li>
             </ul>
-            <button class="btn btn-secondary" 
-                    onclick="location.href='mailto:sales@adgenxai.pro'"
-                    aria-label="Contact sales for Enterprise plan">
+            <button class="btn btn-secondary pricing-btn"
+                    data-plan="enterprise"
+                    data-price="9900"
+                    data-credits="9999"
+                    aria-label="Contact sales for the Enterprise plan">
               Contact Sales
             </button>
-          </div>
+          </article>
         </div>
       </section>
       
