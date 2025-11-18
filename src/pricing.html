@@ -29,126 +29,107 @@
       <nav class="nav-back">
         <a href="/" class="btn btn-ghost">← Back to Home</a>
       </nav>
-      <h1>Choose Your Plan</h1>
-      <p>Flexible pricing for creators of all sizes. Pay as you grow.</p>
+      <p class="eyebrow">AdGenXAI Pricing</p>
+      <h1>Flexible tiers built for every hive</h1>
+      <p>
+        From solo drops to enterprise-grade orchestration, pick the runway that keeps your
+        content engine shipping with glassmorphic polish and zero-friction workflows.
+      </p>
     </header>
-    
+
     <main id="main-content" role="main">
       <section class="pricing section" aria-labelledby="pricing-heading">
+        <div class="section-intro">
+          <p class="section-eyebrow">Transparent pricing</p>
+          <h2 id="pricing-heading">Starter, Pro, and Enterprise tiers — zero fluff</h2>
+          <p>
+            Every plan ships with LongCat + Emu formats, smart exports, and our glassmorphic UI system.
+            Upgrade when you need more credits, collaboration, and governance controls.
+          </p>
+        </div>
+
         <div class="pricing-grid">
           <!-- Starter Plan -->
-          <div class="pricing-card glass-card" data-plan="starter">
+          <article class="pricing-card glass-card" data-plan="starter">
             <div class="pricing-card-header">
-              <div class="badge badge-popular">Most Popular</div>
-              <h2>Starter</h2>
-              <div class="price">
-                <span class="amount">$10</span>
-                <span class="period">/month</span>
-              </div>
-              <p class="description">Perfect for individual creators getting started</p>
+              <span class="pricing-badge">Starter</span>
+              <h3>Starter</h3>
+              <p class="pricing-description">Solo creators launching consistent drops.</p>
             </div>
-            <ul class="features-list">
-              <li>✓ 100 AI Credits</li>
-              <li>✓ LongCat & Emu formats</li>
-              <li>✓ All style options</li>
-              <li>✓ Export to all platforms</li>
-              <li>✓ Email support</li>
-              <li>✓ Generation history</li>
+            <div class="pricing-price">
+              $9<span>/month</span>
+            </div>
+            <p class="pricing-credit">Includes 100 AI credits</p>
+            <ul class="pricing-features">
+              <li><span class="icon">✓</span> LongCat + Emu formats</li>
+              <li><span class="icon">✓</span> Instagram &amp; YouTube exports</li>
+              <li><span class="icon">✓</span> Style + tone presets</li>
+              <li><span class="icon">✓</span> Generation history</li>
+              <li><span class="icon">✓</span> Weekly performance digest</li>
+              <li><span class="icon">✓</span> Email support</li>
             </ul>
-            <button class="btn btn-primary checkout-btn" 
-                    data-plan="starter" 
-                    data-price="1000" 
+            <button class="btn btn-primary btn-full checkout-btn"
+                    data-plan="starter"
+                    data-price="900"
                     data-credits="100"
-                    aria-label="Get started with Starter plan">
-              Get Started
-            </button>
-          </div>
-          
-          <!-- Creator Plan -->
-          <div class="pricing-card glass-card featured" data-plan="creator">
-            <div class="pricing-card-header">
-              <div class="badge badge-best">Best Value</div>
-              <h2>Creator</h2>
-              <div class="price">
-                <span class="amount">$45</span>
-                <span class="period">/month</span>
-              </div>
-              <span class="save">Save 10%</span>
-              <p class="description">For professional content creators</p>
-            </div>
-            <ul class="features-list">
-              <li>✓ 500 AI Credits</li>
-              <li>✓ All Starter features</li>
-              <li>✓ Priority generation</li>
-              <li>✓ Advanced analytics</li>
-              <li>✓ Priority support</li>
-              <li>✓ Custom templates</li>
-              <li>✓ Bulk exports</li>
-            </ul>
-            <button class="btn btn-primary checkout-btn" 
-                    data-plan="creator" 
-                    data-price="4500" 
-                    data-credits="500"
-                    aria-label="Start creating with Creator plan">
+                    aria-label="Get started with the Starter plan">
               Start Creating
             </button>
-          </div>
-          
+          </article>
+
           <!-- Pro Plan -->
-          <div class="pricing-card glass-card" data-plan="pro">
+          <article class="pricing-card glass-card popular" data-plan="pro">
             <div class="pricing-card-header">
-              <h2>Pro</h2>
-              <div class="price">
-                <span class="amount">$120</span>
-                <span class="period">/month</span>
-              </div>
-              <span class="save">Save 20%</span>
-              <p class="description">For power users and agencies</p>
+              <span class="pricing-badge popular">Most Popular</span>
+              <h3>Pro</h3>
+              <p class="pricing-description">Teams that need premium velocity every day.</p>
             </div>
-            <ul class="features-list">
-              <li>✓ 1,500 AI Credits</li>
-              <li>✓ All Creator features</li>
-              <li>✓ Custom brand voice</li>
-              <li>✓ API access</li>
-              <li>✓ White-label options</li>
-              <li>✓ Dedicated support</li>
-              <li>✓ Team collaboration</li>
-              <li>✓ Priority processing</li>
+            <div class="pricing-price">
+              $29<span>/month</span>
+            </div>
+            <p class="pricing-credit">Includes 500 AI credits + 3 seats</p>
+            <ul class="pricing-features">
+              <li><span class="icon">✓</span> Unlimited exports &amp; ratios</li>
+              <li><span class="icon">✓</span> Shared brand voice + presets</li>
+              <li><span class="icon">✓</span> Priority generation &amp; support</li>
+              <li><span class="icon">✓</span> Collaboration hub &amp; approvals</li>
+              <li><span class="icon">✓</span> Advanced analytics + insights</li>
+              <li><span class="icon">✓</span> API + webhook access</li>
             </ul>
-            <button class="btn btn-primary checkout-btn" 
-                    data-plan="pro" 
-                    data-price="12000" 
-                    data-credits="1500"
-                    aria-label="Go Pro with Pro plan">
+            <button class="btn btn-primary btn-full checkout-btn"
+                    data-plan="pro"
+                    data-price="2900"
+                    data-credits="500"
+                    aria-label="Upgrade to the Pro plan">
               Go Pro
             </button>
-          </div>
-          
+          </article>
+
           <!-- Enterprise -->
-          <div class="pricing-card glass-card" data-plan="enterprise">
+          <article class="pricing-card glass-card" data-plan="enterprise">
             <div class="pricing-card-header">
-              <h2>Enterprise</h2>
-              <div class="price">
-                <span class="amount">Custom</span>
-              </div>
-              <p class="description">Tailored solutions for large organizations</p>
+              <span class="pricing-badge">Enterprise</span>
+              <h3>Enterprise</h3>
+              <p class="pricing-description">Custom governance for high-volume orgs.</p>
             </div>
-            <ul class="features-list">
-              <li>✓ Unlimited credits</li>
-              <li>✓ All Pro features</li>
-              <li>✓ Custom integrations</li>
-              <li>✓ SLA guarantee</li>
-              <li>✓ Account manager</li>
-              <li>✓ Custom training</li>
-              <li>✓ On-premise deployment</li>
-              <li>✓ Advanced security</li>
+            <div class="pricing-price">
+              Custom
+            </div>
+            <p class="pricing-credit">Unlimited credits &amp; seats</p>
+            <ul class="pricing-features">
+              <li><span class="icon">✓</span> Dedicated success &amp; enablement</li>
+              <li><span class="icon">✓</span> Private model + SOC 2 controls</li>
+              <li><span class="icon">✓</span> SSO + role-based governance</li>
+              <li><span class="icon">✓</span> Custom integrations &amp; SLAs</li>
+              <li><span class="icon">✓</span> On-prem / VPC deployment</li>
+              <li><span class="icon">✓</span> 24/7 concierge support</li>
             </ul>
-            <button class="btn btn-secondary" 
-                    onclick="location.href='mailto:sales@adgenxai.pro'"
-                    aria-label="Contact sales for Enterprise plan">
+            <a class="btn btn-primary btn-full"
+               href="mailto:sales@adgenxai.pro"
+               aria-label="Contact sales about Enterprise">
               Contact Sales
-            </button>
-          </div>
+            </a>
+          </article>
         </div>
       </section>
       
