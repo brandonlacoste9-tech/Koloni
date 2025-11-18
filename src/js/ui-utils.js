@@ -134,6 +134,19 @@ const Toast = {
 // Make Toast globally available
 window.Toast = Toast;
 
+window.showToast = function (message, type = 'info', duration = 4000) {
+  if (window.Toast) {
+    const method = Toast[type] || Toast.info;
+    return method.call(Toast, message, duration);
+  }
+
+  if (type === 'error') {
+    console.error(message);
+  }
+
+  return alert(message);
+};
+
 // ==========================================
 // SCREEN READER ANNOUNCEMENTS
 // ==========================================
@@ -197,6 +210,53 @@ window.setButtonLoading = setButtonLoading;
     images.forEach(img => img.classList.add('loaded'));
   }
 })();
+
+// ==========================================
+// AUTH HELPERS
+// ==========================================
+const PROTECTED_ROUTES = new Set(['/dashboard', '/dashboard.html', '/create', '/create.html']);
+
+function getAuthToken() {
+  return localStorage.getItem('token');
+}
+
+function ensureProtectedRoute() {
+  const path = window.location.pathname.replace(/\/$/, '') || '/';
+  if (PROTECTED_ROUTES.has(path) && !getAuthToken()) {
+    window.location.href = '/login.html';
+    return null;
+  }
+  return getAuthToken();
+}
+
+function logoutUser() {
+  localStorage.removeItem('token');
+  window.location.href = '/login.html';
+}
+
+function initLogoutButtons() {
+  const logoutButtons = document.querySelectorAll('#logout-btn, [data-action="logout"]');
+  logoutButtons.forEach(button => {
+    button.addEventListener('click', (event) => {
+      event.preventDefault();
+      logoutUser();
+    });
+  });
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+  ensureProtectedRoute();
+  initLogoutButtons();
+});
+
+window.Auth = {
+  getToken: getAuthToken,
+  isAuthenticated: () => Boolean(getAuthToken()),
+  requireAuth: ensureProtectedRoute,
+  logout: logoutUser,
+};
+
+window.checkAuth = ensureProtectedRoute;
 
 // ==========================================
 // SMOOTH SCROLL FOR ANCHOR LINKS

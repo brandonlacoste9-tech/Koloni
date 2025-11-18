@@ -32,6 +32,7 @@ const planDetails = {
       'Generation history',
       'Email support'
     ]
+    features: ['100 generations per month', 'LongCat & Emu formats', 'Instagram & YouTube exports', 'Email support']
   },
   pro: {
     name: 'Pro Plan',
@@ -58,6 +59,13 @@ const planDetails = {
       'On-prem / VPC deployment',
       '24/7 concierge support'
     ]
+    features: ['500 generations per month', 'All formats unlocked', 'All export platforms', 'Priority support', 'Advanced analytics']
+  },
+  enterprise: {
+    name: 'Enterprise Plan',
+    credits: 9999,
+    price: '$99/month',
+    features: ['Unlimited generations', 'Custom integrations', 'API access', 'Dedicated support', 'Team collaboration']
   }
 };
 
@@ -162,7 +170,7 @@ async function initiateCheckout(plan, price, credits) {
  * Handle checkout button clicks
  */
 function handleCheckoutClick(event) {
-  const button = event.target.closest('.checkout-btn');
+  const button = event.target.closest('.pricing-btn');
   if (!button) return;
   
   const plan = button.dataset.plan;
@@ -192,7 +200,7 @@ function handleCheckoutClick(event) {
  */
 function initPricing() {
   // Add click handlers to all checkout buttons
-  const checkoutButtons = document.querySelectorAll('.checkout-btn');
+  const checkoutButtons = document.querySelectorAll('.pricing-btn');
   checkoutButtons.forEach(button => {
     button.addEventListener('click', handleCheckoutClick);
   });
