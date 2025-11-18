@@ -21,6 +21,23 @@
     />
   </head>
   <body>
+    <a href="#main-content" class="skip-to-content">Skip to main content</a>
+    <div id="toast-container" class="toast-container" role="region" aria-live="polite" aria-label="Notifications"></div>
+
+    <nav class="primary-nav" aria-label="Primary">
+      <a class="nav-logo" href="/">AdGenXAI</a>
+      <div class="nav-links">
+        <a href="/">Home</a>
+        <a href="/dashboard.html">Dashboard</a>
+        <a href="/create.html" aria-current="page">Create</a>
+        <a href="/pricing.html">Pricing</a>
+      </div>
+      <div class="nav-cta">
+        <a href="/login.html" class="btn btn-glass">Login</a>
+        <a href="/signup.html" class="btn btn-primary">Sign Up</a>
+      </div>
+    </nav>
+
     <div class="creator-container">
       <!-- Header -->
       <header class="creator-header">
@@ -33,11 +50,14 @@
               Buy Tokens
             </button>
           </div>
+          <div class="header-actions">
+            <button class="btn btn-glass btn-sm" id="logout-btn">Logout</button>
+          </div>
         </div>
       </header>
 
       <!-- Main Content -->
-      <main class="creator-main">
+      <main class="creator-main" id="main-content">
         <!-- Sidebar -->
         <aside class="creator-sidebar">
           <nav class="creator-nav">
@@ -257,6 +277,7 @@
     </div>
 
     <!-- Scripts -->
+    <script src="/js/ui-utils.js"></script>
     <script src="/js/ai-router.js"></script>
     <script src="/js/creator.js"></script>
   </body>

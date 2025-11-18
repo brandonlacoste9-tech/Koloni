@@ -23,20 +23,20 @@ const planDetails = {
   starter: {
     name: 'Starter Plan',
     credits: 100,
-    price: '$10/month',
-    features: ['100 AI Credits', 'LongCat & Emu formats', 'All style options', 'Export to all platforms', 'Email support']
-  },
-  creator: {
-    name: 'Creator Plan',
-    credits: 500,
-    price: '$45/month',
-    features: ['500 AI Credits', 'Priority generation', 'Advanced analytics', 'Priority support', 'Custom templates']
+    price: '$9/month',
+    features: ['100 generations per month', 'LongCat & Emu formats', 'Instagram & YouTube exports', 'Email support']
   },
   pro: {
     name: 'Pro Plan',
-    credits: 1500,
-    price: '$120/month',
-    features: ['1,500 AI Credits', 'Custom brand voice', 'API access', 'White-label options', 'Dedicated support']
+    credits: 500,
+    price: '$29/month',
+    features: ['500 generations per month', 'All formats unlocked', 'All export platforms', 'Priority support', 'Advanced analytics']
+  },
+  enterprise: {
+    name: 'Enterprise Plan',
+    credits: 9999,
+    price: '$99/month',
+    features: ['Unlimited generations', 'Custom integrations', 'API access', 'Dedicated support', 'Team collaboration']
   }
 };
 
@@ -141,7 +141,7 @@ async function initiateCheckout(plan, price, credits) {
  * Handle checkout button clicks
  */
 function handleCheckoutClick(event) {
-  const button = event.target.closest('.checkout-btn');
+  const button = event.target.closest('.pricing-btn');
   if (!button) return;
   
   const plan = button.dataset.plan;
@@ -171,7 +171,7 @@ function handleCheckoutClick(event) {
  */
 function initPricing() {
   // Add click handlers to all checkout buttons
-  const checkoutButtons = document.querySelectorAll('.checkout-btn');
+  const checkoutButtons = document.querySelectorAll('.pricing-btn');
   checkoutButtons.forEach(button => {
     button.addEventListener('click', handleCheckoutClick);
   });

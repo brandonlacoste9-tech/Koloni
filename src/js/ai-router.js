@@ -8,6 +8,15 @@ class AIRouter {
     this.userId = this.getUserId();
   }
 
+  getHeaders() {
+    const headers = { "Content-Type": "application/json" };
+    const token = localStorage.getItem("token");
+    if (token) {
+      headers["Authorization"] = `Bearer ${token}`;
+    }
+    return headers;
+  }
+
   /**
    * Get or create user ID
    * Uses cryptographically secure crypto.randomUUID() when available
@@ -37,7 +46,7 @@ class AIRouter {
     try {
       const response = await fetch(`${this.baseUrl}/token-manager`, {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
+        headers: this.getHeaders(),
         body: JSON.stringify({
           action: "check",
           userId: this.userId,
@@ -63,7 +72,7 @@ class AIRouter {
     try {
       const response = await fetch(`${this.baseUrl}/token-manager`, {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
+        headers: this.getHeaders(),
         body: JSON.stringify({
           action: "balance",
           userId: this.userId,
@@ -88,7 +97,7 @@ class AIRouter {
     try {
       const response = await fetch(`${this.baseUrl}/generate-longcat`, {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
+        headers: this.getHeaders(),
         body: JSON.stringify({
           ...params,
           userId: this.userId,
@@ -115,7 +124,7 @@ class AIRouter {
     try {
       const response = await fetch(`${this.baseUrl}/generate-emu`, {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
+        headers: this.getHeaders(),
         body: JSON.stringify({
           ...params,
           userId: this.userId,
@@ -142,7 +151,7 @@ class AIRouter {
     try {
       const response = await fetch(`${this.baseUrl}/export-instagram`, {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
+        headers: this.getHeaders(),
         body: JSON.stringify({
           content,
           format,
@@ -170,7 +179,7 @@ class AIRouter {
     try {
       const response = await fetch(`${this.baseUrl}/export-youtube`, {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
+        headers: this.getHeaders(),
         body: JSON.stringify({
           content,
           format,
