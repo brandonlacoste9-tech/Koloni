@@ -43,13 +43,50 @@
       <nav class="nav-back">
         <a href="/" class="btn btn-ghost">← Back to Home</a>
       </nav>
-      <h1>Choose Your Plan</h1>
-      <p>Flexible pricing for creators of all sizes. Pay as you grow.</p>
+      <p class="eyebrow">AdGenXAI Pricing</p>
+      <h1>Flexible tiers built for every hive</h1>
+      <p>
+        From solo drops to enterprise-grade orchestration, pick the runway that keeps your
+        content engine shipping with glassmorphic polish and zero-friction workflows.
+      </p>
     </header>
-    
+
     <main id="main-content" role="main">
       <section class="pricing section" aria-labelledby="pricing-heading">
+        <div class="section-intro">
+          <p class="section-eyebrow">Transparent pricing</p>
+          <h2 id="pricing-heading">Starter, Pro, and Enterprise tiers — zero fluff</h2>
+          <p>
+            Every plan ships with LongCat + Emu formats, smart exports, and our glassmorphic UI system.
+            Upgrade when you need more credits, collaboration, and governance controls.
+          </p>
+        </div>
+
         <div class="pricing-grid">
+          <!-- Starter Plan -->
+          <article class="pricing-card glass-card" data-plan="starter">
+            <div class="pricing-card-header">
+              <span class="pricing-badge">Starter</span>
+              <h3>Starter</h3>
+              <p class="pricing-description">Solo creators launching consistent drops.</p>
+            </div>
+            <div class="pricing-price">
+              $9<span>/month</span>
+            </div>
+            <p class="pricing-credit">Includes 100 AI credits</p>
+            <ul class="pricing-features">
+              <li><span class="icon">✓</span> LongCat + Emu formats</li>
+              <li><span class="icon">✓</span> Instagram &amp; YouTube exports</li>
+              <li><span class="icon">✓</span> Style + tone presets</li>
+              <li><span class="icon">✓</span> Generation history</li>
+              <li><span class="icon">✓</span> Weekly performance digest</li>
+              <li><span class="icon">✓</span> Email support</li>
+            </ul>
+            <button class="btn btn-primary btn-full checkout-btn"
+                    data-plan="starter"
+                    data-price="900"
+                    data-credits="100"
+                    aria-label="Get started with the Starter plan">
           <article class="pricing-card glass-card" data-plan="starter">
             <div class="pricing-card-header">
               <h2>Starter</h2>
@@ -100,6 +137,58 @@
             </button>
           </article>
 
+          <!-- Pro Plan -->
+          <article class="pricing-card glass-card popular" data-plan="pro">
+            <div class="pricing-card-header">
+              <span class="pricing-badge popular">Most Popular</span>
+              <h3>Pro</h3>
+              <p class="pricing-description">Teams that need premium velocity every day.</p>
+            </div>
+            <div class="pricing-price">
+              $29<span>/month</span>
+            </div>
+            <p class="pricing-credit">Includes 500 AI credits + 3 seats</p>
+            <ul class="pricing-features">
+              <li><span class="icon">✓</span> Unlimited exports &amp; ratios</li>
+              <li><span class="icon">✓</span> Shared brand voice + presets</li>
+              <li><span class="icon">✓</span> Priority generation &amp; support</li>
+              <li><span class="icon">✓</span> Collaboration hub &amp; approvals</li>
+              <li><span class="icon">✓</span> Advanced analytics + insights</li>
+              <li><span class="icon">✓</span> API + webhook access</li>
+            </ul>
+            <button class="btn btn-primary btn-full checkout-btn"
+                    data-plan="pro"
+                    data-price="2900"
+                    data-credits="500"
+                    aria-label="Upgrade to the Pro plan">
+              Go Pro
+            </button>
+          </article>
+
+          <!-- Enterprise -->
+          <article class="pricing-card glass-card" data-plan="enterprise">
+            <div class="pricing-card-header">
+              <span class="pricing-badge">Enterprise</span>
+              <h3>Enterprise</h3>
+              <p class="pricing-description">Custom governance for high-volume orgs.</p>
+            </div>
+            <div class="pricing-price">
+              Custom
+            </div>
+            <p class="pricing-credit">Unlimited credits &amp; seats</p>
+            <ul class="pricing-features">
+              <li><span class="icon">✓</span> Dedicated success &amp; enablement</li>
+              <li><span class="icon">✓</span> Private model + SOC 2 controls</li>
+              <li><span class="icon">✓</span> SSO + role-based governance</li>
+              <li><span class="icon">✓</span> Custom integrations &amp; SLAs</li>
+              <li><span class="icon">✓</span> On-prem / VPC deployment</li>
+              <li><span class="icon">✓</span> 24/7 concierge support</li>
+            </ul>
+            <a class="btn btn-primary btn-full"
+               href="mailto:sales@adgenxai.pro"
+               aria-label="Contact sales about Enterprise">
+              Contact Sales
+            </a>
           <article class="pricing-card glass-card" data-plan="enterprise">
             <div class="pricing-card-header">
               <h2>Enterprise</h2>

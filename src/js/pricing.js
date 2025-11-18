@@ -24,12 +24,41 @@ const planDetails = {
     name: 'Starter Plan',
     credits: 100,
     price: '$9/month',
+    features: [
+      '100 AI Credits included',
+      'LongCat + Emu formats',
+      'Instagram & YouTube exports',
+      'Style + tone presets',
+      'Generation history',
+      'Email support'
+    ]
     features: ['100 generations per month', 'LongCat & Emu formats', 'Instagram & YouTube exports', 'Email support']
   },
   pro: {
     name: 'Pro Plan',
     credits: 500,
     price: '$29/month',
+    features: [
+      '500 AI Credits + 3 seats',
+      'Unlimited exports & ratios',
+      'Shared brand voice presets',
+      'Priority generation & support',
+      'Collaboration hub & approvals',
+      'Advanced analytics insights'
+    ]
+  },
+  enterprise: {
+    name: 'Enterprise Plan',
+    credits: 'Unlimited',
+    price: 'Custom pricing',
+    features: [
+      'Dedicated success & enablement',
+      'Private model + SOC 2 controls',
+      'SSO + role-based governance',
+      'Custom integrations & SLAs',
+      'On-prem / VPC deployment',
+      '24/7 concierge support'
+    ]
     features: ['500 generations per month', 'All formats unlocked', 'All export platforms', 'Priority support', 'Advanced analytics']
   },
   enterprise: {
