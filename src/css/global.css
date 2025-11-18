@@ -1,16 +1,22 @@
 :root {
-  /* Background layers */
+  /* Background layers - O. Washington inspired */
   --color-bg-primary: #0a0a0a;
   --color-bg-secondary: #0f0f0f;
   --color-bg-tertiary: #1a1a1a;
   --color-bg-elevated: #252525;
+  --color-bg-dark: #0a1628;
+  --color-bg-darker: #060d17;
 
-  /* Accent colors */
+  /* Accent colors - Enhanced liquid gradient palette */
   --color-primary: #0ea5e9;
   --color-primary-light: #38bdf8;
   --color-primary-dark: #0284c7;
   --color-secondary: #8b5cf6;
   --color-secondary-light: #a78bfa;
+  --color-blue-electric: #2d5ff7;
+  --color-purple: #8b5cf6;
+  --color-pink: #ec4899;
+  --color-cyan: #06b6d4;
 
   /* Text colors */
   --color-text-primary: #ffffff;
@@ -18,8 +24,9 @@
   --color-text-tertiary: rgba(255, 255, 255, 0.5);
   --color-text-disabled: rgba(255, 255, 255, 0.32);
 
-  /* Gradients & glows */
-  --gradient-primary: linear-gradient(135deg, #8b5cf6 0%, #0ea5e9 100%);
+  /* Gradients & glows - Enhanced liquid gradients */
+  --gradient-primary: linear-gradient(135deg, #2d5ff7 0%, #8b5cf6 100%);
+  --gradient-accent: linear-gradient(135deg, #06b6d4 0%, #8b5cf6 50%, #ec4899 100%);
   --gradient-glow: radial-gradient(circle at center, rgba(14, 165, 233, 0.18) 0%, transparent 70%);
   --gradient-mesh: radial-gradient(at 0% 0%, #8b5cf610 0%, transparent 55%),
     radial-gradient(at 100% 0%, #0ea5e910 0%, transparent 55%),
@@ -149,4 +156,144 @@ a:hover {
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
   }
+}
+
+/* ==========================================
+   Mobile Navigation & Responsive Styles
+   ========================================== */
+
+/* Hide/show based on screen size */
+@media (min-width: 769px) {
+  .mobile-menu-toggle {
+    display: none;
+  }
+  .mobile-menu {
+    display: none;
+  }
+}
+
+@media (max-width: 768px) {
+  .desktop-only {
+    display: none !important;
+  }
+  
+  /* Ensure readable text - prevents iOS zoom */
+  body {
+    font-size: 16px;
+  }
+}
+
+/* Mobile menu toggle button */
+.mobile-menu-toggle {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0.5rem;
+  z-index: 1001;
+}
+
+.mobile-menu-toggle span {
+  width: 24px;
+  height: 2px;
+  background: white;
+  transition: all 0.3s ease;
+  border-radius: 2px;
+}
+
+/* Hamburger animation when open */
+.mobile-menu-toggle.open span:nth-child(1) {
+  transform: rotate(45deg) translate(5px, 5px);
+}
+
+.mobile-menu-toggle.open span:nth-child(2) {
+  opacity: 0;
+}
+
+.mobile-menu-toggle.open span:nth-child(3) {
+  transform: rotate(-45deg) translate(7px, -6px);
+}
+
+/* Mobile menu overlay */
+.mobile-menu {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(10, 10, 10, 0.98);
+  backdrop-filter: blur(20px);
+  z-index: 1000;
+  transform: translateX(-100%);
+  transition: transform 0.3s ease;
+}
+
+.mobile-menu.open {
+  transform: translateX(0);
+}
+
+.mobile-menu-content {
+  padding: 6rem 2rem 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.mobile-menu-content a {
+  padding: 1rem 0;
+  font-size: 1.25rem;
+  font-weight: 500;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  transition: color 0.3s;
+}
+
+.mobile-menu-content a:hover {
+  color: var(--color-primary);
+}
+
+.mobile-menu-cta {
+  margin-top: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.btn-block {
+  width: 100%;
+  text-align: center;
+}
+
+/* Full-width buttons on mobile */
+@media (max-width: 768px) {
+  .hero-cta {
+    flex-direction: column;
+    width: 100%;
+  }
+  
+  .hero-cta .btn {
+    width: 100%;
+    min-height: 48px;
+  }
+  
+  .pricing-card .btn {
+    width: 100%;
+  }
+  
+  .cta-buttons {
+    flex-direction: column;
+    width: 100%;
+  }
+  
+  .cta-buttons .btn {
+    width: 100%;
+  }
+}
+
+/* Better touch targets */
+.btn {
+  min-height: 44px;
+  padding: 0.875rem 2rem;
+  touch-action: manipulation;
 }
