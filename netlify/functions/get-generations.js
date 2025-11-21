@@ -1,78 +1,108 @@
-const { supabase } = require("./config/supabase");
-const { verifyToken } = require("./utils/auth");
+/**
+ * Get User Generations API Endpoint
+ * Retrieves generation history for authenticated users
+ */
 
-exports.handler = async (event, context) => {
-  const headers = {
-    "Access-Control-Allow-Origin": "*",
-    "Access-Control-Allow-Headers": "Content-Type, Authorization",
-    "Content-Type": "application/json",
-  };
+const {
+  createSecureResponse,
+  getCorsHeaders
+} = require('./utils/security');
 
-  if (event.httpMethod === "OPTIONS") {
-    return { statusCode: 200, headers, body: "" };
+const { createClient } = require('@supabase/supabase-js');
+
+const supabase = createClient(
+  process.env.NEXT_PUBLIC_SUPABASE_DATABASE_URL,
+  process.env.SUPABASE_SERVICE_ROLE_KEY
+);
+
+exports.handler = async (event) => {
+  // Handle CORS preflight
+  if (event.httpMethod === 'OPTIONS') {
+    return {
+      statusCode: 200,
+      headers: getCorsHeaders(event.headers.origin)
+    };
   }
 
-  if (event.httpMethod !== "GET") {
-    return {
-      statusCode: 405,
-      headers,
-      body: JSON.stringify({ message: "Method Not Allowed" }),
-    };
+  // Only allow GET
+  if (event.httpMethod !== 'GET') {
+    return createSecureResponse(405, { error: 'Method not allowed' });
   }
 
   try {
-    const auth = await verifyToken(event.headers.authorization);
-    const { userId } = auth;
+    // Get user from Authorization header
+    const authHeader = event.headers.authorization || event.headers.Authorization;
+    if (!authHeader || !authHeader.startsWith('Bearer ')) {
+      return createSecureResponse(401, {
+        error: 'Authentication required'
+      });
+    }
 
+    const token = authHeader.replace('Bearer ', '');
+    const { data: { user }, error: authError } = await supabase.auth.getUser(token);
+    
+    if (authError || !user) {
+      return createSecureResponse(401, {
+        error: 'Invalid authentication token'
+      });
+    }
+
+    // Parse query parameters
     const params = event.queryStringParameters || {};
     const limit = parseInt(params.limit) || 20;
     const offset = parseInt(params.offset) || 0;
-    const type = params.type;
+    const type = params.type; // Optional filter by type
 
+    // Build query
     let query = supabase
-      .from("generations")
-      .select("*", { count: "exact" })
-      .eq("user_id", userId)
-      .order("created_at", { ascending: false })
+      .from('generations')
+      .select('*')
+      .eq('user_id', user.id)
+      .order('created_at', { ascending: false })
       .range(offset, offset + limit - 1);
 
-    if (type) {
-      query = query.eq("type", type);
+    // Apply type filter if provided
+    if (type && ['longcat', 'emu', 'ad', 'blog'].includes(type)) {
+      query = query.eq('type', type);
     }
 
-    const { data: generations, error, count } = await query;
+    const { data: generations, error: queryError, count } = await query;
 
-    if (error) throw error;
+    if (queryError) {
+      console.error('Query error:', queryError);
+      return createSecureResponse(500, {
+        error: 'Failed to retrieve generations'
+      });
+    }
 
-    const formattedGenerations = generations.map((gen) => ({
-      id: gen.id,
-      type: gen.type,
-      prompt: gen.prompt,
-      result: gen.result,
-      style: gen.style,
-      tone: gen.tone,
-      tokenCost: gen.token_cost,
-      createdAt: gen.created_at,
-      preview: gen.result.substring(0, 150) + "...",
-    }));
+    // Get user credits
+    const { data: userData } = await supabase
+      .from('users')
+      .select('credits, total_generations, subscription_tier')
+      .eq('id', user.id)
+      .single();
 
-    return {
-      statusCode: 200,
-      headers,
-      body: JSON.stringify({
-        generations: formattedGenerations,
-        total: count,
+    return createSecureResponse(200, {
+      success: true,
+      generations,
+      pagination: {
         limit,
         offset,
-        hasMore: offset + limit < count,
-      }),
-    };
+        total: count,
+        hasMore: offset + limit < count
+      },
+      user: {
+        credits: userData?.credits || 0,
+        totalGenerations: userData?.total_generations || 0,
+        subscriptionTier: userData?.subscription_tier || 'free'
+      }
+    }, getCorsHeaders(event.headers.origin));
+
   } catch (error) {
-    console.error("Error fetching generations:", error);
-    return {
-      statusCode: 500,
-      headers,
-      body: JSON.stringify({ message: "Failed to fetch generations" }),
-    };
+    console.error('Get generations error:', error);
+    
+    return createSecureResponse(500, {
+      error: 'Internal server error'
+    });
   }
 };
