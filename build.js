@@ -39,6 +39,7 @@ const htmlFiles = [
   "404.html",
   "terms.html",
   "privacy.html",
+  "test-ai.html", // 🚀 NEW: AI test page
 ];
 htmlFiles.forEach((file) => {
   const srcPath = path.join(srcDir, file);
