@@ -18,9 +18,6 @@ exports.handler = async (event, context) => {
     const data = JSON.parse(event.body || '{}');
     const prompt = data.prompt;
     const userId = data.userId || 'demo-user'; // fallback for test mode
-    const tone = data.tone;
-    const length = data.length;
-
     // Validate required parameters
     if (!prompt || !userId) {
       return {
@@ -30,6 +27,9 @@ exports.handler = async (event, context) => {
         }),
       };
     }
+
+    const tone = data.tone;
+    const length = data.length;
 
     // Check user token balance (integrate with token-manager)
     const tokenCheckResponse = await fetch(
