@@ -15,7 +15,11 @@ exports.handler = async (event, context) => {
   }
 
   try {
-    const { prompt, tone, length, userId } = JSON.parse(event.body);
+    const data = JSON.parse(event.body || '{}');
+    const prompt = data.prompt;
+    const userId = data.userId || 'demo-user'; // fallback for test mode
+    const tone = data.tone;
+    const length = data.length;
 
     // Validate required parameters
     if (!prompt || !userId) {
