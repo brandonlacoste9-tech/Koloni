@@ -1,9 +1,16 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AI Generator Test - Koloni</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="preload" href="/css/global.css" as="style" />
+    <link rel="preload" href="/css/landing-v2.css" as="style" />
+    <link rel="stylesheet" href="/css/main.css" />
+    <link rel="stylesheet" href="/css/global.css" />
+    <link rel="stylesheet" href="/css/landing-v2.css" />
     <style>
         * {
             margin: 0;
@@ -16,9 +23,16 @@
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             min-height: 100vh;
             display: flex;
+            flex-direction: column;
+            padding: 80px 20px 20px;
+        }
+
+        .main-wrapper {
+            flex: 1;
+            display: flex;
             align-items: center;
             justify-content: center;
-            padding: 20px;
+            width: 100%;
         }
 
         .container {
@@ -218,7 +232,53 @@
         }
     </style>
 </head>
-<body>
+<body class="page-transition">
+    <a href="#main-content" class="skip-to-content">Skip to main content</a>
+    <div id="toast-container" class="toast-container" role="region" aria-live="polite" aria-label="Notifications"></div>
+
+    <nav class="primary-nav" aria-label="Primary">
+      <a class="nav-logo" href="/">
+        <span class="logo-icon">🐝</span>
+        AdGenXAI
+      </a>
+
+      <!-- Desktop Nav -->
+      <div class="nav-links desktop-only">
+        <a href="/">Home</a>
+        <a href="/dashboard.html">Dashboard</a>
+        <a href="/create.html">Create</a>
+        <a href="/pricing.html">Pricing</a>
+      </div>
+
+      <!-- Desktop CTA -->
+      <div class="nav-cta desktop-only">
+        <a href="/login.html" class="btn btn-glass">Login</a>
+        <a href="/signup.html" class="btn btn-primary">Sign Up</a>
+      </div>
+
+      <!-- Mobile Hamburger -->
+      <button class="mobile-menu-toggle" aria-label="Toggle menu" id="mobile-menu-toggle">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </nav>
+
+    <!-- Mobile Menu Overlay -->
+    <div class="mobile-menu" id="mobile-menu">
+      <div class="mobile-menu-content">
+        <a href="/">Home</a>
+        <a href="/dashboard.html">Dashboard</a>
+        <a href="/create.html">Create</a>
+        <a href="/pricing.html">Pricing</a>
+        <div class="mobile-menu-cta">
+          <a href="/login.html" class="btn btn-glass btn-block">Login</a>
+          <a href="/signup.html" class="btn btn-primary btn-block">Sign Up</a>
+        </div>
+      </div>
+    </div>
+
+    <main id="main-content" class="main-wrapper">
     <div class="container">
         <h1>🤖 AI Content Generator</h1>
         <p class="subtitle">Test your AI content generation system</p>
@@ -354,5 +414,9 @@
             }
         });
     </script>
+    </div>
+    </main>
+
+    <script src="/js/mobile-menu.js"></script>
 </body>
 </html>
