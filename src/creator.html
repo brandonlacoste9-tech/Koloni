@@ -7,6 +7,12 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+    <link rel="preload" href="/css/global.css" as="style" />
+    <link rel="preload" href="/css/landing-v2.css" as="style" />
+    <link rel="stylesheet" href="/css/main.css" />
+    <link rel="stylesheet" href="/css/global.css" />
+    <link rel="stylesheet" href="/css/landing-v2.css" />
+    <link rel="stylesheet" href="/css/creator.css" />
     <link rel="stylesheet" href="css/main.css" />
     <link rel="stylesheet" href="css/global.css" />
     <link rel="stylesheet" href="css/creator.css" />
@@ -19,10 +25,52 @@
     <script src="js/ai-thinking.js"></script>
     
     <a href="#main-content" class="skip-to-content">Skip to main content</a>
-    
+
     <!-- Toast Container -->
     <div id="toast-container" class="toast-container" role="region" aria-live="polite" aria-label="Notifications"></div>
-    
+
+    <nav class="primary-nav" aria-label="Primary">
+      <a class="nav-logo" href="/">
+        <span class="logo-icon">🐝</span>
+        AdGenXAI
+      </a>
+
+      <!-- Desktop Nav -->
+      <div class="nav-links desktop-only">
+        <a href="/">Home</a>
+        <a href="/dashboard.html">Dashboard</a>
+        <a href="/create.html">Create</a>
+        <a href="/pricing.html">Pricing</a>
+      </div>
+
+      <!-- Desktop CTA -->
+      <div class="nav-cta desktop-only">
+        <a href="/login.html" class="btn btn-glass">Login</a>
+        <a href="/signup.html" class="btn btn-primary">Sign Up</a>
+      </div>
+
+      <!-- Mobile Hamburger -->
+      <button class="mobile-menu-toggle" aria-label="Toggle menu" id="mobile-menu-toggle">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </nav>
+
+    <!-- Mobile Menu Overlay -->
+    <div class="mobile-menu" id="mobile-menu">
+      <div class="mobile-menu-content">
+        <a href="/">Home</a>
+        <a href="/dashboard.html">Dashboard</a>
+        <a href="/create.html">Create</a>
+        <a href="/pricing.html">Pricing</a>
+        <div class="mobile-menu-cta">
+          <a href="/login.html" class="btn btn-glass btn-block">Login</a>
+          <a href="/signup.html" class="btn btn-primary btn-block">Sign Up</a>
+        </div>
+      </div>
+    </div>
+
     <!-- Dark Mode Toggle -->
     <button id="dark-mode-toggle" class="dark-mode-toggle" aria-label="Toggle dark mode" aria-pressed="false">
       <span class="sr-only">Toggle Dark Mode</span>
@@ -125,6 +173,9 @@
         </div>
       </main>
     </div>
+    <script src="/js/ui-utils.js"></script>
+    <script src="/js/creator.js"></script>
+    <script src="/js/mobile-menu.js"></script>
     <!-- Advanced Features Sections -->
     <div id="analytics-dashboard" style="display: none; margin-top: 3rem;"></div>
     <div id="collaborators-list" style="display: none; margin-top: 2rem;"></div>
