@@ -1,6 +1,14 @@
-# AdGenXAI
+# Kolony (AdGenXAI)
 
-**AdGenXAI** is an AI-powered platform where governance, creativity, and automation converge. Every artifact is sealed, auditable, and inheritable, ensuring scalable experimentation, zero-cost rituals, and communal lineage.
+**Kolony** is a dual-platform system combining an AI-powered ad campaign management platform with an integrated AI video generation pipeline. Every artifact is sealed, auditable, and inheritable, ensuring scalable experimentation, zero-cost rituals, and communal lineage.
+
+## 🏗️ Architecture
+
+Kolony combines cutting-edge open-source technologies:
+- **Campaign Management**: Manage ad campaigns across Facebook, Google, LinkedIn, TikTok, and more
+- **AI Video Generation**: Generate professional video ads using HunyuanVideo, ComfyGPT, UniVA, and other state-of-the-art models
+
+📖 **See [docs/ARCHITECTURE.md](./docs/ARCHITECTURE.md) for complete architecture documentation**
 
 ## Features
 
@@ -78,6 +86,10 @@ The Creator Studio is an AI-powered content generation platform that enables use
 - Netlify CLI (optional, for local development)
 - OpenAI API key
 - Stripe account (for payments)
+- Supabase account (for database and auth)
+- GPU access (cloud or local) for video generation
+
+📖 **See [docs/QUICK_START.md](./docs/QUICK_START.md) for detailed setup instructions**
 
 ### Installation
 
@@ -94,6 +106,14 @@ The Creator Studio is an AI-powered content generation platform that enables use
    \`\`\`
 
 ---
+
+## 📚 Documentation
+
+- **[Architecture](./docs/ARCHITECTURE.md)** - Complete system architecture
+- **[Implementation Roadmap](./docs/IMPLEMENTATION_ROADMAP.md)** - 6-month development plan
+- **[Video Pipeline Spec](./docs/VIDEO_PIPELINE_SPEC.md)** - Video generation API specifications
+- **[Quick Start Guide](./docs/QUICK_START.md)** - Get started quickly
+- **[Video Generation Setup](./docs/VIDEO_GENERATION_SETUP.md)** - Video feature setup
 
 ## ✨ Development Guidelines (For AI & Contributors)
 
@@ -287,15 +307,22 @@ For issues, questions, or feature requests:
 
 ## Roadmap
 
-- [ ] User authentication and accounts
-- [ ] Database integration for persistent storage
-- [ ] Additional AI content formats
-- [ ] More social media platform integrations
-- [ ] Analytics dashboard
+See [docs/IMPLEMENTATION_ROADMAP.md](./docs/IMPLEMENTATION_ROADMAP.md) for the complete 6-month implementation plan.
+
+### Current Phase
+- ✅ Basic campaign platform structure
+- ✅ Text content generation (LongCat, Emu)
+- 🚧 Video generation integration
+- 📋 Platform API integrations (Facebook, Google)
+
+### Upcoming
+- [ ] Full video generation pipeline (HunyuanVideo, ComfyGPT, UniVA)
+- [ ] Platform API integrations (LinkedIn, TikTok, Twitter/X)
+- [ ] Advanced analytics dashboard
 - [ ] Team collaboration features
-- [ ] Advanced AI customization options
-- [ ] Content scheduling and automation
+- [ ] A/B testing framework
+- [ ] Brand guidelines system
 
 ---
 
-Built with 🐝 by the AdGenXAI community
+Built with 🐝 by the Kolony community

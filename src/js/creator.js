@@ -243,11 +243,177 @@ function initExportShortcut() {
   });
 }
 
+// Video generation handlers
+const adCreatorForm = document.getElementById('ad-creator-form');
+const videoContainer = document.getElementById('video-container');
+const videoPlayer = document.getElementById('video-player');
+const loadingState = document.getElementById('loading-state');
+
+async function handleVideoGeneration(event) {
+  event.preventDefault();
+  if (!requireAuth()) return;
+
+  const campaignName = document.getElementById('campaign-name')?.value.trim();
+  const script = document.getElementById('video-script')?.value.trim();
+
+  if (!script || script.length < 20) {
+    window.showToast('Please provide a detailed video script (at least 20 characters).', 'warning');
+    return;
+  }
+
+  // Show loading state
+  if (loadingState) loadingState.style.display = 'block';
+  if (videoContainer) videoContainer.style.display = 'none';
+  if (adCreatorForm) adCreatorForm.style.opacity = '0.5';
+
+  try {
+    const response = await fetch('/.netlify/functions/generate-video', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${localStorage.getItem('token')}`,
+      },
+      body: JSON.stringify({
+        script,
+        campaignName: campaignName || 'Untitled Campaign',
+        style: 'creative',
+        duration: 30,
+      }),
+    });
+
+    const data = await response.json();
+
+    if (!response.ok) {
+      throw new Error(data.message || 'Video generation failed');
+    }
+
+    // Hide loading state
+    if (loadingState) loadingState.style.display = 'none';
+    if (adCreatorForm) adCreatorForm.style.opacity = '1';
+
+    if (data.videoUrl) {
+      // Video is ready
+      if (videoPlayer) {
+        videoPlayer.src = data.videoUrl;
+        videoPlayer.load();
+      }
+      if (videoContainer) videoContainer.style.display = 'block';
+      
+      // Update export button with job ID
+      const exportBtn = document.getElementById('export-social-btn');
+      if (exportBtn && data.jobId) {
+        exportBtn.dataset.jobId = data.jobId;
+        exportBtn.style.display = 'inline-block';
+      }
+      
+      window.showToast('Video generated successfully!', 'success');
+    } else {
+      // Video is pending
+      window.showToast(
+        data.message || 'Video generation queued. You will be notified when ready.',
+        'info'
+      );
+      // Store videoId for polling
+      if (data.videoId || data.jobId) {
+        const jobId = data.jobId || data.videoId;
+        localStorage.setItem('pendingVideoId', jobId);
+        
+        // Update export button
+        const exportBtn = document.getElementById('export-social-btn');
+        if (exportBtn) {
+          exportBtn.dataset.jobId = jobId;
+        }
+        
+        // Start polling for video status
+        pollVideoStatus(jobId);
+      }
+    }
+
+    await refreshBalance(data.tokensRemaining);
+    await loadHistory();
+  } catch (error) {
+    console.error('Video generation error:', error);
+    window.showToast(error.message || 'Failed to generate video. Please try again.', 'error');
+    if (loadingState) loadingState.style.display = 'none';
+    if (adCreatorForm) adCreatorForm.style.opacity = '1';
+  }
+}
+
+async function pollVideoStatus(videoId) {
+  // Poll every 5 seconds for video status
+  const maxAttempts = 60; // 5 minutes max
+  let attempts = 0;
+
+  const pollInterval = setInterval(async () => {
+    attempts++;
+    if (attempts > maxAttempts) {
+      clearInterval(pollInterval);
+      window.showToast('Video generation is taking longer than expected. Please check back later.', 'warning');
+      return;
+    }
+
+    try {
+      // You would implement a status check endpoint here
+      // For now, we'll just show a message
+      console.log(`Polling video status: ${videoId} (attempt ${attempts})`);
+    } catch (error) {
+      console.error('Error polling video status:', error);
+    }
+  }, 5000);
+}
+
+function initVideoHandlers() {
+  // Handle video form submission
+  if (adCreatorForm) {
+    adCreatorForm.addEventListener('submit', handleVideoGeneration);
+  }
+
+  // Handle video download button
+  const downloadBtn = videoContainer?.querySelector('.btn-success');
+  if (downloadBtn) {
+    downloadBtn.addEventListener('click', () => {
+      if (videoPlayer?.src) {
+        const a = document.createElement('a');
+        a.href = videoPlayer.src;
+        a.download = `video-${Date.now()}.mp4`;
+        a.click();
+        window.showToast('Download started!', 'success');
+      } else {
+        window.showToast('No video available to download.', 'warning');
+      }
+    });
+  }
+
+  // Handle video share button
+  const shareBtn = videoContainer?.querySelector('.btn-secondary');
+  if (shareBtn && shareBtn.textContent.includes('Share')) {
+    shareBtn.addEventListener('click', async () => {
+      if (videoPlayer?.src) {
+        try {
+          await navigator.share({
+            title: 'Check out this video!',
+            text: 'Generated with AdGenXAI',
+            url: videoPlayer.src,
+          });
+          window.showToast('Video shared!', 'success');
+        } catch (error) {
+          // Fallback: copy to clipboard
+          await navigator.clipboard.writeText(videoPlayer.src);
+          window.showToast('Video URL copied to clipboard!', 'success');
+        }
+      } else {
+        window.showToast('No video available to share.', 'warning');
+      }
+    });
+  }
+}
+
 function initCreatorStudio() {
   if (!requireAuth()) return;
 
   initTabs();
   initClipboard();
+  initVideoHandlers();
 
   buyTokensBtn?.addEventListener('click', () => (window.location.href = '/pricing.html'));
 

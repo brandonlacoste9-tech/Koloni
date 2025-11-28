@@ -1,0 +1,51 @@
+version: '3.8'
+
+# Development override for docker-compose.yml
+# Use: docker-compose -f docker-compose.yml -f docker-compose.dev.yml up
+
+services:
+  # Override for development - mount local code
+  whisper-api:
+    volumes:
+      - ./services/whisper-api:/app
+      - /app/venv  # Exclude venv from mount
+    environment:
+      - DEBUG=true
+      - LOG_LEVEL=debug
+
+  chatterbox-tts:
+    volumes:
+      - ./services/chatterbox-tts:/app
+      - /app/venv
+    environment:
+      - DEBUG=true
+      - LOG_LEVEL=debug
+
+  comfyui:
+    volumes:
+      - ./services/comfyui:/app
+      - /app/venv
+    environment:
+      - DEBUG=true
+      - LOG_LEVEL=debug
+
+  video-orchestrator:
+    volumes:
+      - ./services/video-orchestrator:/app
+      - /app/venv
+    environment:
+      - DEBUG=true
+      - LOG_LEVEL=debug
+      - RELOAD=true
+    command: uvicorn main:app --host 0.0.0.0 --port 8000 --reload
+
+  langgraph-orchestrator:
+    volumes:
+      - ./services/langgraph-orchestrator:/app
+      - /app/venv
+    environment:
+      - DEBUG=true
+      - LOG_LEVEL=debug
+      - RELOAD=true
+    command: uvicorn main:app --host 0.0.0.0 --port 8000 --reload
+

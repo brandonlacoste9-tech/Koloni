@@ -20,10 +20,14 @@
     <link rel="stylesheet" href="/css/main.css" />
     <link rel="stylesheet" href="/css/global.css" />
     <link rel="stylesheet" href="/css/landing-v2.css" />
+    <link rel="stylesheet" href="/css/modern-vibe.css" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
   </head>
   <body class="page-transition">
+    <!-- AI Thinking State -->
+    <script src="/js/ai-thinking.js"></script>
+    
     <a href="#main-content" class="skip-to-content">Skip to main content</a>
     
     <!-- Toast Container -->
@@ -71,44 +75,45 @@
       </div>
     </div>
     
-    <header role="banner" class="hero">
+    <header role="banner" class="hero hero-modern">
       <div class="hero-bg" aria-hidden="true">
         <div class="gradient-mesh"></div>
-        <div class="liquid-background">
-          <!-- TODO: Replace with liquid-hero-1.webp from ls.graphics when available -->
+        <div class="liquid-background floating">
           <img src="/assets/liquid-hero-1.svg" alt="" loading="eager">
         </div>
       </div>
       <div class="hero-content">
-        <div class="hero-actions">
+        <div class="hero-actions" style="position: absolute; top: 2rem; right: 2rem;">
           <button id="dark-mode-toggle" class="dark-mode-toggle" aria-label="Toggle dark mode" aria-pressed="false">
             <span class="sr-only">Toggle Dark Mode</span>
             <span aria-hidden="true">🌓</span>
           </button>
         </div>
-        <div class="hero-badge">Transform Your Content with AI</div>
-        <h1 class="hero-title">
-          Revolutionizing Content Creation
+        <div class="hero-badge modern-card" style="display: inline-block; margin-bottom: 1.5rem; padding: 0.75rem 1.5rem;">
+          ✨ Transform Your Content with AI
+        </div>
+        <h1 class="heading-modern">
+          Create. Generate. <span class="gradient-text">Export.</span>
         </h1>
-        <p class="hero-subtitle">
-          Generate cinematic LongCat and Emu content in seconds. Export everywhere with
-          platform-perfect formatting.
+        <p class="subheading-modern">
+          The easiest way to create AI-powered videos and content. 
+          From script to social media in minutes, not hours.
         </p>
-        <div class="hero-cta">
-          <a href="/signup.html" class="btn btn-primary btn-lg" aria-label="Start creating for free">
-            Get Started Free
+        <div class="hero-cta" style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; margin-top: 2rem;">
+          <a href="/creator.html" class="btn-modern btn-modern-primary" aria-label="Start creating">
+            Start Creating 🚀
           </a>
-          <a href="/creator.html" class="btn btn-glass btn-lg" aria-label="Watch the AdGenXAI demo">
-            Watch Demo
+          <a href="/signup.html" class="btn-modern btn-modern-secondary" aria-label="Sign up">
+            Sign Up Free
           </a>
         </div>
-        <div class="hero-trust">
-          <span>Join thousands of creators using AdGenXAI</span>
-          <ul class="trust-logos" aria-label="Partner logos">
-            <li>CreatorForge</li>
-            <li>SignalWave</li>
-            <li>StoryOS</li>
-            <li>NeonPeak</li>
+        <div class="hero-trust" style="margin-top: 3rem; padding-top: 2rem; border-top: 1px solid rgba(255,255,255,0.1);">
+          <p style="color: var(--text-secondary); margin-bottom: 1rem;">Trusted by creators worldwide</p>
+          <ul class="trust-logos" aria-label="Partner logos" style="display: flex; gap: 2rem; justify-content: center; flex-wrap: wrap; list-style: none; padding: 0;">
+            <li style="opacity: 0.7;">CreatorForge</li>
+            <li style="opacity: 0.7;">SignalWave</li>
+            <li style="opacity: 0.7;">StoryOS</li>
+            <li style="opacity: 0.7;">NeonPeak</li>
           </ul>
         </div>
       </div>
@@ -145,9 +150,10 @@
       </div>
     </header>
     <main id="main-content" role="main">
-      <section class="features section" aria-labelledby="features-heading" id="features">
-        <h2 id="features-heading">Powerful features for meticulous creators</h2>
-        <div class="bento-grid" role="list">
+      <section class="features section section-modern" aria-labelledby="features-heading" id="features">
+        <div class="container-modern">
+          <h2 id="features-heading" class="heading-modern" style="text-align: center; margin-bottom: 3rem;">Everything you need to create</h2>
+          <div class="grid-modern" role="list">
           <div class="card glass-card feature-card" role="listitem" tabindex="0">
             <h3>🎨 LongCat Format</h3>
             <p>Generate vertical, scrollable content optimized for mobile viewing. Perfect for Instagram Stories, TikTok, and mobile-first platforms.</p>
@@ -172,26 +178,33 @@
             <h3>💰 Token System</h3>
             <p>Flexible credit-based pricing. Buy what you need, use when you want. No subscriptions, no commitments.</p>
           </div>
+          <div class="modern-card feature-card floating" role="listitem" tabindex="0" style="animation-delay: 0.2s;">
+            <h3>🎥 AI Video Generation</h3>
+            <p>Create engaging video content from scripts. Generate videos with AI-powered tools and export to your favorite platforms.</p>
+          </div>
+        </div>
         </div>
       </section>
-      <section class="how-it-works section" aria-labelledby="how-it-works-heading">
-        <h2 id="how-it-works-heading">Start Creating in 3 Simple Steps</h2>
-        <div class="steps">
-          <div class="step glass-card">
-            <div class="step-number">1</div>
+      <section class="how-it-works section section-modern" aria-labelledby="how-it-works-heading" style="background: rgba(255,255,255,0.02);">
+        <div class="container-modern">
+          <h2 id="how-it-works-heading" class="heading-modern" style="text-align: center; margin-bottom: 3rem;">Start Creating in 3 Simple Steps</h2>
+          <div class="grid-modern">
+          <div class="modern-card" style="text-align: center;">
+            <div class="step-number" style="width: 60px; height: 60px; border-radius: 50%; background: var(--gradient-primary); display: flex; align-items: center; justify-content: center; margin: 0 auto 1.5rem; font-size: 1.5rem; font-weight: bold;">1</div>
             <h3>Sign Up</h3>
             <p>Create your free account in seconds. No credit card required to start.</p>
           </div>
-          <div class="step glass-card">
-            <div class="step-number">2</div>
+          <div class="modern-card" style="text-align: center;">
+            <div class="step-number" style="width: 60px; height: 60px; border-radius: 50%; background: var(--gradient-primary); display: flex; align-items: center; justify-content: center; margin: 0 auto 1.5rem; font-size: 1.5rem; font-weight: bold;">2</div>
             <h3>Choose Format</h3>
             <p>Select LongCat for vertical content or Emu for quick posts. Pick your style and tone.</p>
           </div>
-          <div class="step glass-card">
-            <div class="step-number">3</div>
+          <div class="modern-card" style="text-align: center;">
+            <div class="step-number" style="width: 60px; height: 60px; border-radius: 50%; background: var(--gradient-primary); display: flex; align-items: center; justify-content: center; margin: 0 auto 1.5rem; font-size: 1.5rem; font-weight: bold;">3</div>
             <h3>Generate & Export</h3>
             <p>Our AI creates your content instantly. Export to your favorite platforms with one click.</p>
           </div>
+        </div>
         </div>
       </section>
       <section class="social-proof section" aria-labelledby="social-proof-heading">
@@ -271,10 +284,8 @@
         </div>
       </section>
       <section class="final-cta section glass-panel" aria-labelledby="cta-heading">
-        <h2 id="cta-heading">Ready to build with AdGenXAI precision?</h2>
-        <p>Join thousands of creators who trust AdGenXAI for glassmorphic, platform-ready stories.</p>
         <h2 id="cta-heading">Ready to Transform Your Content?</h2>
-        <p>Join thousands of creators using AdGenXAI for premium AI-powered content generation.</p>
+        <p>Join thousands of creators using AdGenXAI for premium AI-powered content generation. Create text, images, and videos with ease.</p>
         <div class="cta-buttons">
           <a href="/signup.html" class="btn btn-primary btn-lg" aria-label="Sign up for free">Get Started Free</a>
           <a href="#pricing" class="btn btn-glass btn-lg" aria-label="View pricing plans">View Pricing</a>

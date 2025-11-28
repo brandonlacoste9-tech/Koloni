@@ -1,0 +1,39 @@
+version: '3.8'
+
+# Example Docker Compose for running ComfyUI separately
+# This is optional - ComfyUI can run on a separate GPU server
+
+services:
+  comfyui-server:
+    image: comfyui/comfyui:latest
+    # Or build from source:
+    # build:
+    #   context: ./comfyui-source
+    #   dockerfile: Dockerfile
+    container_name: comfyui-server
+    ports:
+      - "8188:8188"
+    volumes:
+      - comfyui-models:/app/models
+      - comfyui-output:/app/output
+      - comfyui-custom-nodes:/app/custom_nodes
+    environment:
+      - COMFYUI_PORT=8188
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: 1
+              capabilities: [gpu]
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8188/"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+volumes:
+  comfyui-models:
+  comfyui-output:
+  comfyui-custom-nodes:
+
