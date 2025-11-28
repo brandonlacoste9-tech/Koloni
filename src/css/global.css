@@ -1,22 +1,22 @@
 :root {
   /* Background layers - O. Washington inspired */
-  --color-bg-primary: #0a0a0a;
-  --color-bg-secondary: #0f0f0f;
-  --color-bg-tertiary: #1a1a1a;
-  --color-bg-elevated: #252525;
+  --color-bg-primary: #0a1628;
+  --color-bg-secondary: #0d1e36;
+  --color-bg-tertiary: #112444;
+  --color-bg-elevated: #132a4d;
   --color-bg-dark: #0a1628;
   --color-bg-darker: #060d17;
 
   /* Accent colors - Enhanced liquid gradient palette */
-  --color-primary: #0ea5e9;
-  --color-primary-light: #38bdf8;
-  --color-primary-dark: #0284c7;
-  --color-secondary: #8b5cf6;
-  --color-secondary-light: #a78bfa;
   --color-blue-electric: #2d5ff7;
   --color-purple: #8b5cf6;
   --color-pink: #ec4899;
   --color-cyan: #06b6d4;
+  --color-primary: var(--color-blue-electric);
+  --color-primary-light: #4d7dff;
+  --color-primary-dark: #1f4fd8;
+  --color-secondary: var(--color-purple);
+  --color-secondary-light: #a78bfa;
 
   /* Text colors */
   --color-text-primary: #ffffff;

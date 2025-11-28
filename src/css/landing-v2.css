@@ -116,19 +116,17 @@ header[role='banner'] {
   position: absolute;
   top: 0;
   right: 0;
-  width: 50%;
+  width: 55%;
   height: 100%;
   z-index: 1;
   overflow: hidden;
-}
-
-.liquid-background img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  opacity: 0.95;
+  background: radial-gradient(circle at 20% 20%, rgba(45, 95, 247, 0.45), transparent 45%),
+    radial-gradient(circle at 80% 30%, rgba(236, 72, 153, 0.4), transparent 40%),
+    radial-gradient(circle at 60% 70%, rgba(14, 165, 233, 0.35), transparent 45%),
+    linear-gradient(135deg, rgba(45, 95, 247, 0.35), rgba(139, 92, 246, 0.4));
+  filter: saturate(1.2) drop-shadow(0 20px 120px rgba(0, 0, 0, 0.35));
+  opacity: 0.9;
   mix-blend-mode: screen;
-  filter: brightness(1.1) saturate(1.2);
 }
 
 .hero-content,
@@ -307,10 +305,12 @@ header[role='banner'] {
   
   /* Liquid background mobile adjustments */
   .liquid-background {
-    width: 100%;
+    width: 120%;
     height: 60vh;
-    position: relative;
-    margin-top: 2rem;
+    left: 50%;
+    right: auto;
+    transform: translateX(-50%);
+    opacity: 0.65;
   }
   
   .hero {
