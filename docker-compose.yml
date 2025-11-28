@@ -1,0 +1,164 @@
+version: '3.8'
+
+services:
+  # Redis for job queue management
+  redis:
+    image: redis:7-alpine
+    container_name: kolony-redis
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis-data:/data
+    command: redis-server --appendonly yes
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  # Whisper Turbo API Service
+  whisper-api:
+    build:
+      context: ./services/whisper-api
+      dockerfile: Dockerfile
+    container_name: kolony-whisper
+    ports:
+      - "8001:8000"
+    environment:
+      - MODEL_SIZE=large-v3-turbo
+      - DEVICE=cuda
+      - CUDA_VISIBLE_DEVICES=0
+    volumes:
+      - ./services/whisper-api:/app
+      - whisper-models:/models
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: 1
+              capabilities: [gpu]
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+  # Chatterbox TTS Service
+  chatterbox-tts:
+    build:
+      context: ./services/chatterbox-tts
+      dockerfile: Dockerfile
+    container_name: kolony-chatterbox
+    ports:
+      - "8002:8000"
+    environment:
+      - MODEL_PATH=/models/chatterbox
+      - API_KEY=${CHATTERBOX_API_KEY:-}
+    volumes:
+      - ./services/chatterbox-tts:/app
+      - tts-models:/models
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+  # ComfyUI Server (for video generation)
+  comfyui:
+    build:
+      context: ./services/comfyui
+      dockerfile: Dockerfile
+    container_name: kolony-comfyui
+    ports:
+      - "8188:8188"
+    environment:
+      - COMFYUI_PORT=8188
+      - CUDA_VISIBLE_DEVICES=0
+    volumes:
+      - ./services/comfyui:/app
+      - comfyui-models:/models
+      - comfyui-output:/output
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: 1
+              capabilities: [gpu]
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8188/"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+  # Video Pipeline Orchestrator (FastAPI)
+  video-orchestrator:
+    build:
+      context: ./services/video-orchestrator
+      dockerfile: Dockerfile
+    container_name: kolony-orchestrator
+    ports:
+      - "8003:8000"
+    environment:
+      - REDIS_URL=redis://redis:6379
+      - WHISPER_API_URL=http://whisper-api:8000
+      - CHATTERBOX_API_URL=http://chatterbox-tts:8000
+      - COMFYUI_URL=http://comfyui:8188
+      - SUPABASE_URL=${SUPABASE_URL}
+      - SUPABASE_KEY=${SUPABASE_KEY}
+      - OPENAI_API_KEY=${OPENAI_API_KEY}
+      - LONGCAT_VIDEO_ENDPOINT=${LONGCAT_VIDEO_ENDPOINT:-}
+      - LONGCAT_API_KEY=${LONGCAT_API_KEY:-}
+    volumes:
+      - ./services/video-orchestrator:/app
+    depends_on:
+      redis:
+        condition: service_healthy
+      whisper-api:
+        condition: service_healthy
+      chatterbox-tts:
+        condition: service_healthy
+      comfyui:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+  # LangGraph Agent Orchestration Service
+  langgraph-orchestrator:
+    build:
+      context: ./services/langgraph-orchestrator
+      dockerfile: Dockerfile
+    container_name: kolony-langgraph
+    ports:
+      - "8004:8000"
+    environment:
+      - REDIS_URL=redis://redis:6379
+      - LLAMA_MODEL_PATH=/models/llama3-8b
+      - OPENAI_API_KEY=${OPENAI_API_KEY}
+    volumes:
+      - ./services/langgraph-orchestrator:/app
+      - llama-models:/models
+    depends_on:
+      - redis
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+volumes:
+  redis-data:
+  whisper-models:
+  tts-models:
+  comfyui-models:
+  comfyui-output:
+  llama-models:
+
+networks:
+  default:
+    name: kolony-network
+

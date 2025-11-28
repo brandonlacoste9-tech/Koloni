@@ -201,6 +201,33 @@ class AIRouter {
   }
 
   /**
+   * Generate video content
+   */
+  async generateVideo(params) {
+    try {
+      const response = await fetch(`${this.baseUrl}/generate-video`, {
+        method: "POST",
+        headers: this.getHeaders(),
+        body: JSON.stringify({
+          ...params,
+          userId: this.userId,
+        }),
+      });
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        throw new Error(data.error || data.message || "Video generation failed");
+      }
+
+      return data;
+    } catch (error) {
+      console.error("Error generating video:", error);
+      throw error;
+    }
+  }
+
+  /**
    * Route generation request based on format
    */
   async generate(format, params) {
@@ -209,6 +236,8 @@ class AIRouter {
         return await this.generateLongCat(params);
       case "emu":
         return await this.generateEmu(params);
+      case "video":
+        return await this.generateVideo(params);
       default:
         throw new Error(`Unknown format: ${format}`);
     }

@@ -13,8 +13,17 @@
     <link rel="stylesheet" href="/css/global.css" />
     <link rel="stylesheet" href="/css/landing-v2.css" />
     <link rel="stylesheet" href="/css/creator.css" />
+    <link rel="stylesheet" href="css/main.css" />
+    <link rel="stylesheet" href="css/global.css" />
+    <link rel="stylesheet" href="css/creator.css" />
+    <link rel="stylesheet" href="css/social-export.css" />
+    <link rel="stylesheet" href="css/modern-vibe.css" />
+    <link rel="stylesheet" href="css/advanced-features.css" />
   </head>
   <body class="page-transition">
+    <!-- AI Thinking State -->
+    <script src="js/ai-thinking.js"></script>
+    
     <a href="#main-content" class="skip-to-content">Skip to main content</a>
 
     <!-- Toast Container -->
@@ -70,73 +79,95 @@
     
     <div class="container">
       <main id="main-content" role="main">
-        <div class="creator-container glass-panel fade-in">
-          <header>
-            <h1>Ad Creator</h1>
-            <p>Create your next ad campaign with AI-powered video generation</p>
+        <div class="creator-container modern-card fade-in" style="max-width: 800px; margin: 0 auto;">
+          <header style="text-align: center; margin-bottom: 2rem;">
+            <h1 class="heading-modern" style="font-size: 2.5rem; margin-bottom: 0.5rem;">Create Your Video</h1>
+            <p class="subheading-modern" style="font-size: 1.125rem;">Tell us what you want, and we'll bring it to life</p>
           </header>
           
           <form id="ad-creator-form" aria-label="Ad campaign creation form">
-            <div class="form-group">
-              <label for="campaign-name">Campaign Name</label>
+            <div class="form-group" style="margin-bottom: 1.5rem;">
+              <label for="campaign-name" style="display: block; margin-bottom: 0.5rem; color: var(--text-primary); font-weight: 500;">Campaign Name</label>
               <input
                 type="text"
                 id="campaign-name"
                 name="campaign-name"
-                class="glass-input"
-                placeholder="Enter campaign name"
+                class="input-modern"
+                placeholder="My awesome campaign"
                 required
                 aria-required="true"
                 autocomplete="off"
               />
             </div>
-            <div class="form-group">
-              <label for="video-script">Video Script</label>
+            <div class="form-group" style="margin-bottom: 1.5rem;">
+              <label for="video-script" style="display: block; margin-bottom: 0.5rem; color: var(--text-primary); font-weight: 500;">Video Script</label>
               <textarea
                 id="video-script"
                 name="video-script"
-                class="glass-input"
+                class="input-modern"
                 rows="8"
-                placeholder="Describe your video content..."
+                placeholder="Describe your video... What should happen? What's the mood? Who's the audience?"
                 required
                 aria-required="true"
                 aria-describedby="script-help"
+                style="resize: vertical; min-height: 150px;"
               ></textarea>
-              <small id="script-help" class="text-muted">
-                Provide a detailed description of the video content you want to create
+              <small id="script-help" style="display: block; margin-top: 0.5rem; color: var(--text-muted); font-size: 0.875rem;">
+                💡 Be specific! The more details you provide, the better the result.
               </small>
             </div>
-            <div class="form-actions flex gap-md">
-              <button type="submit" class="btn btn-primary" aria-label="Generate video from script">
-                Generate Video
+            <div class="form-actions" style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; margin-top: 2rem;">
+              <button type="submit" class="btn-modern btn-modern-primary" aria-label="Generate video from script">
+                ✨ Generate Video
               </button>
-              <button type="reset" class="btn btn-secondary" aria-label="Reset form">
+              <button type="reset" class="btn-modern btn-modern-secondary" aria-label="Reset form">
                 Reset
               </button>
-              <a href="dashboard.html" class="btn btn-ghost" aria-label="Back to dashboard">
-                Back to Dashboard
+              <a href="dashboard.html" class="btn-modern btn-modern-secondary" aria-label="Back to dashboard">
+                ← Dashboard
               </a>
             </div>
           </form>
           
           <!-- Loading State -->
-          <div id="loading-state" class="loading-state" style="display: none;" role="status" aria-live="polite">
-            <div class="skeleton skeleton-card"></div>
-            <p class="text-center mt-md">Generating your video...</p>
+          <div id="loading-state" class="loading-state modern-card" style="display: none; text-align: center; padding: 3rem;" role="status" aria-live="polite">
+            <div style="font-size: 4rem; margin-bottom: 1rem;">✨</div>
+            <h3 style="margin-bottom: 0.5rem;" class="gradient-text">Creating your video...</h3>
+            <p style="color: var(--text-secondary); margin-bottom: 1.5rem;">This might take a minute. Grab a coffee! ☕</p>
+            <div class="thinking-dots" style="justify-content: center;">
+              <div class="thinking-dot"></div>
+              <div class="thinking-dot"></div>
+              <div class="thinking-dot"></div>
+            </div>
           </div>
           
           <!-- Generated Video Container -->
-          <div id="video-container" class="video-result glass-card mt-xl" style="display: none">
-            <h2>Generated Video</h2>
-            <video 
-              id="video-player" 
-              controls 
-              width="100%"
-              aria-label="Generated video player"
-            ></video>
-            <div class="video-actions mt-md flex gap-md">
-              <button class="btn btn-success" aria-label="Download video">Download</button>
-              <button class="btn btn-secondary" aria-label="Share video">Share</button>
+          <div id="video-container" class="modern-card mt-xl" style="display: none; margin-top: 3rem;">
+            <h2 style="margin-bottom: 1.5rem; text-align: center;" class="gradient-text">Your Video is Ready! 🎉</h2>
+            <div style="border-radius: var(--radius-lg); overflow: hidden; margin-bottom: 1.5rem; background: rgba(0,0,0,0.3);">
+              <video 
+                id="video-player" 
+                controls 
+                width="100%"
+                style="display: block;"
+                aria-label="Generated video player"
+              ></video>
+            </div>
+            <div class="video-actions" style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+              <button class="btn-modern btn-modern-secondary" aria-label="Download video">
+                ⬇️ Download
+              </button>
+              <button class="btn-modern btn-modern-secondary" aria-label="Share video">
+                🔗 Share
+              </button>
+              <button 
+                class="btn-modern btn-modern-primary export-to-social-btn" 
+                aria-label="Export to social media"
+                data-job-id=""
+                id="export-social-btn"
+              >
+                📱 Export to Social Media
+              </button>
             </div>
           </div>
         </div>
@@ -145,5 +176,16 @@
     <script src="/js/ui-utils.js"></script>
     <script src="/js/creator.js"></script>
     <script src="/js/mobile-menu.js"></script>
+    <!-- Advanced Features Sections -->
+    <div id="analytics-dashboard" style="display: none; margin-top: 3rem;"></div>
+    <div id="collaborators-list" style="display: none; margin-top: 2rem;"></div>
+    
+    <script src="js/ui-utils.js"></script>
+    <script src="js/creator.js"></script>
+    <script src="js/social-export.js"></script>
+    <script src="js/ai-assistant.js"></script>
+    <script src="js/video-analytics.js"></script>
+    <script src="js/collaboration.js"></script>
+    <script src="js/batch-processor.js"></script>
   </body>
 </html>
