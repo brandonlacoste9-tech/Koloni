@@ -33,7 +33,7 @@
     "stripe": "^14.7.0"
   },
   "devDependencies": {
-    "netlify-cli": "^23.12.1",
+    "netlify-cli": "^23.15.1",
     "eslint": "^8.57.1",
     "prettier": "^3.7.1"
   },
